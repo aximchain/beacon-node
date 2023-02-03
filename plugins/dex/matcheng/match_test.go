@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-const DefaultPairSymbol = "ABC_BNB"
+const DefaultPairSymbol = "ABC_AXC"
 
 func Test_sumOrders(t *testing.T) {
 	assert := assert.New(t)

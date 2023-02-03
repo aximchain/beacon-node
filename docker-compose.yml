@@ -1,58 +1,58 @@
 version: '3'
 
 services:
-  bnbdnode0:
-    container_name: bnbdnode0
-    image: "binance/bnbdnode"
+  axcdnode0:
+    container_name: axcdnode0
+    image: "aximchain/axcdnode"
     ports:
       - "26656-26657:26656-26657"
     environment:
       - ID=0
-      - LOG=${LOG:-bnbchaind.log}
+      - LOG=${LOG:-axcchaind.log}
     volumes:
-      - ./build:/bnbchaind:Z
+      - ./build:/axcchaind:Z
     networks:
       localnet:
         ipv4_address: 172.20.0.2
 
-  bnbdnode1:
-    container_name: bnbdnode1
-    image: "binance/bnbdnode"
+  axcdnode1:
+    container_name: axcdnode1
+    image: "aximchain/axcdnode"
     ports:
       - "26659-26660:26656-26657"
     environment:
       - ID=1
-      - LOG=${LOG:-bnbchaind.log}
+      - LOG=${LOG:-axcchaind.log}
     volumes:
-      - ./build:/bnbchaind:Z
+      - ./build:/axcchaind:Z
     networks:
       localnet:
         ipv4_address: 172.20.0.3
 
-  bnbdnode2:
-    container_name: bnbdnode2
-    image: "binance/bnbdnode"
+  axcdnode2:
+    container_name: axcdnode2
+    image: "aximchain/axcdnode"
     environment:
       - ID=2
-      - LOG=${LOG:-bnbchaind.log}
+      - LOG=${LOG:-axcchaind.log}
     ports:
       - "26661-26662:26656-26657"
     volumes:
-      - ./build:/bnbchaind:Z
+      - ./build:/axcchaind:Z
     networks:
       localnet:
         ipv4_address: 172.20.0.4
 
-  bnbdnode3:
-    container_name: bnbdnode3
-    image: "binance/bnbdnode"
+  axcdnode3:
+    container_name: axcdnode3
+    image: "aximchain/axcdnode"
     environment:
       - ID=3
-      - LOG=${LOG:-bnbchaind.log}
+      - LOG=${LOG:-axcchaind.log}
     ports:
       - "26663-26664:26656-26657"
     volumes:
-      - ./build:/bnbchaind:Z
+      - ./build:/axcchaind:Z
     networks:
       localnet:
         ipv4_address: 172.20.0.5

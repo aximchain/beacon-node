@@ -57,20 +57,20 @@ func NewKeeper(cdc *codec.Codec, storeKey sdk.StoreKey, accountKeeper auth.Accou
 }
 
 func (k Keeper) RefundTransferIn(decimals int8, transferInClaim *types.TransferInSynPackage, refundReason types.RefundReason) ([]byte, sdk.Error) {
-	refundBscAmounts := make([]*big.Int, 0, len(transferInClaim.RefundAddresses))
+	refundAxcAmounts := make([]*big.Int, 0, len(transferInClaim.RefundAddresses))
 	for idx := range transferInClaim.RefundAddresses {
-		bscAmount, sdkErr := types.ConvertBCAmountToBSCAmount(decimals, transferInClaim.Amounts[idx].Int64())
+		axcAmount, sdkErr := types.ConvertBCAmountToAXCAmount(decimals, transferInClaim.Amounts[idx].Int64())
 		if sdkErr != nil {
 			return nil, sdkErr
 		}
 
-		refundBscAmounts = append(refundBscAmounts, bscAmount.BigInt())
+		refundAxcAmounts = append(refundAxcAmounts, axcAmount.BigInt())
 	}
 
 	refundPackage := &types.TransferInRefundPackage{
 		ContractAddr:    transferInClaim.ContractAddress,
 		RefundAddresses: transferInClaim.RefundAddresses,
-		RefundAmounts:   refundBscAmounts,
+		RefundAmounts:   refundAxcAmounts,
 		RefundReason:    refundReason,
 	}
 
@@ -138,8 +138,8 @@ func (k Keeper) SetContractDecimals(ctx sdk.Context, contractAddr sdk.SmartChain
 
 func (k Keeper) GetContractDecimals(ctx sdk.Context, contractAddr sdk.SmartChainAddress) int8 {
 	if sdk.IsUpgrade(upgrade.FixFailAckPackage) {
-		if strings.ToLower(contractAddr.String()) == types.BNBContractAddr {
-			return types.BNBContractDecimals
+		if strings.ToLower(contractAddr.String()) == types.AXCContractAddr {
+			return types.AXCContractDecimals
 		}
 	}
 

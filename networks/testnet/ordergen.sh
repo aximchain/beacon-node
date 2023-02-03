@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # This script is still working in progress.
-clipath='/root/go/src/github.com/bnb-chain/node/build/bnbcli'
+clipath='/root/go/src/github.com/axc-chain/node/build/axccli'
 clihome='/server/bnc/node0/gaiacli'
-chainId='chain-bnb'
+chainId='chain-axc'
 
 
 cli="${clipath} --home ${clihome}"
@@ -11,27 +11,27 @@ cli="${clipath} --home ${clihome}"
 
 ${cli} keys add zc --recover
 ${cli} keys add zz
-result=$(${cli} token issue --from=zc --token-name="New BNB Coin" --symbol=NNB --total-supply=2000000000000000 --chain-id ${chainId})
+result=$(${cli} token issue --from=zc --token-name="New AXC Coin" --symbol=NNB --total-supply=2000000000000000 --chain-id ${chainId})
 nnb_symbol=$(echo "${result}" | tail -n 1 | grep -o "NNB-[0-9A-Z]*")
 echo ${nnb_symbol}
 sleep 10
-${cli} gov submit-list-proposal --chain-id ${chainId} --from zc --deposit 200000000000:BNB --base-asset-symbol ${nnb_symbol} --quote-asset-symbol BNB --init-price 1000000000 --title "list NNB/BNB" --description "list NNB/BNB" --expire-time 1644486400
+${cli} gov submit-list-proposal --chain-id ${chainId} --from zc --deposit 200000000000:AXC --base-asset-symbol ${nnb_symbol} --quote-asset-symbol AXC --init-price 1000000000 --title "list NNB/AXC" --description "list NNB/AXC" --expire-time 1644486400
 sleep 2
 ${cli} gov vote --from zc --chain-id ${chainId} --proposal-id 7 --option Yes
 sleep 61
-${cli} dex list -s=${nnb_symbol} --quote-asset-symbol=BNB --init-price=1000000000 --from=zc --chain-id ${chainId} --proposal-id 7
+${cli} dex list -s=${nnb_symbol} --quote-asset-symbol=AXC --init-price=1000000000 --from=zc --chain-id ${chainId} --proposal-id 7
 sleep 1
 result=$(${cli} token issue --from=zc --token-name="ZC Coin" --symbol=ZCB --total-supply=2000000000000000 --chain-id ${chainId})
 zcb_symbol=$(echo "${result}" | tail -n 1 | grep -o "ZCB-[0-9A-Z]*")
 echo ${zcb_symbol}
 sleep 10
-${cli} gov submit-list-proposal --chain-id ${chainId} --from zc --deposit 200000000000:BNB --base-asset-symbol ${zcb_symbol} --quote-asset-symbol BNB --init-price 1000000000 --title "list ZCB/BNB" --description "list ZCB/BNB" --expire-time 1644486400
+${cli} gov submit-list-proposal --chain-id ${chainId} --from zc --deposit 200000000000:AXC --base-asset-symbol ${zcb_symbol} --quote-asset-symbol AXC --init-price 1000000000 --title "list ZCB/AXC" --description "list ZCB/AXC" --expire-time 1644486400
 sleep 2
 ${cli} gov vote --from zc --chain-id ${chainId} --proposal-id 8 --option Yes
 sleep 61
-${cli} dex list -s=${zcb_symbol} --quote-asset-symbol=BNB --init-price=1000000000 --from=zc --chain-id ${chainId} --proposal-id 8
+${cli} dex list -s=${zcb_symbol} --quote-asset-symbol=AXC --init-price=1000000000 --from=zc --chain-id ${chainId} --proposal-id 8
 sleep 1
-${cli} send --from=zc --to=cosmosaccaddr1872gjuvfakc6nrrf8qdqsar7anp9ezjly8rrwh --amount=1000000000000000:BNB --chain-id ${chainId}
+${cli} send --from=zc --to=cosmosaccaddr1872gjuvfakc6nrrf8qdqsar7anp9ezjly8rrwh --amount=1000000000000000:AXC --chain-id ${chainId}
 sleep 10
 
 function random()
@@ -51,10 +51,10 @@ do
     pause=$(random 5 7)
     symbolNum=$(random 1 10)
 
-    symbol=${nnb_symbol}_BNB
+    symbol=${nnb_symbol}_AXC
     if [ $symbolNum -lt 4 ]
     then
-        symbol=${zcb_symbol}_BNB
+        symbol=${zcb_symbol}_AXC
     fi
 
     from="zc"

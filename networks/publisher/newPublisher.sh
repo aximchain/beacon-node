@@ -2,10 +2,10 @@
 
 ########################### SETUP #########################
 home=$HOME
-src="${home}/go/src/github.com/bnb-chain/node"
-deamonhome="${home}/.bnbchaind"
-witnesshome="${home}/.bnbchaind_publisher"
-clihome="${home}/.bnbcli"
+src="${home}/go/src/github.com/axc-chain/node"
+deamonhome="${home}/.axcchaind"
+witnesshome="${home}/.axcchaind_publisher"
+clihome="${home}/.axccli"
 chain_id='test-chain-n4b735'
 echo $src
 echo $deamonhome
@@ -13,8 +13,8 @@ echo $witnesshome
 echo $clihome
 
 key_seed_path="${home}"
-executable="${src}/build/bnbchaind"
-clipath="${src}/build/bnbcli"
+executable="${src}/build/axcchaind"
+clipath="${src}/build/axccli"
 cli="${clipath} --home ${clihome}"
 scripthome="${src}/networks/publisher"
 ############################ END ##########################
@@ -33,7 +33,7 @@ sed -i -e "s/6060/9060/g" ${witnesshome}/config/config.toml
 sed -i -e "s/logToConsole = true/logToConsole = false/g" ${witnesshome}/config/app.toml
 
 # get validator id
-validator_pid=$(ps aux | grep "bnbchaind start$" | awk '{print $2}')
+validator_pid=$(ps aux | grep "axcchaind start$" | awk '{print $2}')
 validatorStatus=$(${cli} status)
 validator_id=$(echo ${validatorStatus} | grep -o "\"id\":\"[a-zA-Z0-9]*\"" | sed "s/\"//g" | sed "s/id://g")
 

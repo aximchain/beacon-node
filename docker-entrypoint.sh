@@ -11,4 +11,4 @@ then
     cp ${DEFAULT_CONFIG}/${NETWORK}/* ${HOME}/config/
 fi
 
-exec "bnbchaind" "start" "--home" ${HOME} "$@"
+exec "axcchaind" "start" "--home" ${HOME} "$@"

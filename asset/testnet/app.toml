@@ -40,7 +40,7 @@ BEP70Height = 1
 BEP67Height = 1
 BEP8Height = 1
 
-LaunchBscUpgradeHeight = 1
+LaunchAxcUpgradeHeight = 1
 # Block height of Fix Distribution upgrade
 FixSideChainRewardDistribution = 2208000
 
@@ -75,17 +75,17 @@ ABCIQueryBlackList = []
 
 [addr]
 # Bech32PrefixAccAddr defines the Bech32 prefix of an account's address
-bech32PrefixAccAddr = "tbnb"
+bech32PrefixAccAddr = "taxc"
 # Bech32PrefixAccPub defines the Bech32 prefix of an account's public key
-bech32PrefixAccPub = "bnbp"
+bech32PrefixAccPub = "axcp"
 # Bech32PrefixValAddr defines the Bech32 prefix of a validator's operator address
-bech32PrefixValAddr = "bva"
+bech32PrefixValAddr = "ava"
 # Bech32PrefixValPub defines the Bech32 prefix of a validator's operator public key
-bech32PrefixValPub = "bvap"
+bech32PrefixValPub = "avap"
 # Bech32PrefixConsAddr defines the Bech32 prefix of a consensus node address
-bech32PrefixConsAddr = "bca"
+bech32PrefixConsAddr = "aca"
 # Bech32PrefixConsPub defines the Bech32 prefix of a consensus node public key
-bech32PrefixConsPub = "bcap"
+bech32PrefixConsPub = "acap"
 
 ##### publication related configurations #####
 [publication]
@@ -185,12 +185,12 @@ logToConsole = true
 # Log file root, if not set, use home path
 logFileRoot = ""
 # Log file path relative to log file root path
-logFilePath = "bnc.log"
+logFilePath = "axc.log"
 # Number of logs keep in memory before writing to file
 logBuffSize = 10000
 [cross_chain]
 ibcChainId = 1
-bscChainId = "chapel"
-bscIbcChainId = 97
+axcChainId = "chapel"
+axcIbcChainId = 97
 [dex]
 BUSDSymbol = "BUSD-BAF"

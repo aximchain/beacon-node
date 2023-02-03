@@ -18,7 +18,7 @@ import (
 	stakecmd "github.com/cosmos/cosmos-sdk/x/stake/client/cli"
 
 	"github.com/tendermint/tendermint/libs/cli"
-
+	// TODO
 	"github.com/bnb-chain/node/admin"
 	"github.com/bnb-chain/node/app"
 	"github.com/bnb-chain/node/common"
@@ -34,8 +34,8 @@ import (
 // rootCmd is the entry point for this binary
 var (
 	rootCmd = &cobra.Command{
-		Use:   "bnbcli",
-		Short: "BNBChain light-client",
+		Use:   "axccli",
+		Short: "AXCChain light-client",
 	}
 )
 

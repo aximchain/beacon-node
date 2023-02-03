@@ -10,24 +10,24 @@ import (
 )
 
 func Test_findKthLargest(t *testing.T) {
-	//A0 := &SymbolWithOrderNumber{"ABC-9UEM_BNB", 0}
-	A1 := &SymbolWithOrderNumber{"ABC-9UEM_BNB", 1}
-	A2 := &SymbolWithOrderNumber{"ABC-9UEM_BNB", 2}
-	A3 := &SymbolWithOrderNumber{"ABC-9UEM_BNB", 3}
-	A4 := &SymbolWithOrderNumber{"ABC-9UEM_BNB", 4}
-	A5 := &SymbolWithOrderNumber{"ABC-9UEM_BNB", 5}
-	A6 := &SymbolWithOrderNumber{"ABC-9UEM_BNB", 6}
+	//A0 := &SymbolWithOrderNumber{"ABC-9UEM_AXC", 0}
+	A1 := &SymbolWithOrderNumber{"ABC-9UEM_AXC", 1}
+	A2 := &SymbolWithOrderNumber{"ABC-9UEM_AXC", 2}
+	A3 := &SymbolWithOrderNumber{"ABC-9UEM_AXC", 3}
+	A4 := &SymbolWithOrderNumber{"ABC-9UEM_AXC", 4}
+	A5 := &SymbolWithOrderNumber{"ABC-9UEM_AXC", 5}
+	A6 := &SymbolWithOrderNumber{"ABC-9UEM_AXC", 6}
 	//B2 := &SymbolWithOrderNumber{"b", 2}
-	B3 := &SymbolWithOrderNumber{"BAC-678M_BNB", 3}
-	B5 := &SymbolWithOrderNumber{"BAC-678M_BNB", 5}
+	B3 := &SymbolWithOrderNumber{"BAC-678M_AXC", 3}
+	B5 := &SymbolWithOrderNumber{"BAC-678M_AXC", 5}
 	//C3 := &SymbolWithOrderNumber{"c", 3}
-	C4 := &SymbolWithOrderNumber{"CUY-G42M_BNB", 4}
+	C4 := &SymbolWithOrderNumber{"CUY-G42M_AXC", 4}
 	//D4 := &SymbolWithOrderNumber{"d", 4}
-	D3 := &SymbolWithOrderNumber{"DUY-765_BNB", 3}
+	D3 := &SymbolWithOrderNumber{"DUY-765_AXC", 3}
 	//E5 := &SymbolWithOrderNumber{"e", 5}
-	E2 := &SymbolWithOrderNumber{"ETF-876_BNB", 2}
+	E2 := &SymbolWithOrderNumber{"ETF-876_AXC", 2}
 	//F6 := &SymbolWithOrderNumber{"f", 6}
-	F1 := &SymbolWithOrderNumber{"FXM-987M_BNB", 1}
+	F1 := &SymbolWithOrderNumber{"FXM-987M_AXC", 1}
 
 	expected := []*SymbolWithOrderNumber{A3, A4, A5}
 	result := findTopKLargest([]*SymbolWithOrderNumber{A1, A2, A3, A4, A5}, 3)
@@ -59,14 +59,14 @@ func Test_findKthLargest(t *testing.T) {
 }
 
 func Test_findKthLargest_SameNumber(t *testing.T) {
-	A0 := &SymbolWithOrderNumber{"ABC-9UEM_BNB", 0}
-	A1 := &SymbolWithOrderNumber{"ABC-9UEM_BNB", 1}
-	A2 := &SymbolWithOrderNumber{"ABC-9UEM_BNB", 2}
-	B2 := &SymbolWithOrderNumber{"BAC-678M_BNB", 2}
-	C1 := &SymbolWithOrderNumber{"CUY-G42M_BNB", 1}
-	C2 := &SymbolWithOrderNumber{"CUY-G42M_BNB", 2}
-	E2 := &SymbolWithOrderNumber{"ETF-876_BNB", 2}
-	F2 := &SymbolWithOrderNumber{"FXM-987M_BNB", 2}
+	A0 := &SymbolWithOrderNumber{"ABC-9UEM_AXC", 0}
+	A1 := &SymbolWithOrderNumber{"ABC-9UEM_AXC", 1}
+	A2 := &SymbolWithOrderNumber{"ABC-9UEM_AXC", 2}
+	B2 := &SymbolWithOrderNumber{"BAC-678M_AXC", 2}
+	C1 := &SymbolWithOrderNumber{"CUY-G42M_AXC", 1}
+	C2 := &SymbolWithOrderNumber{"CUY-G42M_AXC", 2}
+	E2 := &SymbolWithOrderNumber{"ETF-876_AXC", 2}
+	F2 := &SymbolWithOrderNumber{"FXM-987M_AXC", 2}
 
 	assert := assert.New(t)
 

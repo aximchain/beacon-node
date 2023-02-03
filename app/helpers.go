@@ -27,13 +27,13 @@ import (
 
 	"github.com/bnb-chain/node/app/config"
 	"github.com/bnb-chain/node/common"
-	bnclog "github.com/bnb-chain/node/common/log"
+	axclog "github.com/bnb-chain/node/common/log"
 	"github.com/bnb-chain/node/common/utils"
 	"github.com/bnb-chain/node/plugins/dex/order"
 )
 
 // If a new config is created, change some of the default tendermint settings
-func interceptLoadConfigInPlace(context *config.BinanceChainContext) (err error) {
+func interceptLoadConfigInPlace(context *config.AximchainContext) (err error) {
 	tmpConf := tmcfg.DefaultConfig()
 	err = viper.Unmarshal(tmpConf)
 	if err != nil {
@@ -58,7 +58,7 @@ func interceptLoadConfigInPlace(context *config.BinanceChainContext) (err error)
 
 	appConfigFilePath := filepath.Join(rootDir, "config/", config.AppConfigFileName+".toml")
 	if _, err := os.Stat(appConfigFilePath); os.IsNotExist(err) {
-		config.WriteConfigFile(appConfigFilePath, ServerContext.BinanceChainConfig)
+		config.WriteConfigFile(appConfigFilePath, ServerContext.AximchainConfig)
 	} else {
 		err = context.ParseAppConfigInPlace()
 		if err != nil {
@@ -69,9 +69,9 @@ func interceptLoadConfigInPlace(context *config.BinanceChainContext) (err error)
 	return nil
 }
 
-func newLogger(ctx *config.BinanceChainContext) log.Logger {
+func newLogger(ctx *config.AximchainContext) log.Logger {
 	if ctx.LogConfig.LogToConsole {
-		return bnclog.NewConsoleLogger()
+		return axclog.NewConsoleLogger()
 	} else {
 		logFilePath := ""
 		if ctx.LogConfig.LogFileRoot == "" {
@@ -83,14 +83,14 @@ func newLogger(ctx *config.BinanceChainContext) log.Logger {
 		if err != nil {
 			panic(fmt.Sprintf("create log dir failed, err=%s", err.Error()))
 		}
-		return bnclog.NewAsyncFileLogger(logFilePath, ctx.LogConfig.LogBuffSize)
+		return axclog.NewAsyncFileLogger(logFilePath, ctx.LogConfig.LogBuffSize)
 	}
 }
 
 // PersistentPreRunEFn returns a PersistentPreRunE function for cobra
 // that initailizes the passed in context with a properly configured
 // logger and config object
-func PersistentPreRunEFn(context *config.BinanceChainContext) func(*cobra.Command, []string) error {
+func PersistentPreRunEFn(context *config.AximchainContext) func(*cobra.Command, []string) error {
 	return func(cmd *cobra.Command, args []string) error {
 		if cmd.Name() == version.VersionCmd.Name() {
 			return nil
@@ -116,14 +116,14 @@ func PersistentPreRunEFn(context *config.BinanceChainContext) func(*cobra.Comman
 			logger = log.NewTracingLogger(logger)
 		}
 		logger = logger.With("module", "main")
-		bnclog.InitLogger(logger)
+		axclog.InitLogger(logger)
 
 		context.Logger = logger
 		return nil
 	}
 }
 
-func (app *BinanceChain) processErrAbciResponseForPub(txBytes []byte) {
+func (app *Aximchain) processErrAbciResponseForPub(txBytes []byte) {
 	defer func() {
 		if r := recover(); r != nil {
 			stackTrace := fmt.Sprintf("recovered: %v\nstack:\n%v", r, string(debug.Stack()))
@@ -158,7 +158,7 @@ func (app *BinanceChain) processErrAbciResponseForPub(txBytes []byte) {
 	}
 }
 
-func (app *BinanceChain) getLastBreatheBlockHeight() int64 {
+func (app *Aximchain) getLastBreatheBlockHeight() int64 {
 	// we should only sync to breathe block height
 	latestBlockHeight := app.LastBlockHeight()
 	var timeOfLatestBlock time.Time
@@ -182,7 +182,7 @@ func (app *BinanceChain) getLastBreatheBlockHeight() int64 {
 	return height
 }
 
-func (app *BinanceChain) reInitChain() error {
+func (app *Aximchain) reInitChain() error {
 	app.DexKeeper.Init(
 		app.CheckState.Ctx,
 		app.baseConfig.BreatheBlockInterval,

@@ -28,7 +28,7 @@ func init() {
 	dex.RegisterWire(codec)
 
 	config := sdk.GetConfig()
-	config.SetBech32PrefixForAccount("tbnb", "bnbp")
+	config.SetBech32PrefixForAccount("taxc", "axcp")
 }
 
 func openDB(root, dbName string) *db.GoLevelDB {
@@ -90,7 +90,7 @@ func getSnapshot(height int64, root string) (obs map[string]order.OrderBookSnaps
 		var ob order.OrderBookSnapshot
 		err := codec.UnmarshalBinaryLengthPrefixed(bz, &ob)
 		if err != nil {
-			panic(fmt.Sprintf("failed to unmarshal snapshort for orderbook [%s]", string(iter.Key())))
+			panic(fmt.Sprintf("failed to unmarshal snapshot for orderbook [%s]", string(iter.Key())))
 		}
 		obs[string(iter.Key())] = ob
 		fmt.Printf("%#v\n", ob)
@@ -105,7 +105,7 @@ func getSnapshot(height int64, root string) (obs map[string]order.OrderBookSnaps
 	bz = uncompress(bz)
 	err := codec.UnmarshalBinaryLengthPrefixed(bz, &ao)
 	if err != nil {
-		panic(fmt.Sprintf("failed to unmarshal snapshort for active orders [%s]", string(activeOrderKeyPrefix)))
+		panic(fmt.Sprintf("failed to unmarshal snapshot for active orders [%s]", string(activeOrderKeyPrefix)))
 	}
 	//fmt.Println(fmt.Sprintf("%#v", ao))
 	fmt.Println("active orders")

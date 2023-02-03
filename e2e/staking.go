@@ -98,7 +98,7 @@ func GenKeyManager() (km keys.KeyManager, err error) {
 	return keys.NewPrivateKeyManager(pk)
 }
 
-func GenKeyManagerWithBNB(client *rpc.HTTP, tokenFrom keys.KeyManager) (km keys.KeyManager, err error) {
+func GenKeyManagerWithAXC(client *rpc.HTTP, tokenFrom keys.KeyManager) (km keys.KeyManager, err error) {
 	km, err = GenKeyManager()
 	if err != nil {
 		return nil, xerrors.Errorf("GenKeyManager err: %w", err)
@@ -106,7 +106,7 @@ func GenKeyManagerWithBNB(client *rpc.HTTP, tokenFrom keys.KeyManager) (km keys.
 	// send coin to the account
 	client.SetKeyManager(tokenFrom)
 	transfer := msg.Transfer{ToAddr: km.GetAddr(), Coins: sdkTypes.Coins{sdkTypes.Coin{
-		Denom:  "BNB",
+		Denom:  "AXC",
 		Amount: 150e8,
 	}}}
 	txRes, err := client.SendToken([]msg.Transfer{transfer}, rpc.Commit, txWithChainID)
@@ -180,8 +180,8 @@ func ChangeParameterViaGov() error {
 	}
 	log.Println("params:", string(params.Response.Value))
 	// submit proposal
-	depositCoins := sdkTypes.Coins{sdkTypes.Coin{Denom: "BNB", Amount: 1000e8}}
-	description := `{"description":"test","bc_params":[{"type":"params/StakeParamSet","value":{"unbonding_time":"600000000000","max_validators":11,"bond_denom":"BNB","min_self_delegation":"100000000","min_delegation_change":"100000000","reward_distribution_batch_size":"1000","max_stake_snapshots":30,"base_proposer_reward_ratio":"1000000","bonus_proposer_reward_ratio":"4000000","fee_from_bsc_to_bc_ratio":"10000000"}}]}`
+	depositCoins := sdkTypes.Coins{sdkTypes.Coin{Denom: "AXC", Amount: 1000e8}}
+	description := `{"description":"test","bc_params":[{"type":"params/StakeParamSet","value":{"unbonding_time":"600000000000","max_validators":11,"bond_denom":"AXC","min_self_delegation":"100000000","min_delegation_change":"100000000","reward_distribution_batch_size":"1000","max_stake_snapshots":30,"base_proposer_reward_ratio":"1000000","bonus_proposer_reward_ratio":"4000000","fee_from_axc_to_bc_ratio":"10000000"}}]}`
 	c0.SetKeyManager(validatorKm)
 	txRes, err := c0.SubmitProposal("Change parameter", description, msg.ProposalTypeParameterChange, depositCoins, time.Second, rpc.Commit, txWithChainID)
 	log.Printf("submit proposal tx: %+v, err: %+v", txRes, err)
@@ -241,7 +241,7 @@ func Staking() error {
 	}
 	log.Printf("bob address: %s\n", valKM.GetAddr())
 	// create a random account
-	validator0, err := GenKeyManagerWithBNB(c0, valKM)
+	validator0, err := GenKeyManagerWithAXC(c0, valKM)
 	if err != nil {
 		return xerrors.Errorf("GenKeyManager err: %w", err)
 	}
@@ -269,7 +269,7 @@ func Staking() error {
 	log.Printf("validators count: %d\n", validatorsCountWithoutJail)
 	assert(validatorsCount == validatorsCountWithoutJail, "there is no jailed validators yet")
 	// create validator
-	amount := sdkTypes.Coin{Denom: "BNB", Amount: 123e8}
+	amount := sdkTypes.Coin{Denom: "AXC", Amount: 123e8}
 	des := sdkTypes.Description{Moniker: "node1"}
 	rate, _ := sdkTypes.NewDecFromStr("1")
 	maxRate, _ := sdkTypes.NewDecFromStr("1")
@@ -354,13 +354,13 @@ func Staking() error {
 	assert(validator.ConsPubKey == consensusPubKey2Str, "validator cons pub key should be equal")
 	//tokenBeforeDelegate := validator.Tokens
 	//// delegate
-	//delegator, err := GenKeyManagerWithBNB(c0, valKM)
+	//delegator, err := GenKeyManagerWithAXC(c0, valKM)
 	//if err != nil {
 	//	return xerrors.Errorf("GenKeyManager err: %w", err)
 	//}
 	//c0.SetKeyManager(delegator)
 	//var delegateAmount int64 = 5e8
-	//delegateCoin := sdkTypes.Coin{Denom: "BNB", Amount: delegateAmount}
+	//delegateCoin := sdkTypes.Coin{Denom: "AXC", Amount: delegateAmount}
 	//txRes, err = c0.Delegate(sdkTypes.ValAddress(validator0.GetAddr()), delegateCoin, rpc.Commit, tx.WithChainID(chainId))
 	//if err != nil {
 	//	return xerrors.Errorf("delegate error: %w", err)
@@ -398,7 +398,7 @@ func Staking() error {
 	//log.Printf("top validator before redelegate: %+v\n", topValidatorBeforeRedelegate)
 	//// redelegate from validator0 to top validator, should success immediately
 	//var redelegateAmount int64 = 2e8
-	//redelegateCoin := sdkTypes.Coin{Denom: "BNB", Amount: redelegateAmount}
+	//redelegateCoin := sdkTypes.Coin{Denom: "AXC", Amount: redelegateAmount}
 	//c0.SetKeyManager(delegator)
 	//txRes, err = c0.Redelegate(validator0Addr, topValAddr, redelegateCoin, rpc.Commit, tx.WithChainID(chainId))
 	//if err != nil {
@@ -449,7 +449,7 @@ func Staking() error {
 	//	return xerrors.Errorf("query unbonding delegations by validator error: %w", err)
 	//}
 	//// delegate to top validator and then redelegate
-	//delegator0, err := GenKeyManagerWithBNB(c0, valKM)
+	//delegator0, err := GenKeyManagerWithAXC(c0, valKM)
 	//if err != nil {
 	//	return xerrors.Errorf("GenKeyManager err: %w", err)
 	//}
@@ -503,7 +503,7 @@ func Staking() error {
 	if err != nil {
 		return xerrors.Errorf("shares marshal error: %w", err)
 	}
-	coin := sdkTypes.Coin{Denom: "BNB", Amount: amt - 1}
+	coin := sdkTypes.Coin{Denom: "AXC", Amount: amt - 1}
 	c0.SetKeyManager(validator0)
 	txRes, err = c0.Undelegate(valValAddr, coin, rpc.Commit, tx.WithChainID(chainId))
 	assert(err == nil, fmt.Sprintf("undelegate error: %v", err))
@@ -550,7 +550,7 @@ func Staking() error {
 	return nil
 }
 
-//nolint
+// nolint
 func UndelegateTest() error {
 	rand.Seed(time.Now().UnixNano())
 	// rpc client
@@ -580,13 +580,13 @@ func UndelegateTest() error {
 	log.Printf("validators: %s", Pretty(validators))
 	log.Printf("validator count: %d", len(validators))
 	// create a random account
-	validator0, err := GenKeyManagerWithBNB(c0, valKM)
+	validator0, err := GenKeyManagerWithAXC(c0, valKM)
 	if err != nil {
 		return xerrors.Errorf("GenKeyManager err: %w", err)
 	}
 	log.Printf("validator0 address: %s\n", validator0.GetAddr())
 	// create validator
-	amount := sdkTypes.Coin{Denom: "BNB", Amount: 123e8}
+	amount := sdkTypes.Coin{Denom: "AXC", Amount: 123e8}
 	des := sdkTypes.Description{Moniker: "node1"}
 	rate, _ := sdkTypes.NewDecFromStr("1")
 	maxRate, _ := sdkTypes.NewDecFromStr("1")
@@ -640,7 +640,7 @@ func UndelegateTest() error {
 }
 
 func BackgroundTx(c0 *rpc.HTTP, km keys.KeyManager, duration time.Duration) error {
-	newKm, err := GenKeyManagerWithBNB(c0, km)
+	newKm, err := GenKeyManagerWithAXC(c0, km)
 	if err != nil {
 		return xerrors.Errorf("GenKeyManager err: %w", err)
 	}
@@ -651,7 +651,7 @@ func BackgroundTx(c0 *rpc.HTTP, km keys.KeyManager, duration time.Duration) erro
 		}
 		c0.SetKeyManager(km)
 		transfer := msg.Transfer{ToAddr: newKm.GetAddr(), Coins: sdkTypes.Coins{sdkTypes.Coin{
-			Denom:  "BNB",
+			Denom:  "AXC",
 			Amount: 10,
 		}}}
 		txRes, err := c0.SendToken([]msg.Transfer{transfer}, rpc.Commit, txWithChainID)

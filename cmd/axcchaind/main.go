@@ -15,16 +15,16 @@ import (
 	"github.com/cosmos/cosmos-sdk/server"
 
 	"github.com/bnb-chain/node/app"
-	bnbInit "github.com/bnb-chain/node/cmd/bnbchaind/init"
+	bnbInit "github.com/bnb-chain/node/cmd/axcchaind/init"
 	"github.com/bnb-chain/node/version"
 )
 
 func newApp(logger log.Logger, db dbm.DB, storeTracer io.Writer) abci.Application {
-	return app.NewBinanceChain(logger, db, storeTracer)
+	return app.NewAximchain(logger, db, storeTracer)
 }
 
 func exportAppStateAndTMValidators(logger log.Logger, db dbm.DB, storeTracer io.Writer) (json.RawMessage, []tmtypes.GenesisValidator, error) {
-	dapp := app.NewBinanceChain(logger, db, storeTracer)
+	dapp := app.NewAximchain(logger, db, storeTracer)
 	return dapp.ExportAppStateAndValidators()
 }
 
@@ -33,12 +33,12 @@ func main() {
 	ctx := app.ServerContext
 
 	rootCmd := &cobra.Command{
-		Use:               "bnbchaind",
-		Short:             "BNBChain Daemon (server)",
+		Use:               "axcchaind",
+		Short:             "AXCChain Daemon (server)",
 		PersistentPreRunE: app.PersistentPreRunEFn(ctx),
 	}
 
-	appInit := app.BinanceAppInit()
+	appInit := app.AximchainAppInit()
 	rootCmd.AddCommand(bnbInit.InitCmd(ctx.ToCosmosServerCtx(), cdc, appInit))
 	rootCmd.AddCommand(bnbInit.TestnetFilesCmd(ctx.ToCosmosServerCtx(), cdc, appInit))
 	rootCmd.AddCommand(bnbInit.CollectGenTxsCmd(cdc, appInit))

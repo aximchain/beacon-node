@@ -16,8 +16,8 @@ var (
 	c = rpc.NewRPCClient("http://127.0.0.1:26657", sdkTypes.ProdNetwork)
 )
 
-//const sideChainId = "rialto"
-const sideChainId = "bsc"
+// const sideChainId = "rialto"
+const sideChainId = "axc"
 
 type Validator struct {
 	OperatorAddr  sdkTypes.ValAddress   `json:"operator_addr"`
@@ -71,7 +71,7 @@ func GetSnapshot() (s *SnapShot, err error) {
 		//log.Printf("validator: %s", Pretty(v))
 		//log.Printf("validator: %+v", v)
 		//log.Printf("delegation: %+v", delegation)
-		feeAddrBalance, err := c.GetBalance(v.FeeAddr, "BNB")
+		feeAddrBalance, err := c.GetBalance(v.FeeAddr, "AXC")
 		if err != nil {
 			return nil, xerrors.Errorf("get balance failed: %v", err)
 		}
@@ -100,7 +100,7 @@ func GetSnapshot() (s *SnapShot, err error) {
 		}
 		//log.Printf("validator: %+v", v)
 		//log.Printf("delegation: %+v", delegation)
-		feeAddrBalance, err := c.GetBalance(v.FeeAddr, "BNB")
+		feeAddrBalance, err := c.GetBalance(v.FeeAddr, "AXC")
 		if err != nil {
 			return nil, xerrors.Errorf("get balance failed: %v", err)
 		}
@@ -128,7 +128,7 @@ func saveSnapshot(s *SnapShot, path string) error {
 	return ioutil.WriteFile(fmt.Sprintf("%s/%d.json", path, s.Height), data, 0644)
 }
 
-//nolint
+// nolint
 func TestFee() error {
 	latestSnap := &SnapShot{}
 	for {

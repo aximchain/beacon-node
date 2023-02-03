@@ -65,26 +65,26 @@ import (
 )
 
 const (
-	appName = "BNBChain"
+	appName = "AXCChain"
 )
 
 // default home directories for expected binaries
 var (
-	DefaultCLIHome      = os.ExpandEnv("$HOME/.bnbcli")
-	DefaultNodeHome     = os.ExpandEnv("$HOME/.bnbchaind")
+	DefaultCLIHome      = os.ExpandEnv("$HOME/.axccli")
+	DefaultNodeHome     = os.ExpandEnv("$HOME/.axcchaind")
 	Bech32PrefixAccAddr string
 )
 
-// BinanceChain implements ChainApp
-var _ types.ChainApp = (*BinanceChain)(nil)
+// Aximchain implements ChainApp
+var _ types.ChainApp = (*Aximchain)(nil)
 
 var (
 	Codec         = MakeCodec()
 	ServerContext = config.NewDefaultContext()
 )
 
-// BinanceChain is the BNBChain ABCI application
-type BinanceChain struct {
+// Aximchain is the AXCBeaconChain ABCI application
+type Aximchain struct {
 	*baseapp.BaseApp
 	Codec *wire.Codec
 
@@ -128,15 +128,15 @@ type BinanceChain struct {
 	takeSnapshotHeight int64 // whether to take snapshot of current height, set at endblock(), reset at commit()
 }
 
-// NewBinanceChain creates a new instance of the BinanceChain.
-func NewBinanceChain(logger log.Logger, db dbm.DB, traceStore io.Writer, baseAppOptions ...func(*baseapp.BaseApp)) *BinanceChain {
+// NewAximchain creates a new instance of the Aximchain.
+func NewAximchain(logger log.Logger, db dbm.DB, traceStore io.Writer, baseAppOptions ...func(*baseapp.BaseApp)) *Aximchain {
 	// create app-level codec for txs and accounts
 	var cdc = Codec
 	// create composed tx decoder
 	decoders := wire.ComposeTxDecoders(cdc, defaultTxDecoder)
 
-	// create the applicationsimulate object
-	var app = &BinanceChain{
+	// create the application simulate object
+	var app = &Aximchain{
 		BaseApp:            baseapp.NewBaseApp(appName /*, cdc*/, logger, db, decoders, sdk.CollectConfig{CollectAccountBalance: ServerContext.PublishAccountBalance, CollectTxs: ServerContext.PublishTransfer || ServerContext.PublishBlock}, baseAppOptions...),
 		Codec:              cdc,
 		queryHandlers:      make(map[string]types.AbciQueryHandler),
@@ -173,8 +173,8 @@ func NewBinanceChain(logger log.Logger, db dbm.DB, traceStore io.Writer, baseApp
 		common.StakeStoreKey, common.StakeRewardStoreKey, common.TStakeStoreKey,
 		app.CoinKeeper, app.Pool, app.ParamHub.Subspace(stake.DefaultParamspace),
 		app.RegisterCodespace(stake.DefaultCodespace),
-		sdk.ChainID(app.crossChainConfig.BscIbcChainId),
-		app.crossChainConfig.BscChainId,
+		sdk.ChainID(app.crossChainConfig.AxcIbcChainId),
+		app.crossChainConfig.AxcChainId,
 	)
 
 	app.ValAddrCache = NewValAddrCache(app.stakeKeeper)
@@ -194,7 +194,7 @@ func NewBinanceChain(logger log.Logger, db dbm.DB, traceStore io.Writer, baseApp
 	app.oracleKeeper = oracle.NewKeeper(cdc, common.OracleStoreKey, app.ParamHub.Subspace(oracle.DefaultParamSpace),
 		app.stakeKeeper, app.scKeeper, app.ibcKeeper, app.CoinKeeper, app.Pool)
 	app.bridgeKeeper = bridge.NewKeeper(cdc, common.BridgeStoreKey, app.AccountKeeper, app.TokenMapper, app.scKeeper, app.CoinKeeper,
-		app.ibcKeeper, app.Pool, sdk.ChainID(app.crossChainConfig.BscIbcChainId), app.crossChainConfig.BscChainId)
+		app.ibcKeeper, app.Pool, sdk.ChainID(app.crossChainConfig.AxcIbcChainId), app.crossChainConfig.AxcChainId)
 
 	if ServerContext.Config.Instrumentation.Prometheus {
 		app.metrics = pub.PrometheusMetrics() // TODO(#246): make it an aggregated wrapper of all component metrics (i.e. DexKeeper, StakeKeeper)
@@ -288,7 +288,7 @@ func NewBinanceChain(logger log.Logger, db dbm.DB, traceStore io.Writer, baseApp
 	return app
 }
 
-func (app *BinanceChain) startPubSub(logger log.Logger) {
+func (app *Aximchain) startPubSub(logger log.Logger) {
 	pubLogger := logger.With("module", "bnc_pubsub")
 	app.psServer = pubsub.NewServer(pubLogger)
 	if err := app.psServer.Start(); err != nil {
@@ -296,7 +296,7 @@ func (app *BinanceChain) startPubSub(logger log.Logger) {
 	}
 }
 
-func (app *BinanceChain) subscribeEvent(logger log.Logger) {
+func (app *Aximchain) subscribeEvent(logger log.Logger) {
 	subLogger := logger.With("module", "bnc_sub")
 	sub, err := app.psServer.NewSubscriber(pubsub.ClientID("bnc_app"), subLogger)
 	if err != nil {
@@ -321,7 +321,7 @@ func SetUpgradeConfig(upgradeConfig *config.UpgradeConfig) {
 	upgrade.Mgr.AddUpgradeHeight(upgrade.LotSizeOptimization, upgradeConfig.LotSizeUpgradeHeight)
 	upgrade.Mgr.AddUpgradeHeight(upgrade.ListingRuleUpgrade, upgradeConfig.ListingRuleUpgradeHeight)
 	upgrade.Mgr.AddUpgradeHeight(upgrade.FixZeroBalance, upgradeConfig.FixZeroBalanceHeight)
-	upgrade.Mgr.AddUpgradeHeight(upgrade.LaunchBscUpgrade, upgradeConfig.LaunchBscUpgradeHeight)
+	upgrade.Mgr.AddUpgradeHeight(upgrade.LaunchAxcUpgrade, upgradeConfig.LaunchAxcUpgradeHeight)
 	upgrade.Mgr.AddUpgradeHeight(upgrade.EnableAccountScriptsForCrossChainTransfer, upgradeConfig.EnableAccountScriptsForCrossChainTransferHeight)
 
 	upgrade.Mgr.AddUpgradeHeight(upgrade.BEP8, upgradeConfig.BEP8Height)
@@ -342,7 +342,7 @@ func SetUpgradeConfig(upgradeConfig *config.UpgradeConfig) {
 	// register store keys of upgrade
 	upgrade.Mgr.RegisterStoreKeys(upgrade.BEP9, common.TimeLockStoreKey.Name())
 	upgrade.Mgr.RegisterStoreKeys(upgrade.BEP3, common.AtomicSwapStoreKey.Name())
-	upgrade.Mgr.RegisterStoreKeys(upgrade.LaunchBscUpgrade, common.IbcStoreKey.Name(), common.SideChainStoreKey.Name(),
+	upgrade.Mgr.RegisterStoreKeys(upgrade.LaunchAxcUpgrade, common.IbcStoreKey.Name(), common.SideChainStoreKey.Name(),
 		common.SlashingStoreKey.Name(), common.BridgeStoreKey.Name(), common.OracleStoreKey.Name())
 	upgrade.Mgr.RegisterStoreKeys(upgrade.BEP128, common.StakeRewardStoreKey.Name())
 
@@ -359,7 +359,7 @@ func SetUpgradeConfig(upgradeConfig *config.UpgradeConfig) {
 		swap.ClaimHTLTMsg{}.Type(),
 		swap.RefundHTLTMsg{}.Type(),
 	)
-	upgrade.Mgr.RegisterMsgTypes(upgrade.LaunchBscUpgrade,
+	upgrade.Mgr.RegisterMsgTypes(upgrade.LaunchAxcUpgrade,
 		stake.MsgCreateSideChainValidator{}.Type(),
 		stake.MsgEditSideChainValidator{}.Type(),
 		stake.MsgSideChainDelegate{}.Type(),
@@ -401,14 +401,14 @@ func getABCIQueryBlackList(queryConfig *config.QueryConfig) map[string]bool {
 	return cfg
 }
 
-func (app *BinanceChain) initRunningMode() {
+func (app *Aximchain) initRunningMode() {
 	err := runtime.RecoverFromFile(ServerContext.Config.RootDir, runtime.Mode(ServerContext.StartMode))
 	if err != nil {
 		cmn.Exit(err.Error())
 	}
 }
 
-func (app *BinanceChain) initDex() {
+func (app *Aximchain) initDex() {
 	pairMapper := dex.NewTradingPairMapper(app.Codec, common.PairStoreKey)
 	app.DexKeeper = dex.NewDexKeeper(common.DexStoreKey, app.AccountKeeper, pairMapper,
 		app.RegisterCodespace(dex.DefaultCodespace), app.baseConfig.OrderKeeperConcurrency, app.Codec,
@@ -438,7 +438,7 @@ func (app *BinanceChain) initDex() {
 
 }
 
-func (app *BinanceChain) initPlugins() {
+func (app *Aximchain) initPlugins() {
 	app.initSideChain()
 	app.initIbc()
 	app.initDex()
@@ -455,7 +455,7 @@ func (app *BinanceChain) initPlugins() {
 	bridge.InitPlugin(app, app.bridgeKeeper)
 	app.initParams()
 
-	// add handlers from bnc-cosmos-sdk (others moved to plugin init funcs)
+	// add handlers from axc-cosmos-sdk (others moved to plugin init funcs)
 	// we need to add handlers after all keepers initialized
 	app.Router().
 		AddRoute("bank", bank.NewHandler(app.CoinKeeper)).
@@ -477,19 +477,19 @@ func (app *BinanceChain) initPlugins() {
 
 }
 
-func (app *BinanceChain) initSideChain() {
+func (app *Aximchain) initSideChain() {
 	app.scKeeper.SetGovKeeper(&app.govKeeper)
 	app.scKeeper.SetIbcKeeper(&app.ibcKeeper)
 	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchBscUpgrade, func(ctx sdk.Context) {
-		bscStorePrefix := []byte{0x99}
-		app.scKeeper.SetSideChainIdAndStorePrefix(ctx, ServerContext.BscChainId, bscStorePrefix)
+		axcStorePrefix := []byte{0x99}
+		app.scKeeper.SetSideChainIdAndStorePrefix(ctx, ServerContext.AxcChainId, axcStorePrefix)
 		app.scKeeper.SetParams(ctx, sidechain.Params{
-			BscSideChainId: ServerContext.BscChainId,
+			BscSideChainId: ServerContext.AxcChainId,
 		})
 	})
 }
 
-func (app *BinanceChain) initOracle() {
+func (app *Aximchain) initOracle() {
 	app.oracleKeeper.SetPbsbServer(app.psServer)
 	if ServerContext.Config.Instrumentation.Prometheus {
 		app.oracleKeeper.EnablePrometheusMetrics()
@@ -498,23 +498,23 @@ func (app *BinanceChain) initOracle() {
 	oracle.RegisterUpgradeBeginBlocker(app.oracleKeeper)
 }
 
-func (app *BinanceChain) initBridge() {
+func (app *Aximchain) initBridge() {
 	app.bridgeKeeper.SetPbsbServer(app.psServer)
 	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchBscUpgrade, func(ctx sdk.Context) {
-		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.BscIbcChainId), bTypes.BindChannelID, sdk.ChannelAllow)
-		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.BscIbcChainId), bTypes.TransferOutChannelID, sdk.ChannelAllow)
-		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.BscIbcChainId), bTypes.TransferInChannelID, sdk.ChannelAllow)
+		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.AxcIbcChainId), bTypes.BindChannelID, sdk.ChannelAllow)
+		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.AxcIbcChainId), bTypes.TransferOutChannelID, sdk.ChannelAllow)
+		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.AxcIbcChainId), bTypes.TransferInChannelID, sdk.ChannelAllow)
 	})
 }
 
-func (app *BinanceChain) initParamHub() {
+func (app *Aximchain) initParamHub() {
 	app.ParamHub.SetGovKeeper(&app.govKeeper)
 	app.ParamHub.SetupForSideChain(&app.scKeeper, &app.ibcKeeper)
 
 	paramHub.RegisterUpgradeBeginBlocker(app.ParamHub)
 	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchBscUpgrade, func(ctx sdk.Context) {
-		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.BscIbcChainId), param.ChannelId, sdk.ChannelAllow)
-		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.BscChainId)
+		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.AxcIbcChainId), param.ChannelId, sdk.ChannelAllow)
+		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.AxcChainId)
 		newCtx := ctx.WithSideChainKeyPrefix(storePrefix)
 		app.ParamHub.SetLastSCParamChangeProposalId(newCtx, paramTypes.LastProposalID{ProposalID: 0})
 	})
@@ -525,13 +525,13 @@ func (app *BinanceChain) initParamHub() {
 	})
 }
 
-func (app *BinanceChain) initStaking() {
+func (app *Aximchain) initStaking() {
 	app.stakeKeeper.SetupForSideChain(&app.scKeeper, &app.ibcKeeper)
 	app.stakeKeeper.SetPbsbServer(app.psServer)
 	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchBscUpgrade, func(ctx sdk.Context) {
 		stake.MigratePowerRankKey(ctx, app.stakeKeeper)
-		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.BscIbcChainId), keeper.ChannelId, sdk.ChannelAllow)
-		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.BscChainId)
+		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.AxcIbcChainId), keeper.ChannelId, sdk.ChannelAllow)
+		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.AxcChainId)
 		newCtx := ctx.WithSideChainKeyPrefix(storePrefix)
 		app.stakeKeeper.SetParams(newCtx, stake.Params{
 			UnbondingTime:       60 * 60 * 24 * 7 * time.Second, // 7 days
@@ -545,7 +545,7 @@ func (app *BinanceChain) initStaking() {
 		})
 	})
 	upgrade.Mgr.RegisterBeginBlocker(sdk.BEP128, func(ctx sdk.Context) {
-		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.BscChainId)
+		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.AxcChainId)
 		// init new param RewardDistributionBatchSize
 		newCtx := ctx.WithSideChainKeyPrefix(storePrefix)
 		params := app.stakeKeeper.GetParams(newCtx)
@@ -553,7 +553,7 @@ func (app *BinanceChain) initStaking() {
 		app.stakeKeeper.SetParams(newCtx, params)
 	})
 	upgrade.Mgr.RegisterBeginBlocker(sdk.BEP153, func(ctx sdk.Context) {
-		chainId := sdk.ChainID(ServerContext.BscIbcChainId)
+		chainId := sdk.ChainID(ServerContext.AxcIbcChainId)
 		app.scKeeper.SetChannelSendPermission(ctx, chainId, sTypes.CrossStakeChannelID, sdk.ChannelAllow)
 		stakeContractAddr := "0000000000000000000000000000000000002001"
 		stakeContractBytes, _ := hex.DecodeString(stakeContractAddr)
@@ -596,10 +596,10 @@ func (app *BinanceChain) initStaking() {
 	}
 }
 
-func (app *BinanceChain) initGov() {
+func (app *Aximchain) initGov() {
 	app.govKeeper.SetupForSideChain(&app.scKeeper)
 	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchBscUpgrade, func(ctx sdk.Context) {
-		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.BscChainId)
+		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.AxcChainId)
 		newCtx := ctx.WithSideChainKeyPrefix(storePrefix)
 		err := app.govKeeper.SetInitialProposalID(newCtx, 1)
 		if err != nil {
@@ -617,13 +617,13 @@ func (app *BinanceChain) initGov() {
 	})
 }
 
-func (app *BinanceChain) initSlashing() {
+func (app *Aximchain) initSlashing() {
 	app.slashKeeper.SetPbsbServer(app.psServer)
 	app.slashKeeper.SetSideChain(&app.scKeeper)
 	app.slashKeeper.SubscribeParamChange(app.ParamHub)
 	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchBscUpgrade, func(ctx sdk.Context) {
-		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.BscIbcChainId), slashing.ChannelId, sdk.ChannelAllow)
-		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.BscChainId)
+		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.AxcIbcChainId), slashing.ChannelId, sdk.ChannelAllow)
+		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.AxcChainId)
 		newCtx := ctx.WithSideChainKeyPrefix(storePrefix)
 		app.slashKeeper.SetParams(newCtx, slashing.Params{
 			MaxEvidenceAge:           60 * 60 * 24 * 3 * time.Second, // 3 days
@@ -651,17 +651,17 @@ func (app *BinanceChain) initSlashing() {
 	})
 }
 
-func (app *BinanceChain) initIbc() {
-	// set up IBC chainID for BBC
+func (app *Aximchain) initIbc() {
+	// set up IBC chainID for ABC
 	app.scKeeper.SetSrcChainID(sdk.ChainID(ServerContext.IbcChainId))
-	// set up IBC chainID for BSC
-	err := app.scKeeper.RegisterDestChain(ServerContext.BscChainId, sdk.ChainID(ServerContext.BscIbcChainId))
+	// set up IBC chainID for AXC
+	err := app.scKeeper.RegisterDestChain(ServerContext.AxcChainId, sdk.ChainID(ServerContext.AxcIbcChainId))
 	if err != nil {
-		panic(fmt.Sprintf("register IBC chainID error: chainID=%s, err=%s", ServerContext.BscChainId, err.Error()))
+		panic(fmt.Sprintf("register IBC chainID error: chainID=%s, err=%s", ServerContext.AxcChainId, err.Error()))
 	}
 	app.ibcKeeper.SubscribeParamChange(app.ParamHub)
 	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchBscUpgrade, func(ctx sdk.Context) {
-		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.BscChainId)
+		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.AxcChainId)
 		newCtx := ctx.WithSideChainKeyPrefix(storePrefix)
 		app.ibcKeeper.SetParams(newCtx, ibc.Params{
 			RelayerFee: ibc.DefaultRelayerFeeParam,
@@ -669,7 +669,7 @@ func (app *BinanceChain) initIbc() {
 	})
 }
 
-func (app *BinanceChain) initGovHooks() {
+func (app *Aximchain) initGovHooks() {
 	listHooks := list.NewListHooks(app.DexKeeper, app.TokenMapper)
 	feeChangeHooks := paramHub.NewFeeChangeHooks(app.Codec)
 	cscParamChangeHooks := paramHub.NewCSCParamsChangeHook(app.Codec)
@@ -686,14 +686,14 @@ func (app *BinanceChain) initGovHooks() {
 	app.govKeeper.AddHooks(gov.ProposalTypeParameterChange, bcParamChangeHooks)
 }
 
-func (app *BinanceChain) initParams() {
+func (app *Aximchain) initParams() {
 	if app.CheckState != nil && app.CheckState.Ctx.BlockHeight() != 0 {
 		app.ParamHub.Load(app.CheckState.Ctx)
 	}
 }
 
 // initChainerFn performs custom logic for chain initialization.
-func (app *BinanceChain) initChainerFn() sdk.InitChainer {
+func (app *Aximchain) initChainerFn() sdk.InitChainer {
 	return func(ctx sdk.Context, req abci.RequestInitChain) abci.ResponseInitChain {
 		stateJSON := req.AppStateBytes
 
@@ -763,7 +763,7 @@ func (app *BinanceChain) initChainerFn() sdk.InitChainer {
 	}
 }
 
-func (app *BinanceChain) CheckTx(req abci.RequestCheckTx) (res abci.ResponseCheckTx) {
+func (app *Aximchain) CheckTx(req abci.RequestCheckTx) (res abci.ResponseCheckTx) {
 	var result sdk.Result
 	var tx sdk.Tx
 	txBytes := req.Tx
@@ -807,7 +807,7 @@ func (app *BinanceChain) CheckTx(req abci.RequestCheckTx) (res abci.ResponseChec
 }
 
 // Implements ABCI
-func (app *BinanceChain) DeliverTx(req abci.RequestDeliverTx) (res abci.ResponseDeliverTx) {
+func (app *Aximchain) DeliverTx(req abci.RequestDeliverTx) (res abci.ResponseDeliverTx) {
 	res = app.BaseApp.DeliverTx(req)
 	txHash := cmn.HexBytes(tmhash.Sum(req.Tx)).String()
 	if res.IsOK() {
@@ -832,7 +832,7 @@ func (app *BinanceChain) DeliverTx(req abci.RequestDeliverTx) (res abci.Response
 
 // PreDeliverTx implements extended ABCI for concurrency
 // PreCheckTx would perform decoding, signture and other basic verification
-func (app *BinanceChain) PreDeliverTx(req abci.RequestDeliverTx) (res abci.ResponseDeliverTx) {
+func (app *Aximchain) PreDeliverTx(req abci.RequestDeliverTx) (res abci.ResponseDeliverTx) {
 	res = app.BaseApp.PreDeliverTx(req)
 	if res.IsErr() {
 		txHash := cmn.HexBytes(tmhash.Sum(req.Tx)).String()
@@ -841,7 +841,7 @@ func (app *BinanceChain) PreDeliverTx(req abci.RequestDeliverTx) (res abci.Respo
 	return res
 }
 
-func (app *BinanceChain) isBreatheBlock(height int64, lastBlockTime time.Time, blockTime time.Time) bool {
+func (app *Aximchain) isBreatheBlock(height int64, lastBlockTime time.Time, blockTime time.Time) bool {
 	// lastBlockTime is zero if this blockTime is for the first block (first block doesn't mean height = 1, because after
 	// state sync from breathe block, the height is breathe block + 1)
 	if app.baseConfig.BreatheBlockInterval > 0 {
@@ -851,12 +851,12 @@ func (app *BinanceChain) isBreatheBlock(height int64, lastBlockTime time.Time, b
 	}
 }
 
-func (app *BinanceChain) BeginBlocker(ctx sdk.Context, req abci.RequestBeginBlock) (res abci.ResponseBeginBlock) {
+func (app *Aximchain) BeginBlocker(ctx sdk.Context, req abci.RequestBeginBlock) (res abci.ResponseBeginBlock) {
 	upgrade.Mgr.BeginBlocker(ctx)
 	return
 }
 
-func (app *BinanceChain) EndBlocker(ctx sdk.Context, req abci.RequestEndBlock) abci.ResponseEndBlock {
+func (app *Aximchain) EndBlocker(ctx sdk.Context, req abci.RequestEndBlock) abci.ResponseEndBlock {
 	// lastBlockTime would be 0 if this is the first block.
 	lastBlockTime := app.CheckState.Ctx.BlockHeader().Time
 	blockTime := ctx.BlockHeader().Time
@@ -944,7 +944,7 @@ func (app *BinanceChain) EndBlocker(ctx sdk.Context, req abci.RequestEndBlock) a
 	}
 }
 
-func (app *BinanceChain) Commit() (res abci.ResponseCommit) {
+func (app *Aximchain) Commit() (res abci.ResponseCommit) {
 	res = app.BaseApp.Commit()
 	if ServerContext.Config.StateSyncReactor && app.takeSnapshotHeight > 0 {
 		app.StateSyncHelper.SnapshotHeights <- app.takeSnapshotHeight
@@ -953,7 +953,7 @@ func (app *BinanceChain) Commit() (res abci.ResponseCommit) {
 	return
 }
 
-func (app *BinanceChain) WriteRecoveryChunk(hash abci.SHA256Sum, chunk *abci.AppStateChunk, isComplete bool) (err error) {
+func (app *Aximchain) WriteRecoveryChunk(hash abci.SHA256Sum, chunk *abci.AppStateChunk, isComplete bool) (err error) {
 	err = app.BaseApp.WriteRecoveryChunk(hash, chunk, isComplete)
 	if err != nil {
 		return err
@@ -965,7 +965,7 @@ func (app *BinanceChain) WriteRecoveryChunk(hash abci.SHA256Sum, chunk *abci.App
 }
 
 // ExportAppStateAndValidators exports blockchain world state to json.
-func (app *BinanceChain) ExportAppStateAndValidators() (appState json.RawMessage, validators []tmtypes.GenesisValidator, err error) {
+func (app *Aximchain) ExportAppStateAndValidators() (appState json.RawMessage, validators []tmtypes.GenesisValidator, err error) {
 	ctx := app.NewContext(sdk.RunTxModeCheck, abci.Header{})
 
 	// iterate to get the accounts
@@ -990,7 +990,7 @@ func (app *BinanceChain) ExportAppStateAndValidators() (appState json.RawMessage
 }
 
 // Query performs an abci query.
-func (app *BinanceChain) Query(req abci.RequestQuery) (res abci.ResponseQuery) {
+func (app *Aximchain) Query(req abci.RequestQuery) (res abci.ResponseQuery) {
 	defer func() {
 		if r := recover(); r != nil {
 			app.Logger.Error("internal error caused by query", "req", req, "stack", debug.Stack())
@@ -1018,7 +1018,7 @@ func (app *BinanceChain) Query(req abci.RequestQuery) (res abci.ResponseQuery) {
 	return app.BaseApp.Query(req)
 }
 
-func (app *BinanceChain) AccountHandler(chainApp types.ChainApp, req abci.RequestQuery, path []string) *abci.ResponseQuery {
+func (app *Aximchain) AccountHandler(chainApp types.ChainApp, req abci.RequestQuery, path []string) *abci.ResponseQuery {
 	var res abci.ResponseQuery
 	if len(path) == 2 {
 		addr := path[1]
@@ -1051,7 +1051,7 @@ func (app *BinanceChain) AccountHandler(chainApp types.ChainApp, req abci.Reques
 }
 
 // RegisterQueryHandler registers an abci query handler, implements ChainApp.RegisterQueryHandler.
-func (app *BinanceChain) RegisterQueryHandler(prefix string, handler types.AbciQueryHandler) {
+func (app *Aximchain) RegisterQueryHandler(prefix string, handler types.AbciQueryHandler) {
 	if _, ok := app.queryHandlers[prefix]; ok {
 		panic(fmt.Errorf("registerQueryHandler: prefix `%s` is already registered", prefix))
 	} else {
@@ -1060,17 +1060,17 @@ func (app *BinanceChain) RegisterQueryHandler(prefix string, handler types.AbciQ
 }
 
 // GetCodec returns the app's Codec.
-func (app *BinanceChain) GetCodec() *wire.Codec {
+func (app *Aximchain) GetCodec() *wire.Codec {
 	return app.Codec
 }
 
 // GetRouter returns the app's Router.
-func (app *BinanceChain) GetRouter() baseapp.Router {
+func (app *Aximchain) GetRouter() baseapp.Router {
 	return app.Router()
 }
 
 // GetContextForCheckState gets the context for the check state.
-func (app *BinanceChain) GetContextForCheckState() sdk.Context {
+func (app *Aximchain) GetContextForCheckState() sdk.Context {
 	return app.CheckState.Ctx
 }
 
@@ -1115,14 +1115,14 @@ func MakeCodec() *wire.Codec {
 	return cdc
 }
 
-func (app *BinanceChain) publishEvent() {
+func (app *Aximchain) publishEvent() {
 	if appsub.ToPublish() != nil && appsub.ToPublish().EventData != nil {
 		pub.ToPublishEventCh <- appsub.ToPublish()
 	}
 
 }
 
-func (app *BinanceChain) publish(tradesToPublish []*pub.Trade, proposalsToPublish *pub.Proposals, sideProposalsToPublish *pub.SideProposals, stakeUpdates *pub.StakeUpdates, blockFee pub.BlockFee, ctx sdk.Context, height, blockTime int64) {
+func (app *Aximchain) publish(tradesToPublish []*pub.Trade, proposalsToPublish *pub.Proposals, sideProposalsToPublish *pub.SideProposals, stakeUpdates *pub.StakeUpdates, blockFee pub.BlockFee, ctx sdk.Context, height, blockTime int64) {
 	pub.Logger.Info("start to collect publish information", "height", height)
 
 	var accountsToPublish map[string]pub.Account

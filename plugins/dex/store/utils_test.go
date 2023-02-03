@@ -60,7 +60,7 @@ func TestValidatePairSymbol(t *testing.T) {
 		},
 		{
 			name:    "Invalid pair symbol 2",
-			args:    args{"XYZ.B-000_BNB.Z-000"},
+			args:    args{"XYZ.B-000_AXC.Z-000"},
 			wantErr: true,
 		},
 		{
@@ -70,7 +70,7 @@ func TestValidatePairSymbol(t *testing.T) {
 		},
 		{
 			name:    "Invalid pair symbol 4",
-			args:    args{"XYZ-000_BN$-000"},
+			args:    args{"XYZ-000_AX$-000"},
 			wantErr: true,
 		},
 		{

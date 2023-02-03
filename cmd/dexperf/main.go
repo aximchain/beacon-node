@@ -1,4 +1,4 @@
-//nolint
+// nolint
 package main
 
 import (
@@ -28,6 +28,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/auth"
 	txbuilder "github.com/cosmos/cosmos-sdk/x/auth/client/txbuilder"
 	"github.com/cosmos/cosmos-sdk/x/bank"
+	"github.com/sasha-s/go-deadlock"
 	"github.com/spf13/viper"
 	abci "github.com/tendermint/tendermint/abci/types"
 	rpcclient "github.com/tendermint/tendermint/rpc/client"
@@ -88,11 +89,11 @@ type DEXSubmit struct {
 }
 
 type sequence struct {
-	m      sync.Mutex
+	m      deadlock.Mutex
 	seqMap map[string]int64
 }
 type txhash struct {
-	m     sync.Mutex
+	m     deadlock.Mutex
 	trans []string
 }
 
@@ -111,13 +112,13 @@ var rl = ratelimit.New(1000)
 
 func init() {
 	config := sdk.GetConfig()
-	config.SetBech32PrefixForAccount("tbnb", "bnbp")
+	config.SetBech32PrefixForAccount("taxc", "axcp")
 	config.SetBech32PrefixForValidator("bva", "bvap")
 	config.SetBech32PrefixForConsensusNode("bca", "bcap")
 	config.Seal()
-	home = flag.String("home", "/home/test/.bnbcli", "bnbcli --home")
-	node = flag.String("node", "0.0.0.0:26657", "bnbcli --node")
-	chainId = flag.String("chainId", "chain-bnb", "bnbcli --chain-id")
+	home = flag.String("home", "/home/test/.axccli", "axccli --home")
+	node = flag.String("node", "0.0.0.0:26657", "axccli --node")
+	chainId = flag.String("chainId", "chain-axc", "axccli --chain-id")
 	owner = flag.String("owner", "test", "chain's master user")
 	userPrefix = flag.String("userPrefix", "node2_user", "user prefix")
 	votingTime = flag.Int("votingTime", 10, "voting time in sec")
@@ -241,8 +242,8 @@ func execCommand(name string, arg ...string) *bytes.Buffer {
 }
 
 func lookupAccounts() {
-	stdout := execCommand("tbnbcli", "--home="+*home, "keys", "list")
-	expr := "(" + *userPrefix + "[\\d]+).+(tbnb.+).+bnb"
+	stdout := execCommand("taxccli", "--home="+*home, "keys", "list")
+	expr := "(" + *userPrefix + "[\\d]+).+(taxc.+).+axc"
 	res, err := regexp.Compile(expr)
 	if err != nil {
 		panic(err)
@@ -305,7 +306,7 @@ func generateTokens(sIndex int, eIndex int, flag bool) []string {
 				TxHash   string
 				Response abci.ResponseDeliverTx
 			}
-			issueRep := execCommand("tbnbcli", "token", "issue", "--home="+*home, "--node="+*node, "--token-name="+token, "--symbol="+token, "--total-supply=20000000000000000", "--from="+*owner, "--chain-id="+*chainId, "--json=true")
+			issueRep := execCommand("taxccli", "token", "issue", "--home="+*home, "--node="+*node, "--token-name="+token, "--symbol="+token, "--total-supply=20000000000000000", "--from="+*owner, "--chain-id="+*chainId, "--json=true")
 			issueJson := toJSON{}
 			err = MakeCodec().UnmarshalJSON(issueRep.Bytes(), &issueJson)
 			if err != nil {
@@ -326,7 +327,7 @@ func generateTokens(sIndex int, eIndex int, flag bool) []string {
 			}
 			time.Sleep(stime * time.Millisecond)
 			expireTime := strconv.FormatInt(time.Now().Unix()+3600, 10)
-			proposalRep := execCommand("tbnbcli", "gov", "submit-list-proposal", "--home="+*home, "--node="+*node, "--chain-id="+*chainId, "--from="+*owner, "--deposit=200000000000:BNB", "--base-asset-symbol="+token, "--quote-asset-symbol=BNB", "--init-price=100000000", "--title="+token+":BNB", "--description="+token+":BNB", "--expire-time="+expireTime, "--json=true")
+			proposalRep := execCommand("taxccli", "gov", "submit-list-proposal", "--home="+*home, "--node="+*node, "--chain-id="+*chainId, "--from="+*owner, "--deposit=200000000000:AXC", "--base-asset-symbol="+token, "--quote-asset-symbol=AXC", "--init-price=100000000", "--title="+token+":AXC", "--description="+token+":AXC", "--expire-time="+expireTime, "--json=true")
 			proposalJson := toJSON{}
 			err = MakeCodec().UnmarshalJSON(proposalRep.Bytes(), &proposalJson)
 			if err != nil {
@@ -341,9 +342,9 @@ func generateTokens(sIndex int, eIndex int, flag bool) []string {
 				}
 			}
 			time.Sleep(stime * time.Millisecond)
-			execCommand("tbnbcli", "gov", "vote", "--home="+*home, "--node="+*node, "--chain-id="+*chainId, "--from="+*owner, "--proposal-id="+pid, "--option=yes")
+			execCommand("taxccli", "gov", "vote", "--home="+*home, "--node="+*node, "--chain-id="+*chainId, "--from="+*owner, "--proposal-id="+pid, "--option=yes")
 			time.Sleep(time.Duration(*votingTime) * time.Second)
-			execCommand("tbnbcli", "dex", "list", "--home="+*home, "--node="+*node, "--base-asset-symbol="+token, "--quote-asset-symbol=BNB", "--init-price=100000000", "--from="+*owner, "--chain-id="+*chainId, "--proposal-id="+pid)
+			execCommand("taxccli", "dex", "list", "--home="+*home, "--node="+*node, "--base-asset-symbol="+token, "--quote-asset-symbol=AXC", "--init-price=100000000", "--from="+*owner, "--chain-id="+*chainId, "--proposal-id="+pid)
 			time.Sleep(stime * time.Millisecond)
 			tokens = append(tokens, token)
 			sIndex++
@@ -353,7 +354,7 @@ func generateTokens(sIndex int, eIndex int, flag bool) []string {
 }
 
 func initializeAccounts(tokens []string, flag bool) []string {
-	tokens = append(tokens, "BNB")
+	tokens = append(tokens, "AXC")
 	if flag == true {
 		type Transfer struct {
 			To     string `json:"to"`
@@ -390,7 +391,7 @@ func initializeAccounts(tokens []string, flag bool) []string {
 				writer := bufio.NewWriter(file)
 				writer.Write(bytes)
 				writer.Flush()
-				execCommand("tbnbcli", "token", "multi-send", "--home="+*home, "--node="+*node, "--chain-id="+*chainId, "--from="+*owner, "--transfers-file", path)
+				execCommand("taxccli", "token", "multi-send", "--home="+*home, "--node="+*node, "--chain-id="+*chainId, "--from="+*owner, "--transfers-file", path)
 				time.Sleep(stime * time.Millisecond)
 			}
 		}
@@ -445,7 +446,7 @@ func allocateCreate(tokens []string) {
 	nameIndex := 0
 	for i := 0; i < *batchSize; i++ {
 		for j := 0; j < len(tokens); j++ {
-			symbol := fmt.Sprintf("%s_BNB", tokens[j])
+			symbol := fmt.Sprintf("%s_AXC", tokens[j])
 			fmt.Printf("allocating #%d\n", createIndex)
 			if largeBuyers != nil && isLargeBuyer(nameIndex, largeBuyers) {
 				createChn <- buildC(sortKeys[nameIndex], buy, symbol, 9990000, 10000000000, "GTE")

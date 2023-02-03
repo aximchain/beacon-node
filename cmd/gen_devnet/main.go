@@ -11,7 +11,7 @@ import (
 
 	"github.com/bnb-chain/node/app"
 	"github.com/bnb-chain/node/app/config"
-	bnbInit "github.com/bnb-chain/node/cmd/bnbchaind/init"
+	axcInit "github.com/bnb-chain/node/cmd/axcchaind/init"
 	"github.com/bnb-chain/node/common/utils"
 )
 
@@ -33,7 +33,7 @@ func main() {
 	// init nodes
 	cdc := app.Codec
 	ctx := app.ServerContext
-	appInit := app.BinanceAppInit()
+	appInit := app.AximchainAppInit()
 	ctxConfig := ctx.Config
 	sdkConfig := sdk.GetConfig()
 	sdkConfig.SetBech32PrefixForAccount(ctx.Bech32PrefixAccAddr, ctx.Bech32PrefixAccPub)
@@ -58,33 +58,33 @@ func main() {
 			}
 		}
 		// app.toml
-		binanceChainConfig := ServerContext.BinanceChainConfig
-		binanceChainConfig.UpgradeConfig.BEP3Height = 1
-		binanceChainConfig.UpgradeConfig.BEP8Height = 1
-		binanceChainConfig.UpgradeConfig.BEP12Height = 1
-		binanceChainConfig.UpgradeConfig.BEP67Height = 1
-		binanceChainConfig.UpgradeConfig.BEP70Height = 1
-		binanceChainConfig.UpgradeConfig.BEP82Height = 1
-		binanceChainConfig.UpgradeConfig.BEP84Height = 1
-		binanceChainConfig.UpgradeConfig.BEP87Height = 1
-		binanceChainConfig.UpgradeConfig.FixFailAckPackageHeight = 1
-		binanceChainConfig.UpgradeConfig.EnableAccountScriptsForCrossChainTransferHeight = 1
-		binanceChainConfig.UpgradeConfig.BEP128Height = 1
-		binanceChainConfig.UpgradeConfig.BEP151Height = 1
-		binanceChainConfig.UpgradeConfig.BEP153Height = 2
-		binanceChainConfig.UpgradeConfig.BEP159Height = 3
-		binanceChainConfig.UpgradeConfig.BEP159Phase2Height = 6
-		binanceChainConfig.BreatheBlockInterval = 5
+		aximchainConfig := ServerContext.AximchainConfig
+		aximchainConfig.UpgradeConfig.BEP3Height = 1
+		aximchainConfig.UpgradeConfig.BEP8Height = 1
+		aximchainConfig.UpgradeConfig.BEP12Height = 1
+		aximchainConfig.UpgradeConfig.BEP67Height = 1
+		aximchainConfig.UpgradeConfig.BEP70Height = 1
+		aximchainConfig.UpgradeConfig.BEP82Height = 1
+		aximchainConfig.UpgradeConfig.BEP84Height = 1
+		aximchainConfig.UpgradeConfig.BEP87Height = 1
+		aximchainConfig.UpgradeConfig.FixFailAckPackageHeight = 1
+		aximchainConfig.UpgradeConfig.EnableAccountScriptsForCrossChainTransferHeight = 1
+		aximchainConfig.UpgradeConfig.BEP128Height = 1
+		aximchainConfig.UpgradeConfig.BEP151Height = 1
+		aximchainConfig.UpgradeConfig.BEP153Height = 2
+		aximchainConfig.UpgradeConfig.BEP159Height = 3
+		aximchainConfig.UpgradeConfig.BEP159Phase2Height = 6
+		aximchainConfig.BreatheBlockInterval = 5
 		appConfigFilePath := filepath.Join(ctxConfig.RootDir, "config", "app.toml")
-		config.WriteConfigFile(appConfigFilePath, binanceChainConfig)
+		config.WriteConfigFile(appConfigFilePath, aximchainConfig)
 		// pk
-		nodeID, pubKey := bnbInit.InitializeNodeValidatorFiles(ctxConfig)
+		nodeID, pubKey := axcInit.InitializeNodeValidatorFiles(ctxConfig)
 		ctxConfig.Moniker = nodeName
-		valOperAddr, secret := bnbInit.CreateValOperAccount(cliDir, ctxConfig.Moniker)
+		valOperAddr, secret := axcInit.CreateValOperAccount(cliDir, ctxConfig.Moniker)
 		fmt.Printf("%v secret: %v\n", nodeName, secret)
 		if i == 0 {
 			memo := fmt.Sprintf("%s@%s:26656", nodeID, "127.0.0.1")
-			genTx := bnbInit.PrepareCreateValidatorTx(cdc, chainID, ctxConfig.Moniker, memo, valOperAddr, pubKey)
+			genTx := axcInit.PrepareCreateValidatorTx(cdc, chainID, ctxConfig.Moniker, memo, valOperAddr, pubKey)
 			appState, err = appInit.AppGenState(cdc, []json.RawMessage{genTx})
 			if err != nil {
 				panic(err)
@@ -95,14 +95,14 @@ func main() {
 		}
 		genFile := ctxConfig.GenesisFile()
 		// genesis.json
-		err = bnbInit.ExportGenesisFileWithTime(genFile, chainID, nil, appState, genesisTime)
+		err = axcInit.ExportGenesisFileWithTime(genFile, chainID, nil, appState, genesisTime)
 		if err != nil {
 			panic(err)
 		}
 		// edit ctxConfig
 		ctxConfig.LogLevel = "*:debug"
 		// config.toml
-		bnbInit.WriteConfigFile(ctxConfig)
+		axcInit.WriteConfigFile(ctxConfig)
 		// docker_compose.yml params
 		node := NodeTemplateParams{Index: i, PortIP: i + 100, PortExpose1: 8000 + i, PortExpose2: 8100 + i}
 		nodesTemplateParams[i] = node

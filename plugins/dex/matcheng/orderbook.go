@@ -112,7 +112,7 @@ func (ob *OrderBookOnULList) InsertPriceLevel(pl *PriceLevel, side int8) error {
 	return nil
 }
 
-//TODO: InsertOrder and RemoveOrder should be faster if done in batch with multiple orders
+// TODO: InsertOrder and RemoveOrder should be faster if done in batch with multiple orders
 func (ob *OrderBookOnULList) RemoveOrder(id string, side int8, price int64) (OrderPart, error) {
 	q := ob.getSideQueue(side)
 	var pl *PriceLevel

@@ -43,7 +43,7 @@ BEP67Height = 99550000
 # Block height of BEP70 upgrade
 BEP70Height = 99550000
 # Block height of smart chain upgrade
-LaunchBscUpgradeHeight = 109999000
+LaunchAxcUpgradeHeight = 109999000
 # Block height of BEP82Height upgrade
 BEP82Height = 146060000
 # Block height of BEP84Height upgrade
@@ -66,17 +66,17 @@ FixDoubleSignChainIdHeight = 9223372036854775807
 
 [addr]
 # Bech32PrefixAccAddr defines the Bech32 prefix of an account's address
-bech32PrefixAccAddr = "bnb"
+bech32PrefixAccAddr = "axc"
 # Bech32PrefixAccPub defines the Bech32 prefix of an account's public key
-bech32PrefixAccPub = "bnbp"
+bech32PrefixAccPub = "axcp"
 # Bech32PrefixValAddr defines the Bech32 prefix of a validator's operator address
-bech32PrefixValAddr = "bva"
+bech32PrefixValAddr = "ava"
 # Bech32PrefixValPub defines the Bech32 prefix of a validator's operator public key
-bech32PrefixValPub = "bvap"
+bech32PrefixValPub = "avap"
 # Bech32PrefixConsAddr defines the Bech32 prefix of a consensus node address
-bech32PrefixConsAddr = "bca"
+bech32PrefixConsAddr = "aca"
 # Bech32PrefixConsPub defines the Bech32 prefix of a consensus node public key
-bech32PrefixConsPub = "bcap"
+bech32PrefixConsPub = "acap"
 
 ##### publication related configurations #####
 [publication]
@@ -159,14 +159,14 @@ logToConsole = true
 # Log file root, if not set, use home path
 logFileRoot = ""
 # Log file path relative to log file root path
-logFilePath = "bnc.log"
+logFilePath = "axc.log"
 # Number of logs keep in memory before writing to file
 logBuffSize = 10000
 
 [cross_chain]
 ibcChainId = 1
-bscChainId = "bsc"
-bscIbcChainId = 56
+axcChainId = "axc"
+axcIbcChainId = 56
 
 [dex]
 # The suffixed symbol of BUSD

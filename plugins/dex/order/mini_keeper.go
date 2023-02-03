@@ -13,7 +13,7 @@ const (
 	defaultActiveMiniSymbolCount  int = 8
 )
 
-//order keeper for mini-token
+// order keeper for mini-token
 type MiniOrderKeeper struct {
 	BaseOrderKeeper
 	symbolSelector MiniSymbolSelector
@@ -32,7 +32,7 @@ func NewMiniOrderKeeper() DexOrderKeeper {
 	}
 }
 
-//override
+// override
 func (kp *MiniOrderKeeper) support(pair string) bool {
 	if !sdk.IsUpgrade(upgrade.BEP8) {
 		return false
@@ -40,7 +40,7 @@ func (kp *MiniOrderKeeper) support(pair string) bool {
 	return dexUtils.IsMiniTokenTradingPair(pair)
 }
 
-//override
+// override
 func (kp *MiniOrderKeeper) supportUpgradeVersion() bool {
 	return sdk.IsUpgrade(upgrade.BEP8)
 }

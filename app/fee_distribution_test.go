@@ -97,7 +97,7 @@ func TestFeeDistribution2Proposer(t *testing.T) {
 	fees.Pool.AddAndCommitFee("DIST", sdk.NewFee(sdk.Coins{sdk.NewCoin(types.NativeTokenSymbol, 10)}, sdk.FeeForProposer))
 	blockFee := distributeFee(ctx, am, valAddrCache, true)
 	fees.Pool.Clear()
-	require.Equal(t, pub.BlockFee{0, "BNB:10", []string{string(proposerAcc.GetAddress())}}, blockFee)
+	require.Equal(t, pub.BlockFee{0, "AXC:10", []string{string(proposerAcc.GetAddress())}}, blockFee)
 	checkBalance(t, ctx, am, valAddrCache, []int64{110, 100, 100, 100})
 }
 
@@ -109,14 +109,14 @@ func TestFeeDistribution2AllValidators(t *testing.T) {
 	blockFee := distributeFee(ctx, am, valAddrCache, true)
 	// Notice: clean the pool after distributeFee
 	fees.Pool.Clear()
-	require.Equal(t, pub.BlockFee{0, "BNB:40", []string{string(proposerAcc.GetAddress()), string(valAcc1.GetAddress()), string(valAcc2.GetAddress()), string(valAcc3.GetAddress())}}, blockFee)
+	require.Equal(t, pub.BlockFee{0, "AXC:40", []string{string(proposerAcc.GetAddress()), string(valAcc1.GetAddress()), string(valAcc2.GetAddress()), string(valAcc3.GetAddress())}}, blockFee)
 	checkBalance(t, ctx, am, valAddrCache, []int64{110, 110, 110, 110})
 
 	// cannot be divided evenly
 	fees.Pool.AddAndCommitFee("DIST", sdk.NewFee(sdk.Coins{sdk.NewCoin(types.NativeTokenSymbol, 50)}, sdk.FeeForAll))
 	blockFee = distributeFee(ctx, am, valAddrCache, true)
 	fees.Pool.Clear()
-	require.Equal(t, pub.BlockFee{0, "BNB:50", []string{string(proposerAcc.GetAddress()), string(valAcc1.GetAddress()), string(valAcc2.GetAddress()), string(valAcc3.GetAddress())}}, blockFee)
+	require.Equal(t, pub.BlockFee{0, "AXC:50", []string{string(proposerAcc.GetAddress()), string(valAcc1.GetAddress()), string(valAcc2.GetAddress()), string(valAcc3.GetAddress())}}, blockFee)
 	checkBalance(t, ctx, am, valAddrCache, []int64{124, 122, 122, 122})
 }
 
@@ -135,7 +135,7 @@ func GenAccounts(n int) (accounts []Account) {
 		priv := ed25519.GenPrivKey()
 		address := priv.PubKey().Address()
 		accAddr := sdk.AccAddress(address)
-		genCoin := sdk.NewCoin("BNB", 10e13)
+		genCoin := sdk.NewCoin("AXC", 10e13)
 		baseAccount := auth.BaseAccount{
 			Address: accAddr,
 			Coins:   sdk.Coins{genCoin},
@@ -155,12 +155,12 @@ func GenAccounts(n int) (accounts []Account) {
 	return
 }
 
-func setupTestForBEP159Test() (*BinanceChain, sdk.Context, []Account) {
+func setupTestForBEP159Test() (*Aximchain, sdk.Context, []Account) {
 	// config
 	upgrade.Mgr.Reset()
 	context := ServerContext
 	ServerContext.BreatheBlockInterval = BREATHE_BLOCK_INTERVAL
-	ServerContext.LaunchBscUpgradeHeight = 1
+	ServerContext.LaunchAxcUpgradeHeight = 1
 	ServerContext.BEP128Height = 2
 	ServerContext.BEP151Height = 3
 	ServerContext.BEP153Height = 4
@@ -173,13 +173,13 @@ func setupTestForBEP159Test() (*BinanceChain, sdk.Context, []Account) {
 	config.SetBech32PrefixForConsensusNode(context.Bech32PrefixConsAddr, context.Bech32PrefixConsPub)
 	config.Seal()
 	// create app
-	app := NewBinanceChain(logger, memDB, io.Discard)
+	app := NewAximchain(logger, memDB, io.Discard)
 	logger.Info("BEP159Height", "BEP159Height", ServerContext.BEP159Height)
 	logger.Info("BEP159Phase2Height", "BEP159Phase2Height", ServerContext.BEP159Phase2Height)
 	logger.Info("BreatheBlockInterval", "BreatheBlockInterval", ServerContext.BreatheBlockInterval)
 	logger.Info("IbcChainId", "IbcChainId", ServerContext.IbcChainId)
-	logger.Info("BscChainId", "BscChainId", ServerContext.BscChainId)
-	logger.Info("BscIbcChainId", "BscIbcChainId", ServerContext.BscIbcChainId)
+	logger.Info("AxcChainId", "AxcChainId", ServerContext.AxcChainId)
+	logger.Info("AxcIbcChainId", "AxcIbcChainId", ServerContext.AxcIbcChainId)
 
 	// read genesis
 	genesisJsonFile, err := os.Open("../asset/mainnet/genesis.json")
@@ -212,7 +212,7 @@ func setupTestForBEP159Test() (*BinanceChain, sdk.Context, []Account) {
 	return app, ctx, accounts
 }
 
-func GenSimTxs(app *BinanceChain, msgs []sdk.Msg, expSimPass bool, privs ...crypto.PrivKey,
+func GenSimTxs(app *Aximchain, msgs []sdk.Msg, expSimPass bool, privs ...crypto.PrivKey,
 ) (txs []auth.StdTx) {
 	accSeqMap := make(map[string][2]int64)
 	ctx := app.CheckState.Ctx
@@ -240,7 +240,7 @@ func GenSimTxs(app *BinanceChain, msgs []sdk.Msg, expSimPass bool, privs ...cryp
 	return txs
 }
 
-func ApplyBlock(t *testing.T, app *BinanceChain, ctx sdk.Context, txs []auth.StdTx) (newCtx sdk.Context) {
+func ApplyBlock(t *testing.T, app *Aximchain, ctx sdk.Context, txs []auth.StdTx) (newCtx sdk.Context) {
 	height := ctx.BlockHeader().Height + 1
 	logger.Debug("ApplyBlock", "height", height)
 	header := abci.Header{Height: height}
@@ -272,7 +272,7 @@ func ApplyBlock(t *testing.T, app *BinanceChain, ctx sdk.Context, txs []auth.Std
 	return
 }
 
-func ApplyEmptyBlocks(t *testing.T, app *BinanceChain, ctx sdk.Context, blockNum int) (newCtx sdk.Context) {
+func ApplyEmptyBlocks(t *testing.T, app *Aximchain, ctx sdk.Context, blockNum int) (newCtx sdk.Context) {
 	currentCtx := ctx
 	for i := 0; i < blockNum; i++ {
 		currentCtx = ApplyBlock(t, app, currentCtx, []auth.StdTx{})
@@ -280,7 +280,7 @@ func ApplyEmptyBlocks(t *testing.T, app *BinanceChain, ctx sdk.Context, blockNum
 	return currentCtx
 }
 
-func ApplyToBreathBlocks(t *testing.T, app *BinanceChain, ctx sdk.Context, breathBlockNum int) (newCtx sdk.Context) {
+func ApplyToBreathBlocks(t *testing.T, app *Aximchain, ctx sdk.Context, breathBlockNum int) (newCtx sdk.Context) {
 	currentHeight := ctx.BlockHeader().Height
 	blockNum := BREATHE_BLOCK_INTERVAL*breathBlockNum - int(currentHeight%int64(BREATHE_BLOCK_INTERVAL))
 	return ApplyEmptyBlocks(t, app, ctx, blockNum)
@@ -309,7 +309,7 @@ func TestBEP159Distribution(t *testing.T) {
 	require.True(t, app.CoinKeeper.GetCoins(ctx, validators[0].DistributionAddr).IsZero())
 	require.True(t, app.CoinKeeper.GetCoins(ctx, stake.FeeForAllAccAddr).IsZero())
 	// transfer tx to make some fees
-	transferCoin := sdk.NewCoin("BNB", 100000000)
+	transferCoin := sdk.NewCoin("AXC", 100000000)
 	inputs := bank.NewInput(accs[0].Address, sdk.Coins{transferCoin})
 	outputs := bank.NewOutput(accs[1].Address, sdk.Coins{transferCoin})
 	transferMsg := bank.NewMsgSend([]bank.Input{inputs}, []bank.Output{outputs})
@@ -332,7 +332,7 @@ func TestBEP159Distribution(t *testing.T) {
 	require.True(t, found)
 	require.Len(t, snapshotVals[0].StakeSnapshots, 29)
 	// try to create validator
-	bondCoin := sdk.NewCoin("BNB", sdk.NewDecWithoutFra(10000*16).RawInt())
+	bondCoin := sdk.NewCoin("AXC", sdk.NewDecWithoutFra(10000*16).RawInt())
 	commissionMsg := stake.NewCommissionMsg(sdk.ZeroDec(), sdk.ZeroDec(), sdk.ZeroDec())
 	description := stake.NewDescription("validator0", "", "", "")
 	createValidatorMsg := stake.MsgCreateValidatorOpen{
@@ -352,7 +352,7 @@ func TestBEP159Distribution(t *testing.T) {
 	require.True(t, found)
 	require.Len(t, snapshotVals[0].StakeSnapshots, 30)
 	require.True(t, app.CoinKeeper.GetCoins(ctx, validators[0].DistributionAddr).IsZero())
-	require.Equal(t, app.CoinKeeper.GetCoins(ctx, stake.FeeForAllAccAddr), sdk.Coins{sdk.NewCoin("BNB", 8)})
+	require.Equal(t, app.CoinKeeper.GetCoins(ctx, stake.FeeForAllAccAddr), sdk.Coins{sdk.NewCoin("AXC", 8)})
 	// create new validators, stake number is 16 times of original validators
 	createValidatorMsg = stake.MsgCreateValidatorOpen{
 		Description:   description,
@@ -372,8 +372,8 @@ func TestBEP159Distribution(t *testing.T) {
 	validator0Balance := app.CoinKeeper.GetCoins(ctx, validators[0].DistributionAddr)
 	feeForAllBalance := app.CoinKeeper.GetCoins(ctx, stake.FeeForAllAccAddr)
 	logger.Debug("feeBalances", "validator0", validator0Balance, "feeForAll", feeForAllBalance)
-	require.Equal(t, sdk.Coins{sdk.NewCoin("BNB", 50000000)}, app.CoinKeeper.GetCoins(ctx, validators[0].DistributionAddr))
-	require.Equal(t, sdk.Coins{sdk.NewCoin("BNB", 950000008)}, app.CoinKeeper.GetCoins(ctx, stake.FeeForAllAccAddr))
+	require.Equal(t, sdk.Coins{sdk.NewCoin("AXC", 50000000)}, app.CoinKeeper.GetCoins(ctx, validators[0].DistributionAddr))
+	require.Equal(t, sdk.Coins{sdk.NewCoin("AXC", 950000008)}, app.CoinKeeper.GetCoins(ctx, stake.FeeForAllAccAddr))
 
 	// check validator just staked
 	newValidator, found := app.stakeKeeper.GetValidator(ctx, sdk.ValAddress(accs[0].Address))
@@ -400,7 +400,7 @@ func TestBEP159Distribution(t *testing.T) {
 	// check fees after distribution
 	feeForAllBalance = app.CoinKeeper.GetCoins(ctx, stake.FeeForAllAccAddr)
 	logger.Debug("feeBalances", "validator0", validator0Balance, "feeForAll", feeForAllBalance)
-	require.Equal(t, app.CoinKeeper.GetCoins(ctx, stake.FeeForAllAccAddr), sdk.Coins{sdk.NewCoin("BNB", 1)})
+	require.Equal(t, app.CoinKeeper.GetCoins(ctx, stake.FeeForAllAccAddr), sdk.Coins{sdk.NewCoin("AXC", 1)})
 
 	// iter all validators, check their fees
 	distributionAddrBalanceSum := feeForAllBalance
@@ -412,14 +412,14 @@ func TestBEP159Distribution(t *testing.T) {
 		require.Lenf(t, distributionAddrBalance, 1, "distributionAddrBalance should have 1 coin")
 		distributionAddrBalanceSum = distributionAddrBalanceSum.Plus(distributionAddrBalance)
 		if i == 0 {
-			expectedBalance = distributionAddrBalance[0].Minus(sdk.NewCoin("BNB", 50000000))
+			expectedBalance = distributionAddrBalance[0].Minus(sdk.NewCoin("AXC", 50000000))
 		} else {
 			require.False(t, feeAddrBalance.IsZero(), "feeAddrBalance should be zero")
 			require.Equal(t, expectedBalance, distributionAddrBalance[0])
 		}
 	}
 	logger.Debug("distributionAddrBalanceSum", "distributionAddrBalanceSum", distributionAddrBalanceSum)
-	require.Equal(t, sdk.NewCoin("BNB", 1000000008), distributionAddrBalanceSum[0])
+	require.Equal(t, sdk.NewCoin("AXC", 1000000008), distributionAddrBalanceSum[0])
 
 	// apply to next breath block, validator0 become bonded, the first one
 	ctx = ApplyToBreathBlocks(t, app, ctx, 1)
@@ -437,7 +437,7 @@ func TestBEP159Distribution(t *testing.T) {
 	// open this when delegate opens
 	//// two more breath block, one for delegator to get into snapshot, one to get rewards
 	//// validator1 delegate to validator0
-	//delegateMsg := stake.NewMsgDelegate(accs[1].Address, sdk.ValAddress(accs[0].Address), sdk.NewCoin("BNB", sdk.NewDecWithoutFra(10000*16).RawInt()))
+	//delegateMsg := stake.NewMsgDelegate(accs[1].Address, sdk.ValAddress(accs[0].Address), sdk.NewCoin("AXC", sdk.NewDecWithoutFra(10000*16).RawInt()))
 	//txs = GenSimTxs(app, []sdk.Msg{delegateMsg}, true, accs[1].Priv)
 	//ctx = ApplyBlock(t, app, ctx, txs)
 	//delegatorBalance := app.CoinKeeper.GetCoins(ctx, accs[1].Address)
@@ -449,7 +449,7 @@ func TestBEP159Distribution(t *testing.T) {
 	//delegatorBalance = app.CoinKeeper.GetCoins(ctx, accs[1].Address)
 	//logger.Debug("delegatorBalance", "delegatorBalance", delegatorBalance)
 	//// validator2 delegate to validator0
-	//delegateMsg = stake.NewMsgDelegate(accs[2].Address, sdk.ValAddress(accs[0].Address), sdk.NewCoin("BNB", sdk.NewDecWithoutFra(10000*16).RawInt()))
+	//delegateMsg = stake.NewMsgDelegate(accs[2].Address, sdk.ValAddress(accs[0].Address), sdk.NewCoin("AXC", sdk.NewDecWithoutFra(10000*16).RawInt()))
 	//txs = GenSimTxs(app, []sdk.Msg{delegateMsg}, true, accs[2].Priv)
 	//ctx = ApplyBlock(t, app, ctx, txs)
 	//

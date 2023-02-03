@@ -223,7 +223,7 @@ func (me *MatchEng) MatchBeforeGalileo(height int64) bool {
 	return true
 }
 
-//DropFilledOrder() would clear the order to remove
+// DropFilledOrder() would clear the order to remove
 func (me *MatchEng) DropFilledOrder() (droppedIds []string) {
 	droppedIds = make([]string, 0, len(me.overLappedLevel)<<1)
 	toRemoveStartIdx := 0

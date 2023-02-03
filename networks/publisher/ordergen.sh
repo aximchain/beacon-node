@@ -2,9 +2,9 @@
 
 ########################### SETUP #########################
 home=$HOME
-src="${home}/go/src/github.com/bnb-chain/node"
-clipath="${home}/go/src/github.com/bnb-chain/node/build/bnbcli"
-clihome="${home}/.bnbcli"
+src="${home}/go/src/github.com/axc-chain/node"
+clipath="${home}/go/src/github.com/axc-chain/node/build/axccli"
+clihome="${home}/.axccli"
 chainId='test-chain-n4b735' # should be same with publisher/setup.sh or testnet/deploy.sh
 
 
@@ -44,15 +44,15 @@ do
     pause=$(random 5 7)
     symbolNum=$(random 1 10)
 
-    symbol="ZCK-980_BNB"
+    symbol="ZCK-980_AXC"
     if [ $symbolNum -lt 4 ]
     then
-        symbol="Y2B-822M_BNB"
+        symbol="Y2B-822M_AXC"
     elif [ $symbolNum -lt 6 ]
     then
-        symbol="X1M-42FM_BNB"
+        symbol="X1M-42FM_AXC"
     else [ $symbolNum -lt 8 ]
-        symbol="ZCK-CD6_BNB"
+        symbol="ZCK-CD6_AXC"
     fi
     from="zc"
     if [ $side == 1 ]

@@ -7,10 +7,10 @@
 
 ########################### SETUP #########################
 home=$HOME
-src="${home}/go/src/github.com/bnb-chain/node"
-deamonhome="${home}/.bnbchaind"
-witnesshome="${home}/.bnbchaind_witness"
-clihome="${home}/.bnbcli"
+src="${home}/go/src/github.com/axc-chain/node"
+deamonhome="${home}/.axcchaind"
+witnesshome="${home}/.axcchaind_witness"
+clihome="${home}/.axccli"
 chain_id='test-chain-n4b735'
 echo $src
 echo $deamonhome
@@ -18,8 +18,8 @@ echo $witnesshome
 echo $clihome
 
 key_seed_path="${home}"
-executable="${src}/build/bnbchaind"
-clipath="${src}/build/bnbcli"
+executable="${src}/build/axcchaind"
+clipath="${src}/build/axccli"
 cli="${clipath} --home ${clihome}"
 scripthome="${src}/networks/publisher"
 ############################ END ##########################
@@ -29,8 +29,8 @@ result=$(${cli} token issue-tiny --from=zc --token-name="X1M Coin" --symbol=X1M 
 X1Mini_symbol=$(echo "${result}" | tail -n 1 | grep -o "X1M-[0-9A-Z]*")
 echo ${X1Mini_symbol}
 sleep 2
-echo 1234qwerasdf|${cli} dex list-mini -s=${X1Mini_symbol} --quote-asset-symbol=BNB --init-price=100000000 --from=zc --chain-id ${chain_id}
+echo 1234qwerasdf|${cli} dex list-mini -s=${X1Mini_symbol} --quote-asset-symbol=AXC --init-price=100000000 --from=zc --chain-id ${chain_id}
 sleep 1
-zz_addr=$(${cli} keys list | grep "zz.*local" | grep -o "bnb[0-9a-zA-Z]*" | grep -v "bnbp")
+zz_addr=$(${cli} keys list | grep "zz.*local" | grep -o "axc[0-9a-zA-Z]*" | grep -v "axcp")
 echo 1234qwerasdf|${cli} send --from=zc --to=${zz_addr} --amount=200000000000:${X1Mini_symbol} --chain-id ${chain_id}
 sleep 5

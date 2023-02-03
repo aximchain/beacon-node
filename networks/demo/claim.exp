@@ -8,9 +8,9 @@ set home [lindex $argv 4]
 
 set timeout 30
 	if {"${home}" == ""} {
-		spawn ./bnbcli token claim --from $from --chain-id $chain_id --swap-id $swapID --random-number $randomNumber
+		spawn ./axccli token claim --from $from --chain-id $chain_id --swap-id $swapID --random-number $randomNumber
 	} else {
-		spawn ./bnbcli token claim --home $home --from $from --chain-id $chain_id --swap-id $swapID --random-number $randomNumber
+		spawn ./axccli token claim --home $home --from $from --chain-id $chain_id --swap-id $swapID --random-number $randomNumber
 	}
 	expect "Password*"
 	send "12345678\r"

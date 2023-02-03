@@ -78,8 +78,8 @@ func TestKeeper_CreateSwap(t *testing.T) {
 	swap := &AtomicSwap{
 		From:                acc1.GetAddress(),
 		To:                  acc2.GetAddress(),
-		OutAmount:           sdk.Coins{sdk.Coin{"BNB", 10000}},
-		ExpectedIncome:      "10000:BNB",
+		OutAmount:           sdk.Coins{sdk.Coin{"AXC", 10000}},
+		ExpectedIncome:      "10000:",
 		RecipientOtherChain: toOnOtherChain,
 		RandomNumberHash:    randomNumberHash,
 		RandomNumber:        nil,
@@ -140,8 +140,8 @@ func TestKeeper_UpdateSwap(t *testing.T) {
 	swap := &AtomicSwap{
 		From:                acc1.GetAddress(),
 		To:                  acc2.GetAddress(),
-		OutAmount:           sdk.Coins{sdk.Coin{"BNB", 10000}},
-		ExpectedIncome:      "10000:BNB",
+		OutAmount:           sdk.Coins{sdk.Coin{"AXC", 10000}},
+		ExpectedIncome:      "10000:",
 		RecipientOtherChain: toOnOtherChain,
 		RandomNumberHash:    randomNumberHash,
 		RandomNumber:        nil,
@@ -204,8 +204,8 @@ func TestKeeper_DeleteSwap(t *testing.T) {
 	swap1 := &AtomicSwap{
 		From:                acc1.GetAddress(),
 		To:                  acc2.GetAddress(),
-		OutAmount:           sdk.Coins{sdk.Coin{"BNB", 10000}},
-		ExpectedIncome:      "10000:BNB",
+		OutAmount:           sdk.Coins{sdk.Coin{"AXC", 10000}},
+		ExpectedIncome:      "10000:",
 		RecipientOtherChain: toOnOtherChain,
 		RandomNumberHash:    randomNumberHash,
 		RandomNumber:        nil,
@@ -225,8 +225,8 @@ func TestKeeper_DeleteSwap(t *testing.T) {
 	swap2 := &AtomicSwap{
 		From:                acc1.GetAddress(),
 		To:                  acc2.GetAddress(),
-		OutAmount:           sdk.Coins{sdk.Coin{"BNB", 10000}},
-		ExpectedIncome:      "10000:BNB",
+		OutAmount:           sdk.Coins{sdk.Coin{"AXC", 10000}},
+		ExpectedIncome:      "10000:",
 		RecipientOtherChain: toOnOtherChain,
 		RandomNumberHash:    randomNumberHash,
 		RandomNumber:        nil,

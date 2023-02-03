@@ -18,9 +18,9 @@ import (
 //TickSize	1e3		1e2		1e1		1		1		1		1		1		1
 //LotSize	1e5		1e6		1e7		1e8		1e9		1e10	1e11	1e12	1e13
 
-//Price		≥1e9	≥1e10	≥1e11	≥1e12	≥1e13	≥1e14	≥1e15	≥1e16	≥1e17
-//TickSize	1e4		1e5		1e6		1e7		1e8		1e9		1e10	1e11	1e12
-//LotSize	1e4		1e3		1e2		1e1		1		1		1		1		1
+// Price		≥1e9	≥1e10	≥1e11	≥1e12	≥1e13	≥1e14	≥1e15	≥1e16	≥1e17
+// TickSize	1e4		1e5		1e6		1e7		1e8		1e9		1e10	1e11	1e12
+// LotSize	1e4		1e3		1e2		1e1		1		1		1		1		1
 func CalcTickSize(price int64) int64 {
 	if price <= 0 {
 		return 1

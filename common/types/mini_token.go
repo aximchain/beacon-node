@@ -146,7 +146,7 @@ func (token MiniToken) String() string {
 		token.Name, token.Symbol, token.TokenType, token.TotalSupply, token.Owner, token.Mintable, token.TokenURI)
 }
 
-//check if it's mini token by last letter without validation
+// check if it's mini token by last letter without validation
 func IsMiniTokenSymbol(symbol string) bool {
 	if symbol == NativeTokenSymbol ||
 		symbol == NativeTokenSymbolDotBSuffixed {
@@ -161,7 +161,7 @@ func IsMiniTokenSymbol(symbol string) bool {
 	return len(suffixPart) == MiniTokenSymbolSuffixLen && strings.HasSuffix(suffixPart, MiniTokenSymbolMSuffix)
 }
 
-//Validate and check if it's mini token
+// Validate and check if it's mini token
 func IsValidMiniTokenSymbol(symbol string) bool {
 	return ValidateMiniTokenSymbol(symbol) == nil
 }
