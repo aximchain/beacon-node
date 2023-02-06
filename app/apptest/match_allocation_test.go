@@ -32,7 +32,7 @@ var testFeeConfig order.FeeConfig
 func init() {
 	config := sdk.GetConfig()
 	config.SetBech32PrefixForAccount("axc", "axcp")
-	config.SetBech32PrefixForValidator("ava", "bvap")
+	config.SetBech32PrefixForValidator("ava", "avap")
 	config.SetBech32PrefixForConsensusNode("aca", "acap")
 	config.Seal()
 	initFeeConfig()

@@ -10,7 +10,7 @@ export GO111MODULE = on
 PACKAGES=$(shell go list ./...)
 COMMIT_HASH := $(shell git rev-parse --short HEAD)
 
-COSMOS_RELEASE := $(shell grep 'github.com/bnb-chain/bnc-cosmos-sdk' go.mod |awk '{print $$4}')
+COSMOS_RELEASE := $(shell grep 'github.com/aximchain/axc-cosmos-sdk' go.mod |awk '{print $$4}')
 # TODO
 TENDER_RELEASE := $(shell grep 'github.com/bnb-chain/bnc-tendermint' go.mod| grep -v iavl| awk '{print $$4}')
 

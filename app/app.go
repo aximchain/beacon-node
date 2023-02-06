@@ -365,7 +365,7 @@ func SetUpgradeConfig(upgradeConfig *config.UpgradeConfig) {
 		stake.MsgSideChainDelegate{}.Type(),
 		stake.MsgSideChainRedelegate{}.Type(),
 		stake.MsgSideChainUndelegate{}.Type(),
-		slashing.MsgBscSubmitEvidence{}.Type(),
+		slashing.MsgAxcSubmitEvidence{}.Type(),
 		slashing.MsgSideChainUnjail{}.Type(),
 		gov.MsgSideChainSubmitProposal{}.Type(),
 		gov.MsgSideChainDeposit{}.Type(),
@@ -480,11 +480,11 @@ func (app *Aximchain) initPlugins() {
 func (app *Aximchain) initSideChain() {
 	app.scKeeper.SetGovKeeper(&app.govKeeper)
 	app.scKeeper.SetIbcKeeper(&app.ibcKeeper)
-	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchBscUpgrade, func(ctx sdk.Context) {
+	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchAxcUpgrade, func(ctx sdk.Context) {
 		axcStorePrefix := []byte{0x99}
 		app.scKeeper.SetSideChainIdAndStorePrefix(ctx, ServerContext.AxcChainId, axcStorePrefix)
 		app.scKeeper.SetParams(ctx, sidechain.Params{
-			BscSideChainId: ServerContext.AxcChainId,
+			AxcSideChainId: ServerContext.AxcChainId,
 		})
 	})
 }
@@ -500,7 +500,7 @@ func (app *Aximchain) initOracle() {
 
 func (app *Aximchain) initBridge() {
 	app.bridgeKeeper.SetPbsbServer(app.psServer)
-	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchBscUpgrade, func(ctx sdk.Context) {
+	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchAxcUpgrade, func(ctx sdk.Context) {
 		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.AxcIbcChainId), bTypes.BindChannelID, sdk.ChannelAllow)
 		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.AxcIbcChainId), bTypes.TransferOutChannelID, sdk.ChannelAllow)
 		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.AxcIbcChainId), bTypes.TransferInChannelID, sdk.ChannelAllow)
@@ -512,7 +512,7 @@ func (app *Aximchain) initParamHub() {
 	app.ParamHub.SetupForSideChain(&app.scKeeper, &app.ibcKeeper)
 
 	paramHub.RegisterUpgradeBeginBlocker(app.ParamHub)
-	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchBscUpgrade, func(ctx sdk.Context) {
+	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchAxcUpgrade, func(ctx sdk.Context) {
 		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.AxcIbcChainId), param.ChannelId, sdk.ChannelAllow)
 		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.AxcChainId)
 		newCtx := ctx.WithSideChainKeyPrefix(storePrefix)
@@ -528,7 +528,7 @@ func (app *Aximchain) initParamHub() {
 func (app *Aximchain) initStaking() {
 	app.stakeKeeper.SetupForSideChain(&app.scKeeper, &app.ibcKeeper)
 	app.stakeKeeper.SetPbsbServer(app.psServer)
-	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchBscUpgrade, func(ctx sdk.Context) {
+	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchAxcUpgrade, func(ctx sdk.Context) {
 		stake.MigratePowerRankKey(ctx, app.stakeKeeper)
 		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.AxcIbcChainId), keeper.ChannelId, sdk.ChannelAllow)
 		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.AxcChainId)
@@ -577,7 +577,7 @@ func (app *Aximchain) initStaking() {
 		params.MaxValidators = 11
 		params.BaseProposerRewardRatio = sdk.NewDec(1e6)  // 1%
 		params.BonusProposerRewardRatio = sdk.NewDec(4e6) // 4%
-		params.FeeFromBscToBcRatio = sdk.NewDec(1e7)      // 10%
+		params.FeeFromAxcToBcRatio = sdk.NewDec(1e7)      // 10%
 		app.stakeKeeper.SetParams(ctx, params)
 	})
 	upgrade.Mgr.RegisterBeginBlocker(sdk.BEP159Phase2, func(ctx sdk.Context) {
@@ -598,7 +598,7 @@ func (app *Aximchain) initStaking() {
 
 func (app *Aximchain) initGov() {
 	app.govKeeper.SetupForSideChain(&app.scKeeper)
-	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchBscUpgrade, func(ctx sdk.Context) {
+	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchAxcUpgrade, func(ctx sdk.Context) {
 		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.AxcChainId)
 		newCtx := ctx.WithSideChainKeyPrefix(storePrefix)
 		err := app.govKeeper.SetInitialProposalID(newCtx, 1)
@@ -621,7 +621,7 @@ func (app *Aximchain) initSlashing() {
 	app.slashKeeper.SetPbsbServer(app.psServer)
 	app.slashKeeper.SetSideChain(&app.scKeeper)
 	app.slashKeeper.SubscribeParamChange(app.ParamHub)
-	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchBscUpgrade, func(ctx sdk.Context) {
+	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchAxcUpgrade, func(ctx sdk.Context) {
 		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.AxcIbcChainId), slashing.ChannelId, sdk.ChannelAllow)
 		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.AxcChainId)
 		newCtx := ctx.WithSideChainKeyPrefix(storePrefix)
@@ -660,7 +660,7 @@ func (app *Aximchain) initIbc() {
 		panic(fmt.Sprintf("register IBC chainID error: chainID=%s, err=%s", ServerContext.AxcChainId, err.Error()))
 	}
 	app.ibcKeeper.SubscribeParamChange(app.ParamHub)
-	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchBscUpgrade, func(ctx sdk.Context) {
+	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchAxcUpgrade, func(ctx sdk.Context) {
 		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.AxcChainId)
 		newCtx := ctx.WithSideChainKeyPrefix(storePrefix)
 		app.ibcKeeper.SetParams(newCtx, ibc.Params{
