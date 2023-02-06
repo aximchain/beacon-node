@@ -9,8 +9,8 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/client/context"
 
-	"github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 const maxTokensLimit = 1000

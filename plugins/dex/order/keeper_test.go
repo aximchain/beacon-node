@@ -24,16 +24,16 @@ import (
 	tmstore "github.com/tendermint/tendermint/store"
 	tmtypes "github.com/tendermint/tendermint/types"
 
-	"github.com/bnb-chain/node/common"
-	"github.com/bnb-chain/node/common/testutils"
-	"github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/common/upgrade"
-	"github.com/bnb-chain/node/common/utils"
-	me "github.com/bnb-chain/node/plugins/dex/matcheng"
-	"github.com/bnb-chain/node/plugins/dex/store"
-	dextypes "github.com/bnb-chain/node/plugins/dex/types"
-	"github.com/bnb-chain/node/plugins/tokens"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/beacon-node/common"
+	"github.com/aximchain/beacon-node/common/testutils"
+	"github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/beacon-node/common/upgrade"
+	"github.com/aximchain/beacon-node/common/utils"
+	me "github.com/aximchain/beacon-node/plugins/dex/matcheng"
+	"github.com/aximchain/beacon-node/plugins/dex/store"
+	dextypes "github.com/aximchain/beacon-node/plugins/dex/types"
+	"github.com/aximchain/beacon-node/plugins/tokens"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 func MakeCodec() *wire.Codec {

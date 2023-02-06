@@ -17,9 +17,9 @@ import (
 	"github.com/cosmos/cosmos-sdk/store"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/bnb-chain/node/app"
-	configPkg "github.com/bnb-chain/node/app/config"
-	"github.com/bnb-chain/node/common"
+	"github.com/aximchain/beacon-node/app"
+	configPkg "github.com/aximchain/beacon-node/app/config"
+	"github.com/aximchain/beacon-node/common"
 )
 
 const (

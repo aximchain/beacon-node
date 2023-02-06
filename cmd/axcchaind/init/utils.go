@@ -15,7 +15,7 @@ import (
 	"github.com/tendermint/tendermint/privval"
 	"github.com/tendermint/tendermint/types"
 
-	"github.com/bnb-chain/node/app"
+	"github.com/aximchain/beacon-node/app"
 )
 
 // ExportGenesisFile creates and writes the genesis configuration to disk. An

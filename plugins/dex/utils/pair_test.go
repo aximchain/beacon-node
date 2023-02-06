@@ -10,8 +10,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	cmnutils "github.com/bnb-chain/node/common/utils"
-	"github.com/bnb-chain/node/plugins/dex/utils"
+	cmnutils "github.com/aximchain/beacon-node/common/utils"
+	"github.com/aximchain/beacon-node/plugins/dex/utils"
 )
 
 func TestCalcLotSizeAndCalcTickSize(t *testing.T) {

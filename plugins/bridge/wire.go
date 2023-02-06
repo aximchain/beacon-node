@@ -1,7 +1,7 @@
 package bridge
 
 import (
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 // Register concrete types on wire codec

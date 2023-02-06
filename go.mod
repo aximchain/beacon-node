@@ -1,4 +1,4 @@
-module github.com/bnb-chain/node
+module github.com/aximchain/beacon-node
 
 go 1.17
 

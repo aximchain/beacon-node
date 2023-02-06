@@ -20,13 +20,13 @@ import (
 	"github.com/tendermint/tendermint/libs/db"
 	"github.com/tendermint/tendermint/libs/log"
 
-	"github.com/bnb-chain/node/common"
-	"github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/common/upgrade"
-	"github.com/bnb-chain/node/plugins/dex/order"
-	"github.com/bnb-chain/node/plugins/dex/store"
-	dexTypes "github.com/bnb-chain/node/plugins/dex/types"
-	"github.com/bnb-chain/node/plugins/tokens"
+	"github.com/aximchain/beacon-node/common"
+	"github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/beacon-node/common/upgrade"
+	"github.com/aximchain/beacon-node/plugins/dex/order"
+	"github.com/aximchain/beacon-node/plugins/dex/store"
+	dexTypes "github.com/aximchain/beacon-node/plugins/dex/types"
+	"github.com/aximchain/beacon-node/plugins/tokens"
 )
 
 func MakeCodec() *codec.Codec {

@@ -5,14 +5,14 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/auth"
 	"github.com/cosmos/cosmos-sdk/x/bank"
 
-	"github.com/bnb-chain/node/plugins/tokens/burn"
-	"github.com/bnb-chain/node/plugins/tokens/freeze"
-	"github.com/bnb-chain/node/plugins/tokens/issue"
-	"github.com/bnb-chain/node/plugins/tokens/ownership"
-	"github.com/bnb-chain/node/plugins/tokens/seturi"
-	"github.com/bnb-chain/node/plugins/tokens/store"
-	"github.com/bnb-chain/node/plugins/tokens/swap"
-	"github.com/bnb-chain/node/plugins/tokens/timelock"
+	"github.com/aximchain/beacon-node/plugins/tokens/burn"
+	"github.com/aximchain/beacon-node/plugins/tokens/freeze"
+	"github.com/aximchain/beacon-node/plugins/tokens/issue"
+	"github.com/aximchain/beacon-node/plugins/tokens/ownership"
+	"github.com/aximchain/beacon-node/plugins/tokens/seturi"
+	"github.com/aximchain/beacon-node/plugins/tokens/store"
+	"github.com/aximchain/beacon-node/plugins/tokens/swap"
+	"github.com/aximchain/beacon-node/plugins/tokens/timelock"
 )
 
 func Routes(tokenMapper store.Mapper, accKeeper auth.AccountKeeper, keeper bank.Keeper,

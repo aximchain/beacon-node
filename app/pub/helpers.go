@@ -17,12 +17,12 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/gov"
 	"github.com/cosmos/cosmos-sdk/x/stake"
 
-	"github.com/bnb-chain/node/common/types"
-	orderPkg "github.com/bnb-chain/node/plugins/dex/order"
-	"github.com/bnb-chain/node/plugins/tokens/burn"
-	"github.com/bnb-chain/node/plugins/tokens/freeze"
-	"github.com/bnb-chain/node/plugins/tokens/issue"
-	"github.com/bnb-chain/node/plugins/tokens/seturi"
+	"github.com/aximchain/beacon-node/common/types"
+	orderPkg "github.com/aximchain/beacon-node/plugins/dex/order"
+	"github.com/aximchain/beacon-node/plugins/tokens/burn"
+	"github.com/aximchain/beacon-node/plugins/tokens/freeze"
+	"github.com/aximchain/beacon-node/plugins/tokens/issue"
+	"github.com/aximchain/beacon-node/plugins/tokens/seturi"
 )
 
 func GetTradeAndOrdersRelatedAccounts(tradesToPublish []*Trade, orderChanges orderPkg.OrderChanges, orderInfosForPublish orderPkg.OrderInfoForPublish) []string {

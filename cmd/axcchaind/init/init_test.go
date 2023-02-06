@@ -19,7 +19,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/server"
 	"github.com/cosmos/cosmos-sdk/server/mock"
 
-	"github.com/bnb-chain/node/app"
+	"github.com/aximchain/beacon-node/app"
 )
 
 func TestInitCmd(t *testing.T) {

@@ -5,7 +5,7 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	cmmtypes "github.com/bnb-chain/node/common/types"
+	cmmtypes "github.com/aximchain/beacon-node/common/types"
 )
 
 func ConvertAXCAmountToBCAmountBigInt(contractDecimals int8, axcAmount sdk.Int) (sdk.Int, sdk.Error) {

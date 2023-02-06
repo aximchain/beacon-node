@@ -1,9 +1,9 @@
 package commands
 
 import (
-	"github.com/bnb-chain/node/common/client"
-	"github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/plugins/tokens/seturi"
+	"github.com/aximchain/beacon-node/common/client"
+	"github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/beacon-node/plugins/tokens/seturi"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )

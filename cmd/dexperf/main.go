@@ -33,13 +33,13 @@ import (
 	abci "github.com/tendermint/tendermint/abci/types"
 	rpcclient "github.com/tendermint/tendermint/rpc/client"
 
-	"github.com/bnb-chain/node/common/client"
-	"github.com/bnb-chain/node/common/tx"
-	"github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/plugins/dex"
-	"github.com/bnb-chain/node/plugins/dex/order"
-	"github.com/bnb-chain/node/plugins/tokens"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/beacon-node/common/client"
+	"github.com/aximchain/beacon-node/common/tx"
+	"github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/beacon-node/plugins/dex"
+	"github.com/aximchain/beacon-node/plugins/dex/order"
+	"github.com/aximchain/beacon-node/plugins/tokens"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 const (

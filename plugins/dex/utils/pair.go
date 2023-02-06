@@ -6,8 +6,8 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/common/utils"
+	"github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/beacon-node/common/utils"
 )
 
 // CalcTickSize & CalcLotSize calculate TickSize and LotSize

@@ -6,7 +6,7 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/client/context"
 
-	"github.com/bnb-chain/node/version"
+	"github.com/aximchain/beacon-node/version"
 )
 
 // CLIVersionReqHandler handles requests to the cli version REST handler endpoint

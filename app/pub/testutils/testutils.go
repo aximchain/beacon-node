@@ -4,10 +4,10 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/bank"
 
-	"github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/plugins/dex/order"
-	"github.com/bnb-chain/node/plugins/tokens"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/beacon-node/plugins/dex/order"
+	"github.com/aximchain/beacon-node/plugins/tokens"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 func MakeCodec() *wire.Codec {

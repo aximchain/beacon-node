@@ -12,10 +12,10 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
-	"github.com/bnb-chain/node/common"
-	"github.com/bnb-chain/node/common/client"
-	"github.com/bnb-chain/node/plugins/bridge/types"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/beacon-node/common"
+	"github.com/aximchain/beacon-node/common/client"
+	"github.com/aximchain/beacon-node/plugins/bridge/types"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 const (

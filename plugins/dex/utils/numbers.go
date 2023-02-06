@@ -3,7 +3,7 @@ package utils
 import (
 	"math/big"
 
-	"github.com/bnb-chain/node/common/utils"
+	"github.com/aximchain/beacon-node/common/utils"
 )
 
 // CalBigNotionalInt64() calculate the multiply value of notional based on price and qty

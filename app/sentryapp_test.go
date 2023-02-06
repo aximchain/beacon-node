@@ -10,7 +10,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/bnb-chain/node/common/log"
+	"github.com/aximchain/beacon-node/common/log"
 )
 
 const letterBytes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"

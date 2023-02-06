@@ -7,11 +7,11 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/auth"
 
-	"github.com/bnb-chain/node/common"
-	"github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/common/utils"
-	"github.com/bnb-chain/node/plugins/tokens"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/beacon-node/common"
+	"github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/beacon-node/common/utils"
+	"github.com/aximchain/beacon-node/plugins/tokens"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 type TokenBalance struct {

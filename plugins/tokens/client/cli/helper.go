@@ -11,9 +11,9 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/bnb-chain/node/common/client"
-	"github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/beacon-node/common/client"
+	"github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 const miniTokenKeyPrefix = "mini"

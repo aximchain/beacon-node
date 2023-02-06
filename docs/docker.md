@@ -2,7 +2,7 @@
 
 ### Image
 ```sh
-docker pull ghcr.io/bnb-chain/node:latest
+docker pull ghcr.io/aximchain/beacon-node:latest
 ```
 
 ### Env
@@ -15,12 +15,12 @@ docker pull ghcr.io/bnb-chain/node:latest
 ### Example
 1. Start a testnet full node
 ```
-docker run -p 27146:27146 -p 27147:27147 -e NETWORK=testnet ghcr.io/bnb-chain/node:latest
+docker run -p 27146:27146 -p 27147:27147 -e NETWORK=testnet ghcr.io/aximchain/beacon-node:latest
 ```
 
 2. Start a mainnet full node with mounted volume
 ```
-docker run -p 27146:27146 -p 27147:27147 -v /tmp/chain/data:/data ghcr.io/bnb-chain/node:latest
+docker run -p 27146:27146 -p 27147:27147 -v /tmp/chain/data:/data ghcr.io/aximchain/beacon-node:latest
 ```
 
 

@@ -27,10 +27,10 @@ import (
 	"github.com/tendermint/tendermint/libs/cli"
 	"github.com/tendermint/tendermint/libs/common"
 
-	"github.com/bnb-chain/node/app"
-	"github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/common/utils"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/beacon-node/app"
+	"github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/beacon-node/common/utils"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 const (

@@ -3,7 +3,7 @@ package types
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 func RegisterWire(cdc *wire.Codec) {

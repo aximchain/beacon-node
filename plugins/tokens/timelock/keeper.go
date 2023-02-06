@@ -13,7 +13,7 @@ import (
 	"github.com/tendermint/tendermint/crypto"
 	tmlog "github.com/tendermint/tendermint/libs/log"
 
-	bnclog "github.com/bnb-chain/node/common/log"
+	bnclog "github.com/aximchain/beacon-node/common/log"
 )
 
 const InitialRecordId = 1

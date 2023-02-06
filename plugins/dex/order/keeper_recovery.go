@@ -20,13 +20,13 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/auth"
 
-	bnclog "github.com/bnb-chain/node/common/log"
-	"github.com/bnb-chain/node/common/upgrade"
-	"github.com/bnb-chain/node/common/utils"
-	me "github.com/bnb-chain/node/plugins/dex/matcheng"
-	dextypes "github.com/bnb-chain/node/plugins/dex/types"
-	dexutils "github.com/bnb-chain/node/plugins/dex/utils"
-	"github.com/bnb-chain/node/wire"
+	bnclog "github.com/aximchain/beacon-node/common/log"
+	"github.com/aximchain/beacon-node/common/upgrade"
+	"github.com/aximchain/beacon-node/common/utils"
+	me "github.com/aximchain/beacon-node/plugins/dex/matcheng"
+	dextypes "github.com/aximchain/beacon-node/plugins/dex/types"
+	dexutils "github.com/aximchain/beacon-node/plugins/dex/utils"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 type OrderBookSnapshot struct {

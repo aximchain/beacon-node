@@ -6,7 +6,7 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/bnb-chain/node/common/types"
+	"github.com/aximchain/beacon-node/common/types"
 )
 
 // TODO: "route expressions can only contain alphanumeric characters", we need to change the cosmos sdk to support slash

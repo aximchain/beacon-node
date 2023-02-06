@@ -3,9 +3,9 @@ package order
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	bnclog "github.com/bnb-chain/node/common/log"
-	"github.com/bnb-chain/node/common/upgrade"
-	dexUtils "github.com/bnb-chain/node/plugins/dex/utils"
+	bnclog "github.com/aximchain/beacon-node/common/log"
+	"github.com/aximchain/beacon-node/common/upgrade"
+	dexUtils "github.com/aximchain/beacon-node/plugins/dex/utils"
 )
 
 const (

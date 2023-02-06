@@ -1,8 +1,8 @@
 package types
 
 import (
-	ctuils "github.com/bnb-chain/node/common/utils"
-	"github.com/bnb-chain/node/plugins/dex/utils"
+	ctuils "github.com/aximchain/beacon-node/common/utils"
+	"github.com/aximchain/beacon-node/plugins/dex/utils"
 )
 
 type TradingPair struct {

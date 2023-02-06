@@ -8,11 +8,11 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/auth"
 	"github.com/cosmos/cosmos-sdk/x/bank"
 
-	"github.com/bnb-chain/node/common/testutils"
-	"github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/plugins/tokens/issue"
-	"github.com/bnb-chain/node/plugins/tokens/store"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/beacon-node/common/testutils"
+	"github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/beacon-node/plugins/tokens/issue"
+	"github.com/aximchain/beacon-node/plugins/tokens/store"
+	"github.com/aximchain/beacon-node/wire"
 
 	abci "github.com/tendermint/tendermint/abci/types"
 	"github.com/tendermint/tendermint/libs/log"

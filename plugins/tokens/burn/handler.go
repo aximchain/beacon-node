@@ -8,9 +8,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/bank"
 
-	"github.com/bnb-chain/node/common/log"
-	common "github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/plugins/tokens/store"
+	"github.com/aximchain/beacon-node/common/log"
+	common "github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/beacon-node/plugins/tokens/store"
 )
 
 func NewHandler(tokenMapper store.Mapper, keeper bank.Keeper) sdk.Handler {

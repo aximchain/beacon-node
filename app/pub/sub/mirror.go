@@ -3,7 +3,7 @@ package sub
 import (
 	"github.com/cosmos/cosmos-sdk/pubsub"
 
-	"github.com/bnb-chain/node/plugins/bridge"
+	"github.com/aximchain/beacon-node/plugins/bridge"
 )
 
 func SubscribeMirrorEvent(sub *pubsub.Subscriber) error {

@@ -11,11 +11,11 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/fees"
 
-	common "github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/common/upgrade"
-	me "github.com/bnb-chain/node/plugins/dex/matcheng"
-	"github.com/bnb-chain/node/plugins/dex/types"
-	"github.com/bnb-chain/node/plugins/dex/utils"
+	common "github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/beacon-node/common/upgrade"
+	me "github.com/aximchain/beacon-node/plugins/dex/matcheng"
+	"github.com/aximchain/beacon-node/plugins/dex/types"
+	"github.com/aximchain/beacon-node/plugins/dex/utils"
 )
 
 type NewOrderResponse struct {

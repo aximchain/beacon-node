@@ -9,11 +9,11 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	cmn "github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/common/utils"
-	"github.com/bnb-chain/node/plugins/dex/types"
-	dexUtils "github.com/bnb-chain/node/plugins/dex/utils"
-	"github.com/bnb-chain/node/wire"
+	cmn "github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/beacon-node/common/utils"
+	"github.com/aximchain/beacon-node/plugins/dex/types"
+	dexUtils "github.com/aximchain/beacon-node/plugins/dex/utils"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 var recentPricesKeyPrefix = "recentPrices"

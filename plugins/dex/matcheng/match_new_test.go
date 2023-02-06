@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/bnb-chain/node/common/upgrade"
+	"github.com/aximchain/beacon-node/common/upgrade"
 )
 
 func Test_dropRedundantQty(t *testing.T) {

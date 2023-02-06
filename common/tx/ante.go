@@ -16,7 +16,7 @@ import (
 	"github.com/tendermint/tendermint/crypto/tmhash"
 	"github.com/tendermint/tendermint/libs/common"
 
-	"github.com/bnb-chain/node/common/log"
+	"github.com/aximchain/beacon-node/common/log"
 )
 
 const (

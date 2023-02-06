@@ -15,13 +15,13 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/auth"
 
-	pubtest "github.com/bnb-chain/node/app/pub/testutils"
-	"github.com/bnb-chain/node/common"
-	"github.com/bnb-chain/node/common/testutils"
-	"github.com/bnb-chain/node/common/types"
-	orderPkg "github.com/bnb-chain/node/plugins/dex/order"
-	"github.com/bnb-chain/node/plugins/dex/store"
-	dextypes "github.com/bnb-chain/node/plugins/dex/types"
+	pubtest "github.com/aximchain/beacon-node/app/pub/testutils"
+	"github.com/aximchain/beacon-node/common"
+	"github.com/aximchain/beacon-node/common/testutils"
+	"github.com/aximchain/beacon-node/common/types"
+	orderPkg "github.com/aximchain/beacon-node/plugins/dex/order"
+	"github.com/aximchain/beacon-node/plugins/dex/store"
+	dextypes "github.com/aximchain/beacon-node/plugins/dex/types"
 )
 
 // This test makes sure non-execution order changes (non partial fill and fully fill) are correctly generated

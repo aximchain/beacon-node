@@ -4,7 +4,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/pubsub"
 	oTypes "github.com/cosmos/cosmos-sdk/x/oracle/types"
 
-	"github.com/bnb-chain/node/plugins/bridge"
+	"github.com/aximchain/beacon-node/plugins/bridge"
 )
 
 func SubscribeCrossTransferEvent(sub *pubsub.Subscriber) error {

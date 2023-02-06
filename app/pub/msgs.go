@@ -7,8 +7,8 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/bnb-chain/node/common/types"
-	orderPkg "github.com/bnb-chain/node/plugins/dex/order"
+	"github.com/aximchain/beacon-node/common/types"
+	orderPkg "github.com/aximchain/beacon-node/plugins/dex/order"
 )
 
 type msgType int8

@@ -5,9 +5,9 @@ import (
 	"github.com/cosmos/cosmos-sdk/pubsub"
 	"github.com/cosmos/cosmos-sdk/types"
 
-	btype "github.com/bnb-chain/node/plugins/bridge/types"
+	btype "github.com/aximchain/beacon-node/plugins/bridge/types"
 
-	"github.com/bnb-chain/node/plugins/bridge/keeper"
+	"github.com/aximchain/beacon-node/plugins/bridge/keeper"
 )
 
 const (

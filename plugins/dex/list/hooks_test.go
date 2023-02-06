@@ -13,9 +13,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/gov"
 
-	"github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/common/upgrade"
-	dexTypes "github.com/bnb-chain/node/plugins/dex/types"
+	"github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/beacon-node/common/upgrade"
+	dexTypes "github.com/aximchain/beacon-node/plugins/dex/types"
 )
 
 func TestWrongTypeOfProposal(t *testing.T) {

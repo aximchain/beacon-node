@@ -10,8 +10,8 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/client/context"
 
-	"github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 func getTokenInfo(ctx context.CLIContext, cdc *wire.Codec, symbol string, isMini bool) (types.IToken, error) {

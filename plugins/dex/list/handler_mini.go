@@ -1,12 +1,12 @@
 package list
 
 import (
-	"github.com/bnb-chain/node/common/log"
-	ctypes "github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/common/upgrade"
-	"github.com/bnb-chain/node/plugins/dex/order"
-	"github.com/bnb-chain/node/plugins/dex/types"
-	"github.com/bnb-chain/node/plugins/tokens"
+	"github.com/aximchain/beacon-node/common/log"
+	ctypes "github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/beacon-node/common/upgrade"
+	"github.com/aximchain/beacon-node/plugins/dex/order"
+	"github.com/aximchain/beacon-node/plugins/dex/types"
+	"github.com/aximchain/beacon-node/plugins/tokens"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 

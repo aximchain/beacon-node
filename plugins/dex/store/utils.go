@@ -4,7 +4,7 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/bnb-chain/node/common/types"
+	"github.com/aximchain/beacon-node/common/types"
 )
 
 // ValidatePairSymbol validates the given trading pair.

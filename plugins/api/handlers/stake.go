@@ -12,7 +12,7 @@ import (
 	"github.com/tendermint/tendermint/crypto"
 	cmn "github.com/tendermint/tendermint/libs/common"
 
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 // ValidatorQueryReqHandler queries the whole validator set

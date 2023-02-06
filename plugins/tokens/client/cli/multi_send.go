@@ -16,7 +16,7 @@ import (
 	txbuilder "github.com/cosmos/cosmos-sdk/x/auth/client/txbuilder"
 	"github.com/cosmos/cosmos-sdk/x/bank"
 
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 const (

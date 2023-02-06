@@ -1,10 +1,10 @@
 package dex
 
 import (
-	"github.com/bnb-chain/node/plugins/dex/order"
-	"github.com/bnb-chain/node/plugins/dex/store"
-	"github.com/bnb-chain/node/plugins/dex/types"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/beacon-node/plugins/dex/order"
+	"github.com/aximchain/beacon-node/plugins/dex/store"
+	"github.com/aximchain/beacon-node/plugins/dex/types"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 // Register concrete types on wire codec

@@ -12,9 +12,9 @@ import (
 	abci "github.com/tendermint/tendermint/abci/types"
 	"github.com/tendermint/tendermint/libs/log"
 
-	"github.com/bnb-chain/node/common/testutils"
-	"github.com/bnb-chain/node/common/upgrade"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/beacon-node/common/testutils"
+	"github.com/aximchain/beacon-node/common/upgrade"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 func setup() (sdk.Context, auth.AccountKeeper) {

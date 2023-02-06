@@ -9,8 +9,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	txbuilder "github.com/cosmos/cosmos-sdk/x/auth/client/txbuilder"
 
-	"github.com/bnb-chain/node/plugins/dex/matcheng"
-	"github.com/bnb-chain/node/plugins/dex/types"
+	"github.com/aximchain/beacon-node/plugins/dex/matcheng"
+	"github.com/aximchain/beacon-node/plugins/dex/types"
 )
 
 const (

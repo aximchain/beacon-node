@@ -10,11 +10,11 @@ import (
 
 	clientFlags "github.com/cosmos/cosmos-sdk/client"
 
-	"github.com/bnb-chain/node/common/client"
-	"github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/plugins/account"
-	"github.com/bnb-chain/node/plugins/account/scripts"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/beacon-node/common/client"
+	"github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/beacon-node/plugins/account"
+	"github.com/aximchain/beacon-node/plugins/account/scripts"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 const (

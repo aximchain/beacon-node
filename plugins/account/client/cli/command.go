@@ -5,7 +5,7 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/client"
 
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 func AddCommands(cmd *cobra.Command, cdc *wire.Codec) {

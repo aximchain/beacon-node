@@ -6,9 +6,9 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/bnb-chain/node/common/types"
-	me "github.com/bnb-chain/node/plugins/dex/matcheng"
-	"github.com/bnb-chain/node/plugins/dex/utils"
+	"github.com/aximchain/beacon-node/common/types"
+	me "github.com/aximchain/beacon-node/plugins/dex/matcheng"
+	"github.com/aximchain/beacon-node/plugins/dex/utils"
 )
 
 type transferEventType uint8

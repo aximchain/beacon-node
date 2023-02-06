@@ -8,11 +8,11 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
-	"github.com/bnb-chain/node/common/client"
-	"github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/common/utils"
-	dextypes "github.com/bnb-chain/node/plugins/dex/types"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/beacon-node/common/client"
+	"github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/beacon-node/common/utils"
+	dextypes "github.com/aximchain/beacon-node/plugins/dex/types"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 const flagBaseAsset = "base-asset-symbol"

@@ -25,11 +25,11 @@ import (
 	"github.com/tendermint/tendermint/snapshot"
 	tmstore "github.com/tendermint/tendermint/store"
 
-	"github.com/bnb-chain/node/app/config"
-	"github.com/bnb-chain/node/common"
-	axclog "github.com/bnb-chain/node/common/log"
-	"github.com/bnb-chain/node/common/utils"
-	"github.com/bnb-chain/node/plugins/dex/order"
+	"github.com/aximchain/beacon-node/app/config"
+	"github.com/aximchain/beacon-node/common"
+	axclog "github.com/aximchain/beacon-node/common/log"
+	"github.com/aximchain/beacon-node/common/utils"
+	"github.com/aximchain/beacon-node/plugins/dex/order"
 )
 
 // If a new config is created, change some of the default tendermint settings

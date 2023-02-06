@@ -3,8 +3,8 @@ package account
 import (
 	"github.com/cosmos/cosmos-sdk/x/auth"
 
-	app "github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/plugins/account/scripts"
+	app "github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/beacon-node/plugins/account/scripts"
 )
 
 func InitPlugin(appp app.ChainApp, accountKeeper auth.AccountKeeper) {

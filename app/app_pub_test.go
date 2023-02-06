@@ -23,13 +23,13 @@ import (
 	dbm "github.com/tendermint/tendermint/libs/db"
 	"github.com/tendermint/tendermint/libs/log"
 
-	"github.com/bnb-chain/node/app/config"
-	"github.com/bnb-chain/node/app/pub"
-	appsub "github.com/bnb-chain/node/app/pub/sub"
-	"github.com/bnb-chain/node/common/testutils"
-	orderPkg "github.com/bnb-chain/node/plugins/dex/order"
-	dextypes "github.com/bnb-chain/node/plugins/dex/types"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/beacon-node/app/config"
+	"github.com/aximchain/beacon-node/app/pub"
+	appsub "github.com/aximchain/beacon-node/app/pub/sub"
+	"github.com/aximchain/beacon-node/common/testutils"
+	orderPkg "github.com/aximchain/beacon-node/plugins/dex/order"
+	dextypes "github.com/aximchain/beacon-node/plugins/dex/types"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 const (

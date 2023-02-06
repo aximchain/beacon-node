@@ -1,4 +1,4 @@
-module github.com/bnb-chain/node/e2e
+module github.com/aximchain/beacon-node/e2e
 
 go 1.17
 

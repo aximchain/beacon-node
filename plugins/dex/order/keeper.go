@@ -20,15 +20,15 @@ import (
 	paramhub "github.com/cosmos/cosmos-sdk/x/paramHub/keeper"
 	paramTypes "github.com/cosmos/cosmos-sdk/x/paramHub/types"
 
-	bnclog "github.com/bnb-chain/node/common/log"
-	"github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/common/upgrade"
-	"github.com/bnb-chain/node/common/utils"
-	me "github.com/bnb-chain/node/plugins/dex/matcheng"
-	"github.com/bnb-chain/node/plugins/dex/store"
-	dexTypes "github.com/bnb-chain/node/plugins/dex/types"
-	dexUtils "github.com/bnb-chain/node/plugins/dex/utils"
-	"github.com/bnb-chain/node/wire"
+	bnclog "github.com/aximchain/beacon-node/common/log"
+	"github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/beacon-node/common/upgrade"
+	"github.com/aximchain/beacon-node/common/utils"
+	me "github.com/aximchain/beacon-node/plugins/dex/matcheng"
+	"github.com/aximchain/beacon-node/plugins/dex/store"
+	dexTypes "github.com/aximchain/beacon-node/plugins/dex/types"
+	dexUtils "github.com/aximchain/beacon-node/plugins/dex/utils"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 const (

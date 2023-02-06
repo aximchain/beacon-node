@@ -11,10 +11,10 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/bnb-chain/node/common/utils"
-	"github.com/bnb-chain/node/plugins/dex"
-	orderPkg "github.com/bnb-chain/node/plugins/dex/order"
-	"github.com/bnb-chain/node/plugins/dex/store"
+	"github.com/aximchain/beacon-node/common/utils"
+	"github.com/aximchain/beacon-node/plugins/dex"
+	orderPkg "github.com/aximchain/beacon-node/plugins/dex/order"
+	"github.com/aximchain/beacon-node/plugins/dex/store"
 )
 
 func Test_Success(t *testing.T) {

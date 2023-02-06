@@ -9,9 +9,9 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/auth"
 	"github.com/cosmos/cosmos-sdk/x/bank"
 
-	"github.com/bnb-chain/node/common/log"
-	common "github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/plugins/tokens/store"
+	"github.com/aximchain/beacon-node/common/log"
+	common "github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/beacon-node/plugins/tokens/store"
 )
 
 // NewHandler creates a new token freeze message handler

@@ -8,9 +8,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/auth"
 
-	"github.com/bnb-chain/node/common/testutils"
-	"github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/plugins/tokens/client/rest"
+	"github.com/aximchain/beacon-node/common/testutils"
+	"github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/beacon-node/plugins/tokens/client/rest"
 )
 
 func TestAccount_ToBalances(t *testing.T) {

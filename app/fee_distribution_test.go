@@ -21,11 +21,11 @@ import (
 	"github.com/tendermint/tendermint/libs/log"
 	"github.com/tidwall/gjson"
 
-	"github.com/bnb-chain/node/app/pub"
-	"github.com/bnb-chain/node/common/testutils"
-	"github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/common/upgrade"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/beacon-node/app/pub"
+	"github.com/aximchain/beacon-node/common/testutils"
+	"github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/beacon-node/common/upgrade"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 const BREATHE_BLOCK_INTERVAL = 5

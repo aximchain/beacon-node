@@ -10,8 +10,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/gorilla/mux"
 
-	"github.com/bnb-chain/node/plugins/tokens/swap"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/beacon-node/plugins/tokens/swap"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 // QuerySwapIDsByCreatorReqHandler creates an http request handler to query swapID list by creator address

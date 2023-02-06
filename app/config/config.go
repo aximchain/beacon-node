@@ -349,7 +349,7 @@ type PublicationConfig struct {
 
 	// DO NOT put this option in config file
 	// deliberately make it only a command line arguments
-	// https://github.com/bnb-chain/node/issues/161#issuecomment-438600434
+	// https://github.com/aximchain/beacon-node/issues/161#issuecomment-438600434
 	FromHeightInclusive int64
 
 	PublishKafka bool `mapstructure:"publishKafka"`

@@ -17,10 +17,10 @@ import (
 	"github.com/tendermint/tendermint/libs/db"
 	"github.com/tendermint/tendermint/libs/log"
 
-	"github.com/bnb-chain/node/common"
-	"github.com/bnb-chain/node/common/testutils"
-	"github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/beacon-node/common"
+	"github.com/aximchain/beacon-node/common/testutils"
+	"github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 func getAccountCache(cdc *codec.Codec, ms sdk.MultiStore) sdk.AccountCache {

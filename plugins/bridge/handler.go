@@ -11,9 +11,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/bank"
 
-	"github.com/bnb-chain/node/common/log"
-	cmmtypes "github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/plugins/bridge/types"
+	"github.com/aximchain/beacon-node/common/log"
+	cmmtypes "github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/beacon-node/plugins/bridge/types"
 )
 
 func NewHandler(keeper Keeper) sdk.Handler {

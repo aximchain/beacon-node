@@ -10,8 +10,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/mock"
 
-	"github.com/bnb-chain/node/app/pub"
-	orderPkg "github.com/bnb-chain/node/plugins/dex/order"
+	"github.com/aximchain/beacon-node/app/pub"
+	orderPkg "github.com/aximchain/beacon-node/plugins/dex/order"
 )
 
 type MessageGenerator struct {

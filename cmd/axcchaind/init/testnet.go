@@ -19,10 +19,10 @@ import (
 	"github.com/tendermint/tendermint/crypto"
 	cmn "github.com/tendermint/tendermint/libs/common"
 
-	"github.com/bnb-chain/node/app"
-	appCfg "github.com/bnb-chain/node/app/config"
-	"github.com/bnb-chain/node/common/utils"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/beacon-node/app"
+	appCfg "github.com/aximchain/beacon-node/app/config"
+	"github.com/aximchain/beacon-node/common/utils"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 var (

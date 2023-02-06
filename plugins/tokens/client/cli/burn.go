@@ -5,7 +5,7 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/bnb-chain/node/plugins/tokens/burn"
+	"github.com/aximchain/beacon-node/plugins/tokens/burn"
 )
 
 func burnTokenCmd(cmdr Commander) *cobra.Command {

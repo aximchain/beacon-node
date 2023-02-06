@@ -19,16 +19,16 @@ import (
 
 	"github.com/tendermint/tendermint/libs/cli"
 	// TODO
-	"github.com/bnb-chain/node/admin"
-	"github.com/bnb-chain/node/app"
-	"github.com/bnb-chain/node/common"
-	"github.com/bnb-chain/node/common/types"
-	accountcmd "github.com/bnb-chain/node/plugins/account/client/cli"
-	apiserv "github.com/bnb-chain/node/plugins/api"
-	bridgecmd "github.com/bnb-chain/node/plugins/bridge/client/cli"
-	dexcmd "github.com/bnb-chain/node/plugins/dex/client/cli"
-	tokencmd "github.com/bnb-chain/node/plugins/tokens/client/cli"
-	"github.com/bnb-chain/node/version"
+	"github.com/aximchain/beacon-node/admin"
+	"github.com/aximchain/beacon-node/app"
+	"github.com/aximchain/beacon-node/common"
+	"github.com/aximchain/beacon-node/common/types"
+	accountcmd "github.com/aximchain/beacon-node/plugins/account/client/cli"
+	apiserv "github.com/aximchain/beacon-node/plugins/api"
+	bridgecmd "github.com/aximchain/beacon-node/plugins/bridge/client/cli"
+	dexcmd "github.com/aximchain/beacon-node/plugins/dex/client/cli"
+	tokencmd "github.com/aximchain/beacon-node/plugins/tokens/client/cli"
+	"github.com/aximchain/beacon-node/version"
 )
 
 // rootCmd is the entry point for this binary

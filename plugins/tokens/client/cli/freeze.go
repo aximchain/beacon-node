@@ -5,7 +5,7 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/bnb-chain/node/plugins/tokens/freeze"
+	"github.com/aximchain/beacon-node/plugins/tokens/freeze"
 )
 
 func freezeTokenCmd(cmdr Commander) *cobra.Command {

@@ -18,11 +18,11 @@ import (
 	cmn "github.com/tendermint/tendermint/libs/common"
 	"github.com/tendermint/tendermint/libs/log"
 
-	"github.com/bnb-chain/node/app"
-	"github.com/bnb-chain/node/common/testutils"
-	"github.com/bnb-chain/node/common/tx"
-	"github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/beacon-node/app"
+	"github.com/aximchain/beacon-node/common/testutils"
+	"github.com/aximchain/beacon-node/common/tx"
+	"github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 func newTestMsg(addrs ...sdk.AccAddress) *sdk.TestMsg {

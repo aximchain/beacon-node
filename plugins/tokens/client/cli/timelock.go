@@ -9,9 +9,9 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
-	"github.com/bnb-chain/node/plugins/tokens/timelock"
+	"github.com/aximchain/beacon-node/plugins/tokens/timelock"
 
-	"github.com/bnb-chain/node/common/client"
+	"github.com/aximchain/beacon-node/common/client"
 )
 
 const (

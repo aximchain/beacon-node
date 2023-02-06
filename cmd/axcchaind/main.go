@@ -14,9 +14,9 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/server"
 
-	"github.com/bnb-chain/node/app"
-	axcInit "github.com/bnb-chain/node/cmd/axcchaind/init"
-	"github.com/bnb-chain/node/version"
+	"github.com/aximchain/beacon-node/app"
+	axcInit "github.com/aximchain/beacon-node/cmd/axcchaind/init"
+	"github.com/aximchain/beacon-node/version"
 )
 
 func newApp(logger log.Logger, db dbm.DB, storeTracer io.Writer) abci.Application {

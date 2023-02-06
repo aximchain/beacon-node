@@ -11,9 +11,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/bnb-chain/node/app/config"
-	"github.com/bnb-chain/node/common/log"
-	orderPkg "github.com/bnb-chain/node/plugins/dex/order"
+	"github.com/aximchain/beacon-node/app/config"
+	"github.com/aximchain/beacon-node/common/log"
+	orderPkg "github.com/aximchain/beacon-node/plugins/dex/order"
 )
 
 // This test ensures schema or AvroOrJsonMsg change are consistent and prevent marshal error in runtime

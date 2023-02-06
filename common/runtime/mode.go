@@ -8,7 +8,7 @@ import (
 	"github.com/sasha-s/go-deadlock"
 	"github.com/tendermint/tendermint/config"
 
-	"github.com/bnb-chain/node/common/log"
+	"github.com/aximchain/beacon-node/common/log"
 )
 
 type Mode uint8

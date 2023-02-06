@@ -3,7 +3,7 @@ package tx
 import (
 	"github.com/cosmos/cosmos-sdk/x/auth"
 
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 func RegisterWire(cdc *wire.Codec) {

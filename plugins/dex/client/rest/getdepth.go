@@ -7,9 +7,9 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/client/context"
 
-	rutils "github.com/bnb-chain/node/plugins/dex/client/rest/utils"
-	"github.com/bnb-chain/node/plugins/dex/store"
-	"github.com/bnb-chain/node/wire"
+	rutils "github.com/aximchain/beacon-node/plugins/dex/client/rest/utils"
+	"github.com/aximchain/beacon-node/plugins/dex/store"
+	"github.com/aximchain/beacon-node/wire"
 )
 
 var allowedLimits = [7]int{5, 10, 20, 50, 100, 500, 1000}

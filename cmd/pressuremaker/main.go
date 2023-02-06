@@ -15,10 +15,10 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/server"
 
-	"github.com/bnb-chain/node/app/config"
-	"github.com/bnb-chain/node/app/pub"
-	"github.com/bnb-chain/node/cmd/pressuremaker/utils"
-	orderPkg "github.com/bnb-chain/node/plugins/dex/order"
+	"github.com/aximchain/beacon-node/app/config"
+	"github.com/aximchain/beacon-node/app/pub"
+	"github.com/aximchain/beacon-node/cmd/pressuremaker/utils"
+	orderPkg "github.com/aximchain/beacon-node/plugins/dex/order"
 )
 
 type PressureMakerConfig struct {
