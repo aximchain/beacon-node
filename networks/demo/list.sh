@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# ./list.sh -s ADA --quote-symbol BNB --from alice --init-price 1
+# ./list.sh -s ADA --quote-symbol  --from alice --init-price 1
 
 chain_id=$CHAIN_ID
 

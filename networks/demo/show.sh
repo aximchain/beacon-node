@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# ./show.sh -l ADA_BNB --from alice
+# ./show.sh -l ADA_ --from alice
 
 chain_id=$CHAIN_ID
 
@@ -16,4 +16,4 @@ while true ; do
     esac
 done;
 
-./bnbcli dex show -l $pair
+./axccli dex show -l $pair

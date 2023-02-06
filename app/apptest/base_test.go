@@ -80,9 +80,9 @@ func (tc *TestClient) CheckTxSync(msg sdk.Msg, cdc *wire.Codec) (*types.Response
 var (
 	memDB                             = db.NewMemDB()
 	logger                            = log.NewTMLogger(os.Stdout)
-	testApp                           = app.NewBinanceChain(logger, memDB, os.Stdout)
+	testApp                           = app.NewAximchain(logger, memDB, os.Stdout)
 	genAccs, addrs, pubKeys, privKeys = mock.CreateGenAccounts(4,
-		sdk.Coins{sdk.NewCoin("BNB", 500e8), sdk.NewCoin("BTC-000", 200e8)})
+		sdk.Coins{sdk.NewCoin("AXC", 500e8), sdk.NewCoin("BTC-000", 200e8)})
 	testClient = NewTestClient(testApp)
 )
 
@@ -91,7 +91,7 @@ func TearDown() {
 	os.RemoveAll(cfg.DefaultConfig().DBDir())
 }
 
-func InitAccounts(ctx sdk.Context, app *app.BinanceChain) *[]sdk.Account {
+func InitAccounts(ctx sdk.Context, app *app.Aximchain) *[]sdk.Account {
 	for _, acc := range genAccs {
 		aacc := &common.AppAccount{
 			BaseAccount: auth.BaseAccount{
@@ -106,10 +106,10 @@ func InitAccounts(ctx sdk.Context, app *app.BinanceChain) *[]sdk.Account {
 	return &genAccs
 }
 
-func ResetAccounts(ctx sdk.Context, app *app.BinanceChain, ccy1 int64, ccy2 int64, ccy3 int64) {
+func ResetAccounts(ctx sdk.Context, app *app.Aximchain, ccy1 int64, ccy2 int64, ccy3 int64) {
 	for _, acc := range genAccs {
 		a := app.AccountKeeper.GetAccount(ctx, acc.GetAddress())
-		a.SetCoins(sdk.Coins{sdk.NewCoin("BNB", ccy1), sdk.NewCoin("BTC-000", ccy2), sdk.NewCoin("ETH-000", ccy3)})
+		a.SetCoins(sdk.Coins{sdk.NewCoin("AXC", ccy1), sdk.NewCoin("BTC-000", ccy2), sdk.NewCoin("ETH-000", ccy3)})
 		app.AccountKeeper.SetAccount(ctx, a)
 	}
 }
@@ -122,7 +122,7 @@ func Address(i int) sdk.AccAddress {
 	return addrs[i]
 }
 
-func NewTestClient(a *app.BinanceChain) *TestClient {
+func NewTestClient(a *app.Aximchain) *TestClient {
 	a.SetCheckState(types.Header{})
 	a.SetAnteHandler(NewMockAnteHandler(a.Codec)) // clear AnteHandler to skip the signature verification step
 	return &TestClient{abcicli.NewLocalClient(nil, a), app.MakeCodec()}
@@ -136,7 +136,7 @@ func GetLocked(ctx sdk.Context, add sdk.AccAddress, ccy string) int64 {
 	return testApp.AccountKeeper.GetAccount(ctx, add).(common.NamedAccount).GetLockedCoins().AmountOf(ccy)
 }
 
-func setGenesis(bapp *app.BinanceChain, tokens []tokens.GenesisToken, accs ...*common.AppAccount) error {
+func setGenesis(bapp *app.Aximchain, tokens []tokens.GenesisToken, accs ...*common.AppAccount) error {
 	genaccs := make([]app.GenesisAccount, len(accs))
 	for i, acc := range accs {
 		pk := GenPrivKey().PubKey()
@@ -167,21 +167,21 @@ func setGenesis(bapp *app.BinanceChain, tokens []tokens.GenesisToken, accs ...*c
 func TestGenesis(t *testing.T) {
 	logger := log.NewTMLogger(log.NewSyncWriter(os.Stdout)).With("module", "sdk/app")
 	db := dbm.NewMemDB()
-	bapp := app.NewBinanceChain(logger, db, os.Stdout)
+	bapp := app.NewAximchain(logger, db, os.Stdout)
 
 	// Construct some genesis bytes to reflect democoin/types/AppAccount
 	addr := sdk.AccAddress(secp256k1.GenPrivKey().PubKey().Address())
 	baseAcc := auth.BaseAccount{
 		Address: addr,
 	}
-	tokens := []tokens.GenesisToken{{"BNB", "BNB", 100000, addr, false}}
+	tokens := []tokens.GenesisToken{{"AXC", "AXC", 100000, addr, false}}
 	acc := &common.AppAccount{baseAcc, "blah", sdk.Coins(nil), sdk.Coins(nil), 0}
 
 	err := setGenesis(bapp, tokens, acc)
 	require.Nil(t, err)
 	// A checkTx context
 	ctx := bapp.BaseApp.NewContext(sdk.RunTxModeCheck, abci.Header{})
-	if err := acc.SetCoins(sdk.Coins{sdk.Coin{"BNB", 100000}}); err != nil {
+	if err := acc.SetCoins(sdk.Coins{sdk.Coin{"AXC", 100000}}); err != nil {
 		t.Fatalf("SetCoins error: " + err.Error())
 	}
 	res1 := bapp.AccountKeeper.GetAccount(ctx, baseAcc.Address).(common.NamedAccount)

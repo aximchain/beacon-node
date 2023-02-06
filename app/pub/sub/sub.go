@@ -54,7 +54,7 @@ func SubscribeEvent(sub *pubsub.Subscriber, cfg *config.PublicationConfig) error
 	return nil
 }
 
-//-----------------------------------------------------
+// -----------------------------------------------------
 var (
 	// events to be published, should be cleaned up each block
 	toPublish = &ToPublishEvent{EventData: newEventStore()}
@@ -118,7 +118,7 @@ func discard() {
 	stagingArea = newEventStore()
 }
 
-//---------------------------------------------------------------------
+// ---------------------------------------------------------------------
 const TxDeliverTopic = pubsub.Topic("TxDeliver")
 
 type TxDeliverEvent struct{}

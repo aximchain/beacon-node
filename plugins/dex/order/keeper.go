@@ -194,7 +194,7 @@ func (kp *DexKeeper) determineTickAndLotSize(pair dexTypes.TradingPair, priceWMA
 func (kp *DexKeeper) DetermineLotSize(baseAssetSymbol, quoteAssetSymbol string, price int64) (lotSize int64) {
 	var priceAgainstNative int64
 	if baseAssetSymbol == types.NativeTokenSymbol {
-		// price of BNB/BNB is 1e8
+		// price of AXC/AXC is 1e8
 		priceAgainstNative = 1e8
 	} else if quoteAssetSymbol == types.NativeTokenSymbol {
 		priceAgainstNative = price
@@ -1032,12 +1032,12 @@ func (kp *DexKeeper) CanListTradingPair(ctx sdk.Context, baseAsset, quoteAsset s
 		}
 
 		if !kp.pairExistsBetween(ctx, types.NativeTokenSymbol, baseAsset) {
-			return fmt.Errorf("token %s should be listed against BNB before against %s",
+			return fmt.Errorf("token %s should be listed against AXC before against %s",
 				baseAsset, quoteAsset)
 		}
 
 		if !kp.pairExistsBetween(ctx, types.NativeTokenSymbol, quoteAsset) {
-			return fmt.Errorf("token %s should be listed against BNB before listing %s against %s",
+			return fmt.Errorf("token %s should be listed against AXC before listing %s against %s",
 				quoteAsset, baseAsset, quoteAsset)
 		}
 	}

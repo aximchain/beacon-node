@@ -28,8 +28,8 @@ const (
 	Neutral
 )
 
-//Trade stores an execution between 2 orders on a *currency pair*.
-//3 things needs attention:
+// Trade stores an execution between 2 orders on a *currency pair*.
+// 3 things needs attention:
 // - srcId and oid are just different names; actually no concept of source or destination;
 // - one trade would be implemented via TWO transfer transactions on each currency of the pair;
 // - the trade would be uniquely identifiable via the two order id. UUID generation cannot be used here.
@@ -95,7 +95,7 @@ func (l *PriceLevel) String() string {
 	return fmt.Sprintf("%d->[%v]", l.Price, l.Orders)
 }
 
-//addOrder would implicitly called with sequence of 'time' parameter
+// addOrder would implicitly called with sequence of 'time' parameter
 func (l *PriceLevel) addOrder(id string, time int64, qty int64) (int, error) {
 	// TODO: need benchmark - queue is not expected to be very long (less than hundreds)
 	for _, o := range l.Orders {

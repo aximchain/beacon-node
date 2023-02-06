@@ -110,27 +110,27 @@ func TestTradingPair2Asset(t *testing.T) {
 	assert := assert.New(t)
 	_, _, e := utils.TradingPair2Assets("hello world")
 	assert.EqualError(e, "Failed to parse trading pair symbol:hello world into assets")
-	_, _, e = utils.TradingPair2Assets("BNB_")
-	assert.EqualError(e, "Failed to parse trading pair symbol:BNB_ into assets")
-	_, _, e = utils.TradingPair2Assets("_BNB")
-	assert.EqualError(e, "Failed to parse trading pair symbol:_BNB into assets")
-	_, _, e = utils.TradingPair2Assets("__BNB")
-	assert.EqualError(e, "Failed to parse trading pair symbol:__BNB into assets")
-	_, _, e = utils.TradingPair2Assets("BNB_ABC_XYZ")
-	assert.EqualError(e, "Failed to parse trading pair symbol:BNB_ABC_XYZ into assets")
-	tr, q, e := utils.TradingPair2Assets("XRP_BNB")
+	_, _, e = utils.TradingPair2Assets("AXC_")
+	assert.EqualError(e, "Failed to parse trading pair symbol:AXC_ into assets")
+	_, _, e = utils.TradingPair2Assets("_AXC")
+	assert.EqualError(e, "Failed to parse trading pair symbol:_AXC into assets")
+	_, _, e = utils.TradingPair2Assets("__AXC")
+	assert.EqualError(e, "Failed to parse trading pair symbol:__AXC into assets")
+	_, _, e = utils.TradingPair2Assets("AXC_ABC_XYZ")
+	assert.EqualError(e, "Failed to parse trading pair symbol:AXC_ABC_XYZ into assets")
+	tr, q, e := utils.TradingPair2Assets("XRP_AXC")
 	assert.Equal("XRP", tr)
-	assert.Equal("BNB", q)
+	assert.Equal("AXC", q)
 	assert.Nil(e)
-	tr, q, e = utils.TradingPair2Assets("XRP.B_BNB")
+	tr, q, e = utils.TradingPair2Assets("XRP.B_AXC")
 	assert.Equal("XRP.B", tr)
-	assert.Equal("BNB", q)
+	assert.Equal("AXC", q)
 	assert.Nil(e)
 }
 
 func TestAsset2TradingPairSafe(t *testing.T) {
 	// Test invalid
-	var invalidSymbols = []string{"hello world", "BNB_", "__BNB", "_BNB"}
+	var invalidSymbols = []string{"hello world", "AXC_", "__AXC", "_AXC"}
 	wg := sync.WaitGroup{}
 	wg.Add(len(invalidSymbols))
 	for i := range invalidSymbols {
@@ -148,9 +148,9 @@ func TestAsset2TradingPairSafe(t *testing.T) {
 	wg.Wait()
 
 	// Test valid
-	var validSymbols = []string{"XRP_BNB", "XRP.B_BNB"}
+	var validSymbols = []string{"XRP_AXC", "XRP.B_AXC"}
 	var validBaseAsserts = []string{"XRP", "XRP.B"}
-	var validQuotaAsserts = []string{"BNB", "BNB"}
+	var validQuotaAsserts = []string{"AXC", "AXC"}
 	wg = sync.WaitGroup{}
 	wg.Add(len(validSymbols))
 	assert := assert.New(t)

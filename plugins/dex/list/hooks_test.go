@@ -68,7 +68,7 @@ func TestQuoteAssetEmpty(t *testing.T) {
 	hooks := NewListHooks(nil, nil)
 
 	listParams := gov.ListTradingPairParams{
-		BaseAssetSymbol:  "BNB",
+		BaseAssetSymbol:  "AXC",
 		QuoteAssetSymbol: "",
 	}
 
@@ -90,8 +90,8 @@ func TestEqualBaseAssetAndQuoteAsset(t *testing.T) {
 	hooks := NewListHooks(nil, nil)
 
 	listParams := gov.ListTradingPairParams{
-		BaseAssetSymbol:  "BNB",
-		QuoteAssetSymbol: "BNB",
+		BaseAssetSymbol:  "AXC",
+		QuoteAssetSymbol: "AXC",
 	}
 
 	listParamsBz, err := json.Marshal(listParams)
@@ -112,7 +112,7 @@ func TestWrongPrice(t *testing.T) {
 	hooks := NewListHooks(nil, nil)
 
 	listParams := gov.ListTradingPairParams{
-		BaseAssetSymbol:  "BNB",
+		BaseAssetSymbol:  "AXC",
 		QuoteAssetSymbol: "BTC",
 		InitPrice:        -1,
 	}
@@ -135,7 +135,7 @@ func TestWrongExpireTime(t *testing.T) {
 	hooks := NewListHooks(nil, nil)
 
 	listParams := gov.ListTradingPairParams{
-		BaseAssetSymbol:  "BNB",
+		BaseAssetSymbol:  "AXC",
 		QuoteAssetSymbol: "BTC",
 		InitPrice:        1,
 		ExpireTime:       time.Now(),
@@ -158,7 +158,7 @@ func TestWrongExpireTime(t *testing.T) {
 
 func TestTradingPairExists(t *testing.T) {
 	listParams := gov.ListTradingPairParams{
-		BaseAssetSymbol:  "BNB",
+		BaseAssetSymbol:  "AXC",
 		QuoteAssetSymbol: "BTC-ABC",
 		InitPrice:        1,
 		ExpireTime:       time.Now(),
@@ -246,7 +246,7 @@ func TestPrerequisiteTradingPair(t *testing.T) {
 
 	err = hooks.OnProposalSubmitted(ctx, &proposal)
 	require.NotNil(t, err, "err should not be nil")
-	require.Contains(t, err.Error(), "token BTC-ABC should be listed against BNB before against ETH-ABC")
+	require.Contains(t, err.Error(), "token BTC-ABC should be listed against AXC before against ETH-ABC")
 
 	pair := dexTypes.NewTradingPair(listParams.BaseAssetSymbol, types.NativeTokenSymbol, listParams.InitPrice)
 	err = orderKeeper.PairMapper.AddTradingPair(ctx, pair)
@@ -254,7 +254,7 @@ func TestPrerequisiteTradingPair(t *testing.T) {
 
 	err = hooks.OnProposalSubmitted(ctx, &proposal)
 	require.NotNil(t, err, "err should not be nil")
-	require.Contains(t, err.Error(), "token ETH-ABC should be listed against BNB before listing BTC-ABC against ETH-ABC")
+	require.Contains(t, err.Error(), "token ETH-ABC should be listed against AXC before listing BTC-ABC against ETH-ABC")
 
 	pair = dexTypes.NewTradingPair(listParams.QuoteAssetSymbol, types.NativeTokenSymbol, listParams.InitPrice)
 	err = orderKeeper.PairMapper.AddTradingPair(ctx, pair)
@@ -284,7 +284,7 @@ func TestPrerequisiteTradingPair(t *testing.T) {
 
 func TestBaseTokenDoesNotExist(t *testing.T) {
 	listParams := gov.ListTradingPairParams{
-		BaseAssetSymbol:  "BNB",
+		BaseAssetSymbol:  "AXC",
 		QuoteAssetSymbol: "BTC-ABC",
 		InitPrice:        1,
 		ExpireTime:       time.Now(),
@@ -311,7 +311,7 @@ func TestBaseTokenDoesNotExist(t *testing.T) {
 
 func TestQuoteTokenDoesNotExist(t *testing.T) {
 	listParams := gov.ListTradingPairParams{
-		BaseAssetSymbol:  "BNB",
+		BaseAssetSymbol:  "AXC",
 		QuoteAssetSymbol: "BTC-ABC",
 		InitPrice:        1,
 		ExpireTime:       time.Now(),
@@ -333,7 +333,7 @@ func TestQuoteTokenDoesNotExist(t *testing.T) {
 	err = tokenMapper.NewToken(ctx, &types.Token{
 		Name:        "Native Token",
 		Symbol:      listParams.BaseAssetSymbol,
-		OrigSymbol:  "BNB",
+		OrigSymbol:  "AXC",
 		TotalSupply: 10000,
 		Owner:       sdk.AccAddress("testacc"),
 	})
@@ -347,7 +347,7 @@ func TestQuoteTokenDoesNotExist(t *testing.T) {
 
 func TestRightProposal(t *testing.T) {
 	listParams := gov.ListTradingPairParams{
-		BaseAssetSymbol:  "BNB",
+		BaseAssetSymbol:  "AXC",
 		QuoteAssetSymbol: "BTC-ABC",
 		InitPrice:        1,
 		ExpireTime:       time.Now(),
@@ -450,7 +450,7 @@ func TestDelistQuoteAssetEmpty(t *testing.T) {
 	hooks := NewDelistHooks(nil)
 
 	delistParams := gov.DelistTradingPairParams{
-		BaseAssetSymbol:  "BNB",
+		BaseAssetSymbol:  "AXC",
 		QuoteAssetSymbol: "",
 	}
 
@@ -475,8 +475,8 @@ func TestDelistEqualBaseAssetAndQuoteAsset(t *testing.T) {
 	hooks := NewDelistHooks(nil)
 
 	delistParams := gov.DelistTradingPairParams{
-		BaseAssetSymbol:  "BNB",
-		QuoteAssetSymbol: "BNB",
+		BaseAssetSymbol:  "AXC",
+		QuoteAssetSymbol: "AXC",
 	}
 
 	delistParamsBz, err := json.Marshal(delistParams)
@@ -500,7 +500,7 @@ func TestDelistEmptyJustification(t *testing.T) {
 	hooks := NewDelistHooks(nil)
 
 	delistParams := gov.DelistTradingPairParams{
-		BaseAssetSymbol:  "BNB",
+		BaseAssetSymbol:  "AXC",
 		QuoteAssetSymbol: "BTC-2BD",
 	}
 
@@ -525,7 +525,7 @@ func TestDelistTrueIsDelisted(t *testing.T) {
 	hooks := NewDelistHooks(nil)
 
 	delistParams := gov.DelistTradingPairParams{
-		BaseAssetSymbol:  "BNB",
+		BaseAssetSymbol:  "AXC",
 		QuoteAssetSymbol: "BTC-2BD",
 		Justification:    "the reason to delist",
 		IsExecuted:       true,
@@ -550,7 +550,7 @@ func TestDelistTradingPairDoesNotExist(t *testing.T) {
 	sdk.UpgradeMgr.SetHeight(2)
 
 	delistParams := gov.DelistTradingPairParams{
-		BaseAssetSymbol:  "BNB",
+		BaseAssetSymbol:  "AXC",
 		QuoteAssetSymbol: "BTC-2BD",
 		Justification:    "the reason to delist",
 		IsExecuted:       false,
@@ -573,7 +573,7 @@ func TestDelistTradingPairDoesNotExist(t *testing.T) {
 	err = hooks.OnProposalSubmitted(ctx, &proposal)
 	require.NotNil(t, err, "err should not be nil")
 
-	require.Contains(t, err.Error(), "trading pair BNB_BTC-2BD does not exist")
+	require.Contains(t, err.Error(), "trading pair AXC_BTC-2BD does not exist")
 }
 
 func TestDelistPrerequisiteTradingPair(t *testing.T) {
@@ -619,7 +619,7 @@ func TestDelistPrerequisiteTradingPair(t *testing.T) {
 	err = hooks.OnProposalSubmitted(ctx, &proposal)
 	require.NotNil(t, err, "err should not be nil")
 
-	require.Contains(t, err.Error(), "trading pair ETH-2CD_BTC-2BD should not exist before delisting ETH-2CD_BNB")
+	require.Contains(t, err.Error(), "trading pair ETH-2CD_BTC-2BD should not exist before delisting ETH-2CD_AXC")
 }
 
 func TestDelistProperTradingPair(t *testing.T) {

@@ -7,10 +7,10 @@
 
 ########################### SETUP #########################
 home=$HOME
-src="${home}/go/src/github.com/bnb-chain/node"
-deamonhome="${home}/.bnbchaind"
-witnesshome="${home}/.bnbchaind_witness"
-clihome="${home}/.bnbcli"
+src="${home}/go/src/github.com/axc-chain/node"
+deamonhome="${home}/.axcchaind"
+witnesshome="${home}/.axcchaind_witness"
+clihome="${home}/.axccli"
 chain_id='test-chain-n4b735'
 echo $src
 echo $deamonhome
@@ -18,8 +18,8 @@ echo $witnesshome
 echo $clihome
 
 key_seed_path="${home}"
-executable="${src}/build/bnbchaind"
-clipath="${src}/build/bnbcli"
+executable="${src}/build/axcchaind"
+clipath="${src}/build/axccli"
 cli="${clipath} --home ${clihome}"
 scripthome="${src}/networks/publisher"
 ############################ END ##########################
@@ -27,7 +27,7 @@ scripthome="${src}/networks/publisher"
 # clean history data
 rm -r ${deamonhome}
 rm -r ${clihome}
-rm -r ${home}/.bnbchaind_witness
+rm -r ${home}/.axcchaind_witness
 
 # build
 cd ${src}
@@ -38,7 +38,7 @@ ${executable} init --moniker xxx --chain-id ${chain_id} > ${key_seed_path}/key_s
 secret=$(cat ${key_seed_path}/key_seed.json | grep secret | grep -o ":.*" | grep -o "\".*"  | sed "s/\"//g")
 #echo ${secret}
 
-mkdir -p ${home}/.bnbchaind_witness/config
+mkdir -p ${home}/.axcchaind_witness/config
 
 #sed -i -e "s/skip_timeout_commit = false/skip_timeout_commit = true/g" ${deamonhome}/config/config.toml
 sed -i -e "s/log_level = \"main:info,state:info,\*:error\"/log_level = \"debug\"/g" ${deamonhome}/config/config.toml
@@ -84,31 +84,31 @@ echo ${witness_pid}
 # init accounts
 result=$(expect ${scripthome}/recover.exp "${secret}" "zc" "${clipath}" "${clihome}")
 result=$(expect ${scripthome}/add_key.exp "zz" "${clipath}" "${clihome}")
-zz_addr=$(${cli} keys list | grep "zz.*local" | grep -o "bnb[0-9a-zA-Z]*" | grep -v "bnbp")
+zz_addr=$(${cli} keys list | grep "zz.*local" | grep -o "axc[0-9a-zA-Z]*" | grep -v "axcp")
 
 sleep 5
 ## issue&list NNB and ZCB for ordergen
-#result=$(${cli} token issue --from=zc --token-name="New BNB Coin" --symbol=NNB --total-supply=2000000000000000 --chain-id ${chain_id})
+#result=$(${cli} token issue --from=zc --token-name="New AXC Coin" --symbol=NNB --total-supply=2000000000000000 --chain-id ${chain_id})
 #nnb_symbol=$(echo "${result}" | tail -n 1 | grep -o "NNB-[0-9A-Z]*")
 #echo ${nnb_symbol}
 #sleep 5
 #((expire_time=$(date '+%s')+1000))
-#${cli} gov submit-list-proposal --chain-id ${chain_id} --from zc --deposit 200000000000:BNB --base-asset-symbol ${nnb_symbol} --quote-asset-symbol BNB --init-price 1000000000 --title "list NNB/BNB" --description "list NNB/BNB" --expire-time ${expire_time} --voting-period 8 --json
+#${cli} gov submit-list-proposal --chain-id ${chain_id} --from zc --deposit 200000000000:AXC --base-asset-symbol ${nnb_symbol} --quote-asset-symbol AXC --init-price 1000000000 --title "list NNB/AXC" --description "list NNB/AXC" --expire-time ${expire_time} --voting-period 8 --json
 #sleep 2
 #${cli} gov vote --from zc --chain-id ${chain_id} --proposal-id 1 --option Yes --json
 #sleep 7
-#${cli} dex list -s=${nnb_symbol} --quote-asset-symbol=BNB --init-price=1000000000 --from=zc --chain-id ${chain_id} --proposal-id 1
+#${cli} dex list -s=${nnb_symbol} --quote-asset-symbol=AXC --init-price=1000000000 --from=zc --chain-id ${chain_id} --proposal-id 1
 #sleep 1
 #result=$(${cli} token issue --from=zc --token-name="ZC Coin" --symbol=ZCB --total-supply=2000000000000000 --chain-id ${chain_id})
 #zcb_symbol=$(echo "${result}" | tail -n 1 | grep -o "ZCB-[0-9A-Z]*")
 #echo ${zcb_symbol}
 #sleep 5
 #((expire_time=$(date '+%s')+1000))
-#${cli} gov submit-list-proposal --chain-id ${chain_id} --from zc --deposit 200000000000:BNB --base-asset-symbol ${zcb_symbol} --quote-asset-symbol BNB --init-price 1000000000 --title "list NNB/BNB" --description "list NNB/BNB" --expire-time ${expire_time} --voting-period 5 --json
+#${cli} gov submit-list-proposal --chain-id ${chain_id} --from zc --deposit 200000000000:AXC --base-asset-symbol ${zcb_symbol} --quote-asset-symbol AXC --init-price 1000000000 --title "list NNB/AXC" --description "list NNB/AXC" --expire-time ${expire_time} --voting-period 5 --json
 #sleep 2
 #${cli} gov vote --from zc --chain-id ${chain_id} --proposal-id 2 --option Yes --json
 #sleep 6
-#${cli} dex list -s=${zcb_symbol} --quote-asset-symbol=BNB --init-price=1000000000 --from=zc --chain-id ${chain_id} --proposal-id 2
+#${cli} dex list -s=${zcb_symbol} --quote-asset-symbol=AXC --init-price=1000000000 --from=zc --chain-id ${chain_id} --proposal-id 2
 #sleep 1
-${cli} send --from=zc --to=${zz_addr} --amount=1000000000000000:BNB --chain-id ${chain_id}
+${cli} send --from=zc --to=${zz_addr} --amount=1000000000000000:AXC --chain-id ${chain_id}
 #sleep 5

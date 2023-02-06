@@ -49,8 +49,8 @@ var (
 func init() {
 	LiteCmd.Flags().StringVar(&listenAddr, "laddr", "tcp://localhost:27147", "Serve the proxy on the given address")
 	LiteCmd.Flags().StringVar(&nodeAddr, "node", "tcp://localhost:27147", "Connect to a binance node at this address")
-	LiteCmd.Flags().StringVar(&chainID, "chain-id", "bnbchain", "Specify the bnb beacon chain ID")
-	LiteCmd.Flags().StringVar(&home, "home-dir", ".binance-lite", "Specify the home directory")
+	LiteCmd.Flags().StringVar(&chainID, "chain-id", "axcchain", "Specify the axc beacon chain ID")
+	LiteCmd.Flags().StringVar(&home, "home-dir", ".aximchain-lite", "Specify the home directory")
 	LiteCmd.Flags().IntVar(&maxOpenConnections, "max-open-connections", 900, "Maximum number of simultaneous connections (including WebSocket).")
 	LiteCmd.Flags().IntVar(&cacheSize, "cache-size", 10, "Specify the memory trust store cache size")
 }

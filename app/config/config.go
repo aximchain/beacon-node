@@ -66,7 +66,7 @@ ListingRuleUpgradeHeight = {{ .UpgradeConfig.ListingRuleUpgradeHeight }}
 # Block height of FixZeroBalanceHeight upgrade
 FixZeroBalanceHeight = {{ .UpgradeConfig.FixZeroBalanceHeight }}
 # Block height of smart chain upgrade
-LaunchBscUpgradeHeight = {{ .UpgradeConfig.LaunchBscUpgradeHeight }}
+LaunchAxcUpgradeHeight = {{ .UpgradeConfig.LaunchAxcUpgradeHeight }}
 # Block height of BEP8 upgrade
 BEP8Height = {{ .UpgradeConfig.BEP8Height }}
 # Block height of BEP67 upgrade
@@ -221,34 +221,34 @@ logBuffSize = {{ .LogConfig.LogBuffSize }}
 [cross_chain]
 # IBC chain-id for current chain
 ibcChainId = {{ .CrossChainConfig.IbcChainId }}
-# chain-id for bsc chain
-bscChainId = "{{ .CrossChainConfig.BscChainId }}"
-# IBC chain-id for bsc chain
-bscIbcChainId = {{ .CrossChainConfig.BscIbcChainId }}
+# chain-id for axc chain
+axcChainId = "{{ .CrossChainConfig.AxcChainId }}"
+# IBC chain-id for axc chain
+axcIbcChainId = {{ .CrossChainConfig.AxcIbcChainId }}
 
 [dex]
 # The suffixed symbol of BUSD
 BUSDSymbol = "{{ .DexConfig.BUSDSymbol }}"
 `
 
-type BinanceChainContext struct {
+type AximchainContext struct {
 	*server.Context
 	*viper.Viper
-	*BinanceChainConfig
+	*AximchainConfig
 }
 
-func NewDefaultContext() *BinanceChainContext {
-	return &BinanceChainContext{
+func NewDefaultContext() *AximchainContext {
+	return &AximchainContext{
 		server.NewDefaultContext(),
 		viper.New(),
-		DefaultBinanceChainConfig()}
+		DefaultAximchainConfig()}
 }
 
-func (context *BinanceChainContext) ToCosmosServerCtx() *server.Context {
+func (context *AximchainContext) ToCosmosServerCtx() *server.Context {
 	return context.Context
 }
 
-type BinanceChainConfig struct {
+type AximchainConfig struct {
 	*AddressConfig     `mapstructure:"addr"`
 	*PublicationConfig `mapstructure:"publication"`
 	*LogConfig         `mapstructure:"log"`
@@ -259,8 +259,8 @@ type BinanceChainConfig struct {
 	*DexConfig         `mapstructure:"dex"`
 }
 
-func DefaultBinanceChainConfig() *BinanceChainConfig {
-	return &BinanceChainConfig{
+func DefaultAximchainConfig() *AximchainConfig {
+	return &AximchainConfig{
 		AddressConfig:     defaultAddressConfig(),
 		PublicationConfig: defaultPublicationConfig(),
 		LogConfig:         defaultLogConfig(),
@@ -283,12 +283,12 @@ type AddressConfig struct {
 
 func defaultAddressConfig() *AddressConfig {
 	return &AddressConfig{
-		Bech32PrefixAccAddr:  "bnb",
-		Bech32PrefixAccPub:   "bnbp",
-		Bech32PrefixValAddr:  "bva",
-		Bech32PrefixValPub:   "bvap",
-		Bech32PrefixConsAddr: "bca",
-		Bech32PrefixConsPub:  "bcap",
+		Bech32PrefixAccAddr:  "axc",
+		Bech32PrefixAccPub:   "axcp",
+		Bech32PrefixValAddr:  "ava",
+		Bech32PrefixValPub:   "avap",
+		Bech32PrefixConsAddr: "aca",
+		Bech32PrefixConsPub:  "acap",
 	}
 }
 
@@ -341,7 +341,7 @@ type PublicationConfig struct {
 	SideProposalTopic   string `mapstructure:"sideProposalTopic"`
 	SideProposalKafka   string `mapstructure:"sideProposalKafka"`
 
-	PublishBreatheBlock bool   `mapstructure:"publichBreatheBlock"`
+	PublishBreatheBlock bool   `mapstructure:"publishBreatheBlock"`
 	BreatheBlockTopic   string `mapstructure:"breatheBlockTopic"`
 	BreatheBlockKafka   string `mapstructure:"breatheBlockKafka"`
 
@@ -460,16 +460,16 @@ func (pubCfg PublicationConfig) ShouldPublishAny() bool {
 type CrossChainConfig struct {
 	IbcChainId uint16 `mapstructure:"ibcChainId"`
 
-	BscChainId    string `mapstructure:"bscChainId"`
-	BscIbcChainId uint16 `mapstructure:"bscIBCChainId"`
+	AxcChainId    string `mapstructure:"axcChainId"`
+	AxcIbcChainId uint16 `mapstructure:"axcIBCChainId"`
 }
 
 func defaultCrossChainConfig() *CrossChainConfig {
 	return &CrossChainConfig{
 		IbcChainId: 1,
 
-		BscChainId:    "bsc",
-		BscIbcChainId: 2,
+		AxcChainId:    "axc",
+		AxcIbcChainId: 2,
 	}
 }
 
@@ -484,7 +484,7 @@ func defaultLogConfig() *LogConfig {
 	return &LogConfig{
 		LogToConsole: true,
 		LogFileRoot:  "",
-		LogFilePath:  "bnc.log",
+		LogFilePath:  "axc.log",
 		LogBuffSize:  10000,
 	}
 }
@@ -524,7 +524,7 @@ type UpgradeConfig struct {
 	LotSizeUpgradeHeight       int64 `mapstructure:"LotSizeUpgradeHeight"`
 	ListingRuleUpgradeHeight   int64 `mapstructure:"ListingRuleUpgradeHeight"`
 	FixZeroBalanceHeight       int64 `mapstructure:"FixZeroBalanceHeight"`
-	LaunchBscUpgradeHeight     int64 `mapstructure:"LaunchBscUpgradeHeight"`
+	LaunchAxcUpgradeHeight     int64 `mapstructure:"LaunchAxcUpgradeHeight"`
 
 	BEP8Height  int64 `mapstructure:"BEP8Height"`
 	BEP67Height int64 `mapstructure:"BEP67Height"`
@@ -560,7 +560,7 @@ func defaultUpgradeConfig() *UpgradeConfig {
 		BEP8Height:                 1,
 		BEP67Height:                1,
 		BEP70Height:                1,
-		LaunchBscUpgradeHeight:     1,
+		LaunchAxcUpgradeHeight:     1,
 		BEP128Height:               math.MaxInt64,
 		BEP151Height:               math.MaxInt64,
 		BEP153Height:               math.MaxInt64,
@@ -596,7 +596,7 @@ func defaultGovConfig() *DexConfig {
 	}
 }
 
-func (context *BinanceChainContext) ParseAppConfigInPlace() error {
+func (context *AximchainContext) ParseAppConfigInPlace() error {
 	// this piece of code should be consistent with bindFlagsLoadViper
 	// vendor/github.com/tendermint/tendermint/libs/cli/setup.go:125
 	homeDir := viper.GetString(cli.HomeFlag)
@@ -613,7 +613,7 @@ func (context *BinanceChainContext) ParseAppConfigInPlace() error {
 		return err
 	}
 
-	err := context.Viper.Unmarshal(context.BinanceChainConfig)
+	err := context.Viper.Unmarshal(context.AximchainConfig)
 	if err != nil {
 		return err
 	}
@@ -621,7 +621,7 @@ func (context *BinanceChainContext) ParseAppConfigInPlace() error {
 }
 
 // WriteConfigFile renders config using the template and writes it to configFilePath.
-func WriteConfigFile(configFilePath string, config *BinanceChainConfig) {
+func WriteConfigFile(configFilePath string, config *AximchainConfig) {
 	var buffer bytes.Buffer
 
 	if err := configTemplate.Execute(&buffer, config); err != nil {

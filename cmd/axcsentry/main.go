@@ -14,8 +14,8 @@ func main() {
 	ctx := app.ServerContext
 
 	rootCmd := &cobra.Command{
-		Use:               "bnbsentry",
-		Short:             "BNBChain Sentry (server)",
+		Use:               "axcsentry",
+		Short:             "AXCChain Sentry (server)",
 		PersistentPreRunE: app.PersistentPreRunEFn(ctx),
 	}
 

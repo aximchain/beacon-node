@@ -8,10 +8,10 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
-func TestConvertBSCAmountToBCAmount(t *testing.T) {
+func TestConvertAXCAmountToBCAmount(t *testing.T) {
 	tests := []struct {
 		contractDecimals int8
-		bscAmount        sdk.Int
+		axcAmount        sdk.Int
 		bcAmount         int64
 		expectedError    bool
 	}{
@@ -38,7 +38,7 @@ func TestConvertBSCAmountToBCAmount(t *testing.T) {
 		},
 	}
 	for i, test := range tests {
-		bcAmount, err := ConvertBSCAmountToBCAmount(test.contractDecimals, test.bscAmount)
+		bcAmount, err := ConvertAXCAmountToBCAmount(test.contractDecimals, test.axcAmount)
 		if test.expectedError {
 			require.NotNil(t, err, "test: %d should return error", i)
 		} else {
@@ -47,11 +47,11 @@ func TestConvertBSCAmountToBCAmount(t *testing.T) {
 	}
 }
 
-func TestConvertBCAmountToBSCAmount(t *testing.T) {
+func TestConvertBCAmountToAXCAmount(t *testing.T) {
 	tests := []struct {
 		contractDecimals int8
 		bcAmount         int64
-		bscAmount        sdk.Int
+		axcAmount        sdk.Int
 		expectedError    bool
 	}{
 		{
@@ -77,11 +77,11 @@ func TestConvertBCAmountToBSCAmount(t *testing.T) {
 		},
 	}
 	for i, test := range tests {
-		bscAmount, err := ConvertBCAmountToBSCAmount(test.contractDecimals, test.bcAmount)
+		axcAmount, err := ConvertBCAmountToAXCAmount(test.contractDecimals, test.bcAmount)
 		if test.expectedError {
 			require.NotNil(t, err, "test: %d should return error", i)
 		} else {
-			require.Equal(t, true, bscAmount.Equal(test.bscAmount))
+			require.Equal(t, true, axcAmount.Equal(test.axcAmount))
 		}
 	}
 }

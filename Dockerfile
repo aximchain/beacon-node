@@ -4,7 +4,7 @@ FROM golang:1.17-alpine AS build-env
 ENV PACKAGES make git libc-dev bash gcc linux-headers eudev-dev curl ca-certificates
 
 # Set working directory for the build
-WORKDIR /go/src/github.com/bnb-chain/node
+WORKDIR /go/src/github.com/aximchain/beacon-node
 
 # Add source files
 COPY . .
@@ -20,7 +20,7 @@ FROM alpine:3.16.0
 # Install dependencies
 RUN apk add --update ca-certificates tini bash
 
-ARG USER=bnbchain
+ARG USER=axcchain
 ARG USER_UID=1000
 ARG USER_GID=1000
 
@@ -30,12 +30,12 @@ ENV HOME=/data
 RUN addgroup -g ${USER_GID} ${USER} \
   && adduser -u ${USER_UID} -G ${USER} --shell /sbin/nologin --no-create-home -D ${USER} \
   && addgroup ${USER} tty
-RUN mkdir -p ${HOME} ${DEFAULT_CONFIG} 
+RUN mkdir -p ${HOME} ${DEFAULT_CONFIG}
 WORKDIR ${HOME}
 
 # Copy over binaries from the build-env
-COPY --from=build-env /go/bin/bnbchaind /usr/bin/bnbchaind
-COPY --from=build-env /go/bin/bnbcli /usr/bin/bnbcli
+COPY --from=build-env /go/bin/axcchaind /usr/bin/axcchaind
+COPY --from=build-env /go/bin/axccli /usr/bin/axccli
 COPY docker-entrypoint.sh /
 COPY ./asset/ ${DEFAULT_CONFIG}/
 

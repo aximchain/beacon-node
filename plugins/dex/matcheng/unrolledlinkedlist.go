@@ -32,9 +32,9 @@ func (b *bucket) size() int {
 	return len(b.elements)
 }
 
-//bucket.get() return 2 values:
-//if the price is found, return the PriceLevel and its position,
-//otherwise return nil and the 1st position that is smaller for buy(larger for sell) than input price
+// bucket.get() return 2 values:
+// if the price is found, return the PriceLevel and its position,
+// otherwise return nil and the 1st position that is smaller for buy(larger for sell) than input price
 func (b *bucket) get(p int64, compare Comparator) (*PriceLevel, int) {
 	k := len(b.elements)
 	i := sort.Search(k, func(i int) bool { return compare(b.elements[i].Price, p) < 0 })
@@ -209,8 +209,8 @@ func (ull *ULList) ensureCapacity() {
 	}
 }
 
-//splitAndInsert() would move one bucket from data end to be after the full
-//bucket, and re-allocate half the PriceLevels to it
+// splitAndInsert() would move one bucket from data end to be after the full
+// bucket, and re-allocate half the PriceLevels to it
 func (ull *ULList) splitAndInsert(origin *bucket, p *PriceLevel) int {
 	//make sure here we have to insert
 	pl, pos := origin.get(p.Price, ull.compare)
@@ -244,9 +244,9 @@ func (ull *ULList) Clear() {
 	ull.dend = ull.begin.next // only leave with one bucket
 }
 
-//getBucket return the 'last' bucket which contains price larger-equal (for buy)
-//or smaller-equal (for sell) than the input price. If the price is larger (for buy)
-//or smaller than any bucket head, nil is returned
+// getBucket return the 'last' bucket which contains price larger-equal (for buy)
+// or smaller-equal (for sell) than the input price. If the price is larger (for buy)
+// or smaller than any bucket head, nil is returned
 func (ull *ULList) getBucket(p int64) *bucket {
 	var last *bucket = nil
 	for b := ull.begin; b != ull.dend; b = b.next {
@@ -259,7 +259,7 @@ func (ull *ULList) getBucket(p int64) *bucket {
 	return last
 }
 
-//AddPriceLevel() would only add price that doesn't exist in the list yet, otherwise return false.
+// AddPriceLevel() would only add price that doesn't exist in the list yet, otherwise return false.
 func (ull *ULList) AddPriceLevel(p *PriceLevel) bool {
 	last := ull.getBucket(p.Price)
 	if last == nil {
@@ -354,8 +354,8 @@ func (ull *ULList) GetPriceRange(p1 int64, p2 int64, buffer *[]PriceLevel) []Pri
 	return *buffer
 }
 
-//GetPriceLevel returns the PriceLevel point that has the same price as p.
-//It will return nil if no such price.
+// GetPriceLevel returns the PriceLevel point that has the same price as p.
+// It will return nil if no such price.
 func (ull *ULList) GetPriceLevel(p int64) *PriceLevel {
 	for i := ull.begin; i != ull.dend; i = i.next {
 		h := i.head()

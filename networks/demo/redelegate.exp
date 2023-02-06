@@ -8,7 +8,7 @@ set validator_addr_src [lindex $argv 4]
 set validator_addr_dst [lindex $argv 5]
 
 set timeout 30
-    spawn ./bnbcli staking redelegate --home $home --from $from --chain-id=$chain_id --amount $amount --addr-validator-source $validator_addr_src --addr-validator-dest $validator_addr_dst
+    spawn ./axccli staking redelegate --home $home --from $from --chain-id=$chain_id --amount $amount --addr-validator-source $validator_addr_src --addr-validator-dest $validator_addr_dst
 	expect "Password*"
 	send "12345678\r"
 expect eof

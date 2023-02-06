@@ -10,7 +10,8 @@ export GO111MODULE = on
 PACKAGES=$(shell go list ./...)
 COMMIT_HASH := $(shell git rev-parse --short HEAD)
 
-COSMOS_RELEASE := $(shell grep 'github.com/bnb-chain/bnc-cosmos-sdk' go.mod |awk '{print $$4}')
+COSMOS_RELEASE := $(shell grep 'github.com/aximchain/axc-cosmos-sdk' go.mod |awk '{print $$4}')
+# TODO
 TENDER_RELEASE := $(shell grep 'github.com/bnb-chain/bnc-tendermint' go.mod| grep -v iavl| awk '{print $$4}')
 
 BUILD_TAGS = netgo
@@ -71,10 +72,10 @@ ci: build
 ### Build
 
 define buildwindows
-     go build $(BUILD_CLI_FLAGS) -o build/bnbcli.exe ./cmd/bnbcli
-     go build $(BUILD_TESTNET_FLAGS) -o build/tbnbcli.exe ./cmd/bnbcli
-     go build $(BUILD_FLAGS) -o build/bnbchaind.exe ./cmd/bnbchaind
-     go build $(BUILD_FLAGS) -o build/bnbsentry.exe ./cmd/bnbsentry
+     go build $(BUILD_CLI_FLAGS) -o build/axccli.exe ./cmd/axccli
+     go build $(BUILD_TESTNET_FLAGS) -o build/taxccli.exe ./cmd/axccli
+     go build $(BUILD_FLAGS) -o build/axcchaind.exe ./cmd/axcchaind
+     go build $(BUILD_FLAGS) -o build/axcsentry.exe ./cmd/axcsentry
      go build $(BUILD_FLAGS) -o build/pressuremaker.exe ./cmd/pressuremaker
      go build $(BUILD_FLAGS) -o build/lightd.exe ./cmd/lightd
 endef
@@ -84,10 +85,10 @@ build:
 ifeq ($(OS),Windows_NT)
 	$(call buildwindows)
 else
-	go build $(BUILD_CLI_FLAGS) -o build/bnbcli ./cmd/bnbcli
-	go build $(BUILD_TESTNET_FLAGS) -o build/tbnbcli ./cmd/bnbcli
-	go build $(BUILD_FLAGS) -o build/bnbchaind ./cmd/bnbchaind
-	go build $(BUILD_FLAGS) -o build/bnbsentry ./cmd/bnbsentry
+	go build $(BUILD_CLI_FLAGS) -o build/axccli ./cmd/axccli
+	go build $(BUILD_TESTNET_FLAGS) -o build/taxccli ./cmd/axccli
+	go build $(BUILD_FLAGS) -o build/axcchaind ./cmd/axcchaind
+	go build $(BUILD_FLAGS) -o build/axcsentry ./cmd/axcsentry
 	go build $(BUILD_FLAGS) -o build/pressuremaker ./cmd/pressuremaker
 	go build $(BUILD_FLAGS) -o build/lightd ./cmd/lightd
 	go build $(BUILD_FLAGS) -o build/state_recover ./networks/tools/state_recover
@@ -96,18 +97,18 @@ endif
 
 build_c:
 ifeq ($(OS),Windows_NT)
-	go build $(BUILD_CLI_FLAGS) -o build/bnbcli.exe ./cmd/bnbcli
-	go build $(BUILD_TESTNET_FLAGS) -o build/tbnbcli.exe ./cmd/bnbcli
-	$(BUILD_CGOFLAGS) go build $(BUILD_CFLAGS) -o build/bnbchaind.exe ./cmd/bnbchaind
-	$(BUILD_CGOFLAGS) go build $(BUILD_CFLAGS) -o build/bnbsentry.exe ./cmd/bnbsentry
+	go build $(BUILD_CLI_FLAGS) -o build/axccli.exe ./cmd/axccli
+	go build $(BUILD_TESTNET_FLAGS) -o build/taxccli.exe ./cmd/axccli
+	$(BUILD_CGOFLAGS) go build $(BUILD_CFLAGS) -o build/axcchaind.exe ./cmd/axcchaind
+	$(BUILD_CGOFLAGS) go build $(BUILD_CFLAGS) -o build/axcsentry.exe ./cmd/axcsentry
 	go build $(BUILD_FLAGS) -o build/pressuremaker.exe ./cmd/pressuremaker
 	$(BUILD_CGOFLAGS) go build $(BUILD_CFLAGS) -o build/lightd.exe ./cmd/lightd
 	go build $(BUILD_FLAGS) -o build/state_recover.exe ./networks/tools/state_recover
 else
-	go build $(BUILD_CLI_FLAGS) -o build/bnbcli ./cmd/bnbcli
-	go build $(BUILD_TESTNET_FLAGS) -o build/tbnbcli ./cmd/bnbcli
-	$(BUILD_CGOFLAGS) go build $(BUILD_CFLAGS) -o build/bnbchaind ./cmd/bnbchaind
-	$(BUILD_CGOFLAGS) go build $(BUILD_CFLAGS) -o build/bnbsentry ./cmd/bnbsentry
+	go build $(BUILD_CLI_FLAGS) -o build/axccli ./cmd/axccli
+	go build $(BUILD_TESTNET_FLAGS) -o build/taxccli ./cmd/axccli
+	$(BUILD_CGOFLAGS) go build $(BUILD_CFLAGS) -o build/axcchaind ./cmd/axcchaind
+	$(BUILD_CGOFLAGS) go build $(BUILD_CFLAGS) -o build/axcsentry ./cmd/axcsentry
 	go build $(BUILD_FLAGS) -o build/pressuremaker ./cmd/pressuremaker
 	$(BUILD_CGOFLAGS) go build $(BUILD_CFLAGS) -o build/lightd ./cmd/lightd
 	go build $(BUILD_FLAGS) -o build/state_recover ./networks/tools/state_recover
@@ -129,14 +130,14 @@ build-alpine_c:
     LEDGER_ENABLED=false GOOS=linux GOARCH=amd64 CGO_ENABLED=0 $(MAKE) build_c
 
 install:
-	go install $(BUILD_FLAGS) ./cmd/bnbchaind
-	go install $(BUILD_CLI_FLAGS) ./cmd/bnbcli
-	go install $(BUILD_FLAGS) ./cmd/bnbsentry
+	go install $(BUILD_FLAGS) ./cmd/axcchaind
+	go install $(BUILD_CLI_FLAGS) ./cmd/axccli
+	go install $(BUILD_FLAGS) ./cmd/axcsentry
 
 install_c:
-	$(BUILD_CGOFLAGS) go install $(BUILD_CFLAGS) ./cmd/bnbchaind
-	go install $(BUILD_CLI_FLAGS) ./cmd/bnbcli
-	go install $(BUILD_FLAGS) ./cmd/bnbsentry
+	$(BUILD_CGOFLAGS) go install $(BUILD_CFLAGS) ./cmd/axcchaind
+	go install $(BUILD_CLI_FLAGS) ./cmd/axccli
+	go install $(BUILD_FLAGS) ./cmd/axcsentry
 
 ########################################
 ### Format
@@ -216,7 +217,7 @@ build-docker-node:
 
 # Run a 4-node testnet locally
 localnet-start: localnet-stop
-	@if ! [ -f build/node0/gaiad/config/genesis.json ]; then docker run --rm -v $(CURDIR)/build:/bnbchaind:Z binance/bnbdnode testnet --v 4 -o . --starting-ip-address 172.20.0.2 ; fi
+	@if ! [ -f build/node0/gaiad/config/genesis.json ]; then docker run --rm -v $(CURDIR)/build:/axcchaind:Z aximchain/axcdnode testnet --v 4 -o . --starting-ip-address 172.20.0.2 ; fi
 	@for i in `seq 0 3`; do \
 		if [ "$(SKIP_TIMEOUT)" = "true" ]; then \
 			sed -i -e "s/skip_timeout_commit = false/skip_timeout_commit = true/g" ./build/node$$i/gaiad/config/config.toml;\
@@ -239,7 +240,7 @@ localnet-stop:
 
 # docker commands
 docker.build:
-	docker build -t binance/bnbdnode .
+	docker build -t aximchain/axcdnode .
 
 docker.generate:
 	go run ./cmd/gen_devnet

@@ -10,9 +10,9 @@ fi
 
 cli_home="./testnodecli"
 home="./testnoded"
-chain_id="bnbchain-1000"
+chain_id="axcchain-1000"
 
-keys_operation_words="bnb"
+keys_operation_words="axc"
 chain_operation_words="Committed"
 
 function prepare_node() {
@@ -23,7 +23,7 @@ function prepare_node() {
 	mkdir ${cli_home}
 	mkdir ${home}
 
-	secret=$(./bnbchaind init --moniker testnode --home ${home} --home-client ${cli_home} --chain-id ${chain_id} | grep secret | grep -o ":.*" | grep -o "\".*"  | sed "s/\"//g")
+	secret=$(./axcchaind init --moniker testnode --home ${home} --home-client ${cli_home} --chain-id ${chain_id} | grep secret | grep -o ":.*" | grep -o "\".*"  | sed "s/\"//g")
 	echo ${secret} > ${home}/secret
 
     $(cd "./${home}/config" && sed -i -e "s/BEP12Height = 9223372036854775807/BEP12Height = 1/g" app.toml)
@@ -51,15 +51,15 @@ function prepare_node() {
 #	$(cd "./${home}/config" && sed -i -e "s/publishLocal = false/publishLocal = true/g" app.toml)
 
 	# stop and start node
-	ps -ef  | grep bnbchaind | grep testnoded | awk '{print $2}' | xargs kill -9
-	./bnbchaind start --home ${home}  > ./testnoded/node.log 2>&1 &
+	ps -ef  | grep axcchaind | grep testnoded | awk '{print $2}' | xargs kill -9
+	./axcchaind start --home ${home}  > ./testnoded/node.log 2>&1 &
 
 	echo ${secret}
 }
 
 function exit_test() {
 	# stop node
-	ps -ef  | grep bnbchaind | grep testnoded | awk '{print $2}' | xargs kill -9
+	ps -ef  | grep axcchaind | grep testnoded | awk '{print $2}' | xargs kill -9
 	exit $1
 }
 
@@ -90,51 +90,51 @@ check_operation "Add Key" "${result}" "${keys_operation_words}"
 # wait for the chain
 sleep 10s
 
-alice_addr=$(./bnbcli keys list --home ${cli_home} | grep alice | grep -o "bnb1[0-9a-zA-Z]*")
-bob_addr=$(./bnbcli keys list --home ${cli_home} | grep bob | grep -o "bnb1[0-9a-zA-Z]*")
-carl_addr=$(./bnbcli keys list --home ${cli_home} | grep carl | grep -o "bnb1[0-9a-zA-Z]*")
+alice_addr=$(./axccli keys list --home ${cli_home} | grep alice | grep -o "axc1[0-9a-zA-Z]*")
+bob_addr=$(./axccli keys list --home ${cli_home} | grep bob | grep -o "axc1[0-9a-zA-Z]*")
+carl_addr=$(./axccli keys list --home ${cli_home} | grep carl | grep -o "axc1[0-9a-zA-Z]*")
 
 # send
-result=$(expect ./send.exp ${cli_home} alice ${chain_id} "100000000000000:BNB" ${bob_addr})
+result=$(expect ./send.exp ${cli_home} alice ${chain_id} "100000000000000:AXC" ${bob_addr})
 check_operation "Send Token" "${result}" "${chain_operation_words}"
 sleep 5s
-result=$(expect ./send.exp ${cli_home} alice ${chain_id} "100000000000000:BNB" ${carl_addr})
+result=$(expect ./send.exp ${cli_home} alice ${chain_id} "100000000000000:AXC" ${carl_addr})
 check_operation "Send Token" "${result}" "${chain_operation_words}"
 sleep 5s
 
 # get parameters
-result=$(./bnbcli staking parameters --home ${cli_home} --trust-node)
+result=$(./axccli staking parameters --home ${cli_home} --trust-node)
 check_operation "Query Staking Parameters" "${result}" "proposer"
 
 # get validators
-result=$(./bnbcli staking validators --home ${cli_home} --trust-node)
+result=$(./axccli staking validators --home ${cli_home} --trust-node)
 check_operation "Get Validators" "${result}" "Operator"
 
 # get validator
 operator_address=$(echo "${result}" | grep Operator | grep -o "bva[0-9a-zA-Z]*" | head -n1)
-result=$(./bnbcli staking validator ${operator_address} --home ${cli_home} --trust-node)
+result=$(./axccli staking validator ${operator_address} --home ${cli_home} --trust-node)
 check_operation "Get Validator" "${result}" "Operator"
 
 # get delegations
-result=$(./bnbcli staking delegations ${alice_addr} --home ${cli_home} --trust-node)
+result=$(./axccli staking delegations ${alice_addr} --home ${cli_home} --trust-node)
 check_operation "Get Delegations" "${result}" "Validator"
 
 # get delegation
 validator_address=$(echo "${result}" | grep Validator | grep -o "bva[0-9a-zA-Z]*")
-delegator_address=$(echo "${result}" | grep Delegator | grep -o "bnb1[0-9a-zA-Z]*")
-result=$(./bnbcli staking delegation --address-delegator ${delegator_address} --validator ${validator_address} --home ${cli_home} --trust-node)
+delegator_address=$(echo "${result}" | grep Delegator | grep -o "axc1[0-9a-zA-Z]*")
+result=$(./axccli staking delegation --address-delegator ${delegator_address} --validator ${validator_address} --home ${cli_home} --trust-node)
 check_operation "Get Delegation" "${result}" "Validator"
 
 # get pool
-result=$(./bnbcli staking pool --home ${cli_home} --trust-node)
+result=$(./axccli staking pool --home ${cli_home} --trust-node)
 
 # create validator
 result=$(expect ./create-validator-open.exp ${cli_home} bob ${chain_id} ${bob_pubkey})
 check_operation "create validator open" "${result}" "${chain_operation_words}"
 sleep 5s
-result=$(./bnbcli staking validators --home ${cli_home} --trust-node)
+result=$(./axccli staking validators --home ${cli_home} --trust-node)
 check_operation "Get Validators" "${result}" "Operator"
-result=$(./bnbcli staking validator ${bob_val_addr} --home ${cli_home} --trust-node)
+result=$(./axccli staking validator ${bob_val_addr} --home ${cli_home} --trust-node)
 check_operation "Get Validator" "${result}" "bob"
 check_operation "Get Validator" "${result}" "${bob_pubkey}"
 
@@ -142,42 +142,42 @@ check_operation "Get Validator" "${result}" "${bob_pubkey}"
 result=$(expect ./edit-validator.exp ${cli_home} bob ${chain_id} ${bob_pubkey_new})
 check_operation "edit validator" "${result}" "${chain_operation_words}"
 sleep 5s
-result=$(./bnbcli staking validator ${bob_val_addr} --home ${cli_home} --trust-node)
+result=$(./axccli staking validator ${bob_val_addr} --home ${cli_home} --trust-node)
 check_operation "Get Validator" "${result}" "bob-new"
 check_operation "Get Validator" "${result}" "${bob_pubkey_new}"
 bob_val_addr=$(echo "${result}" | grep Operator | grep -o "bva[0-9a-zA-Z]*")
 
 ## delegate
-#result=$(expect ./delegate.exp ${cli_home} carl ${chain_id} "1000000000:BNB" ${validator_address})
+#result=$(expect ./delegate.exp ${cli_home} carl ${chain_id} "1000000000:AXC" ${validator_address})
 #check_operation "delegate" "${result}" "${chain_operation_words}"
 #sleep 5s
-#result=$(./bnbcli staking delegation --address-delegator ${carl_addr} --validator ${validator_address} --home ${cli_home} --trust-node)
+#result=$(./axccli staking delegation --address-delegator ${carl_addr} --validator ${validator_address} --home ${cli_home} --trust-node)
 #check_operation "Get Delegation" "${result}" "Validator"
 #
 ## redelegate
-#result=$(expect ./redelegate.exp ${cli_home} carl ${chain_id} "600000000:BNB" ${validator_address} ${bob_val_addr})
+#result=$(expect ./redelegate.exp ${cli_home} carl ${chain_id} "600000000:AXC" ${validator_address} ${bob_val_addr})
 #check_operation "redelegate" "${result}" "${chain_operation_words}"
 #sleep 5s
 #
 ## undelegate
-#result=$(expect ./undelegate.exp ${cli_home} carl ${chain_id} "400000000:BNB" ${validator_address})
+#result=$(expect ./undelegate.exp ${cli_home} carl ${chain_id} "400000000:AXC" ${validator_address})
 #check_operation "undelegate" "${result}" "${chain_operation_words}"
 #sleep 5s
 #
 ## get redelegations
-#result=$(./bnbcli staking redelegations ${carl_addr} --home ${cli_home} --trust-node)
+#result=$(./axccli staking redelegations ${carl_addr} --home ${cli_home} --trust-node)
 #check_operation "Get Redelegations" "${result}" "delegator_addr"
 #
 ## get redelegation
-#result=$(./bnbcli staking redelegation --address-delegator ${carl_addr} --addr-validator-source ${validator_address} --addr-validator-dest ${bob_val_addr} --home ${cli_home} --trust-node)
+#result=$(./axccli staking redelegation --address-delegator ${carl_addr} --addr-validator-source ${validator_address} --addr-validator-dest ${bob_val_addr} --home ${cli_home} --trust-node)
 #check_operation "Get Redelegation" "${result}" "Delegator"
 #
 ## get unbonding-delegations
-#result=$(./bnbcli staking unbonding-delegations ${carl_addr} --home ${cli_home} --trust-node)
+#result=$(./axccli staking unbonding-delegations ${carl_addr} --home ${cli_home} --trust-node)
 #check_operation "Get Unbonding-Delegations" "${result}" "delegator_addr"
 #
 ## get unbonding-delegation
-#result=$(./bnbcli staking unbonding-delegation --address-delegator ${carl_addr} --validator ${validator_address} --home ${cli_home} --trust-node)
+#result=$(./axccli staking unbonding-delegation --address-delegator ${carl_addr} --validator ${validator_address} --home ${cli_home} --trust-node)
 #check_operation "Get Unbonding-Delegation" "${result}" "Delegator"
 
 # run test with go-sdk

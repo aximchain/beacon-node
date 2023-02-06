@@ -5,7 +5,7 @@ import (
 	"math"
 	"strings"
 
-	"github.com/cosmos/cosmos-sdk/bsc/rlp"
+	"github.com/cosmos/cosmos-sdk/axc/rlp"
 	"github.com/cosmos/cosmos-sdk/pubsub"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/fees"
@@ -243,7 +243,7 @@ func (app *TransferOutApp) ExecuteFailAckPackage(ctx sdk.Context, payload []byte
 	}
 
 	contractDecimals := app.bridgeKeeper.GetContractDecimals(ctx, transferOutPackage.ContractAddress)
-	bcAmount, sdkErr := types.ConvertBSCAmountToBCAmount(contractDecimals, sdk.NewIntFromBigInt(transferOutPackage.Amount))
+	bcAmount, sdkErr := types.ConvertAXCAmountToBCAmount(contractDecimals, sdk.NewIntFromBigInt(transferOutPackage.Amount))
 	if sdkErr != nil {
 		return sdk.ExecuteResult{
 			Err: sdkErr,
@@ -321,7 +321,7 @@ func (app *TransferInApp) checkTransferInSynPackage(transferInPackage *types.Tra
 
 	for _, addr := range transferInPackage.ReceiverAddresses {
 		if len(addr) != sdk.AddrLen {
-			return sdk.ErrInvalidAddress(fmt.Sprintf("length of receiver addreess should be %d", sdk.AddrLen))
+			return sdk.ErrInvalidAddress(fmt.Sprintf("length of receiver address should be %d", sdk.AddrLen))
 		}
 	}
 
@@ -521,7 +521,7 @@ func (app *MirrorApp) checkMirrorSynPackage(ctx sdk.Context, mirrorPackage *type
 	}
 
 	// check supply
-	supplyBigInt, cerr := types.ConvertBSCAmountToBCAmountBigInt(int8(mirrorPackage.BEP20Decimals), sdk.NewIntFromBigInt(mirrorPackage.BEP20TotalSupply))
+	supplyBigInt, cerr := types.ConvertAXCAmountToBCAmountBigInt(int8(mirrorPackage.BEP20Decimals), sdk.NewIntFromBigInt(mirrorPackage.BEP20TotalSupply))
 	if cerr != nil {
 		return types.MirrorErrCodeInvalidSupply
 	}
@@ -581,9 +581,9 @@ func (app *MirrorApp) ExecuteSynPackage(ctx sdk.Context, payload []byte, relayer
 	}
 
 	name := types.BytesToSymbol(mirrorPackage.BEP20Name)
-	supply, sdkErr := types.ConvertBSCAmountToBCAmount(int8(mirrorPackage.BEP20Decimals), sdk.NewIntFromBigInt(mirrorPackage.BEP20TotalSupply))
+	supply, sdkErr := types.ConvertAXCAmountToBCAmount(int8(mirrorPackage.BEP20Decimals), sdk.NewIntFromBigInt(mirrorPackage.BEP20TotalSupply))
 	if sdkErr != nil {
-		panic("convert bsc total supply error")
+		panic("convert axc total supply error")
 	}
 
 	token, err := ctypes.NewToken(name, symbol, supply, types.PegAccount, true)
@@ -615,7 +615,7 @@ func (app *MirrorApp) ExecuteSynPackage(ctx sdk.Context, payload []byte, relayer
 
 	// distribute fee
 	if !mirrorPackage.MirrorFee.IsInt64() {
-		panic("convert bsc amount error")
+		panic("convert axc amount error")
 	}
 	mirrorFeeAmount := mirrorPackage.MirrorFee.Int64()
 
@@ -648,7 +648,7 @@ func (app *MirrorApp) ExecuteSynPackage(ctx sdk.Context, payload []byte, relayer
 }
 
 func (app *MirrorApp) generateAckPackage(code uint8, symbol string, synPackage *types.MirrorSynPackage) ([]byte, sdk.Error) {
-	bscMirrorFee, sdkErr := types.ConvertBCAmountToBSCAmount(types.BSCBNBDecimals, synPackage.MirrorFee.Int64())
+	axcMirrorFee, sdkErr := types.ConvertBCAmountToAXCAmount(types.AXCAXCDecimals, synPackage.MirrorFee.Int64())
 	if sdkErr != nil {
 		return nil, sdkErr
 	}
@@ -657,7 +657,7 @@ func (app *MirrorApp) generateAckPackage(code uint8, symbol string, synPackage *
 		ContractAddr: synPackage.ContractAddr,
 		Decimals:     synPackage.BEP20Decimals,
 		BEP2Symbol:   types.SymbolToBytes(symbol),
-		MirrorFee:    bscMirrorFee.BigInt(),
+		MirrorFee:    axcMirrorFee.BigInt(),
 		ErrorCode:    code,
 	}
 
@@ -763,9 +763,9 @@ func (app *MirrorSyncApp) ExecuteSynPackage(ctx sdk.Context, payload []byte, rel
 	}
 
 	// mint or burn
-	newSupply, sdkErr := types.ConvertBSCAmountToBCAmount(token.GetContractDecimals(), sdk.NewIntFromBigInt(mirrorSyncPackage.BEP20TotalSupply))
+	newSupply, sdkErr := types.ConvertAXCAmountToBCAmount(token.GetContractDecimals(), sdk.NewIntFromBigInt(mirrorSyncPackage.BEP20TotalSupply))
 	if sdkErr != nil {
-		panic("convert bsc total supply error")
+		panic("convert axc total supply error")
 	}
 	if newSupply > ctypes.TokenMaxTotalSupply {
 		ackPackage, sdkErr := app.generateAckPackage(types.MirrorSyncErrInvalidSupply, mirrorSyncPackage)
@@ -815,7 +815,7 @@ func (app *MirrorSyncApp) ExecuteSynPackage(ctx sdk.Context, payload []byte, rel
 	if ctx.IsDeliverTx() {
 		// distribute fee
 		if !mirrorSyncPackage.SyncFee.IsInt64() {
-			panic("convert bsc amount error")
+			panic("convert axc amount error")
 		}
 
 		mirrorFee := sdk.NewFee(feeCoins, sdk.FeeForAll)
@@ -843,14 +843,14 @@ func (app *MirrorSyncApp) ExecuteSynPackage(ctx sdk.Context, payload []byte, rel
 }
 
 func (app *MirrorSyncApp) generateAckPackage(code uint8, synPackage *types.MirrorSyncSynPackage) ([]byte, sdk.Error) {
-	bscSyncFee, sdkErr := types.ConvertBCAmountToBSCAmount(types.BSCBNBDecimals, synPackage.SyncFee.Int64())
+	axcSyncFee, sdkErr := types.ConvertBCAmountToAXCAmount(types.AXCAXCDecimals, synPackage.SyncFee.Int64())
 	if sdkErr != nil {
 		return nil, sdkErr
 	}
 	ackPackage := &types.MirrorSyncAckPackage{
 		SyncSender:   synPackage.SyncSender,
 		ContractAddr: synPackage.ContractAddr,
-		SyncFee:      bscSyncFee.BigInt(),
+		SyncFee:      axcSyncFee.BigInt(),
 		ErrorCode:    code,
 	}
 

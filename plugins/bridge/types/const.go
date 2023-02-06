@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	BSCBNBDecimals int8 = 18
+	AXCAXCDecimals int8 = 18
 
 	BindChannel        = "bind"
 	TransferOutChannel = "transferOut"
@@ -24,6 +24,6 @@ const (
 	MinTransferOutExpireTimeGap = 60 * time.Second
 	MinBindExpireTimeGap        = 600 * time.Second
 
-	BNBContractAddr     = "0x0000000000000000000000000000000000000000"
-	BNBContractDecimals = 18
+	AXCContractAddr     = "0x0000000000000000000000000000000000000000"
+	AXCContractDecimals = 18
 )

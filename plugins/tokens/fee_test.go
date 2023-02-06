@@ -37,6 +37,7 @@ func TestTransferFeeGen(t *testing.T) {
 		LowerLimitAsMulti: 2,
 	}
 
+	// TODO: update cosmos-sdk NativeTokenSymbol
 	calculator := bank.TransferFeeCalculatorGen(&params)
 
 	// (1 addr, 1 coin) : (1 addr, 1 coin)

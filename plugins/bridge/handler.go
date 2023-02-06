@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cosmos/cosmos-sdk/bsc/rlp"
+	"github.com/cosmos/cosmos-sdk/axc/rlp"
 	"github.com/cosmos/cosmos-sdk/pubsub"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/bank"
@@ -56,7 +56,7 @@ func handleUnbindMsg(ctx sdk.Context, keeper Keeper, msg UnbindMsg) sdk.Result {
 		return sdkErr.Result()
 	}
 
-	bscRelayFee, sdkErr := types.ConvertBCAmountToBSCAmount(types.BSCBNBDecimals, relayFee.Tokens.AmountOf(cmmtypes.NativeTokenSymbol))
+	axcRelayFee, sdkErr := types.ConvertBCAmountToAXCAmount(types.AXCAXCDecimals, relayFee.Tokens.AmountOf(cmmtypes.NativeTokenSymbol))
 	if sdkErr != nil {
 		return sdkErr.Result()
 	}
@@ -79,7 +79,7 @@ func handleUnbindMsg(ctx sdk.Context, keeper Keeper, msg UnbindMsg) sdk.Result {
 	}
 
 	sendSeq, sdkErr := keeper.IbcKeeper.CreateRawIBCPackageByIdWithFee(ctx, keeper.DestChainId, types.BindChannelID, sdk.SynCrossChainPackageType,
-		encodedPackage, *bscRelayFee.BigInt())
+		encodedPackage, *axcRelayFee.BigInt())
 	if sdkErr != nil {
 		log.With("module", "bridge").Error("create unbind ibc package error", "err", sdkErr.Error())
 		return sdkErr.Result()
@@ -155,15 +155,15 @@ func handleBindMsg(ctx sdk.Context, keeper Keeper, msg BindMsg) sdk.Result {
 	}
 	transferAmount := peggyAmount.Plus(relayFee.Tokens)
 
-	bscTotalSupply, sdkErr := types.ConvertBCAmountToBSCAmount(msg.ContractDecimals, token.GetTotalSupply().ToInt64())
+	axcTotalSupply, sdkErr := types.ConvertBCAmountToAXCAmount(msg.ContractDecimals, token.GetTotalSupply().ToInt64())
 	if sdkErr != nil {
 		return sdkErr.Result()
 	}
-	bscAmount, sdkErr := types.ConvertBCAmountToBSCAmount(msg.ContractDecimals, msg.Amount)
+	axcAmount, sdkErr := types.ConvertBCAmountToAXCAmount(msg.ContractDecimals, msg.Amount)
 	if sdkErr != nil {
 		return sdkErr.Result()
 	}
-	bscRelayFee, sdkErr := types.ConvertBCAmountToBSCAmount(types.BSCBNBDecimals, relayFee.Tokens.AmountOf(cmmtypes.NativeTokenSymbol))
+	axcRelayFee, sdkErr := types.ConvertBCAmountToAXCAmount(types.AXCAXCDecimals, relayFee.Tokens.AmountOf(cmmtypes.NativeTokenSymbol))
 	if sdkErr != nil {
 		return sdkErr.Result()
 	}
@@ -193,8 +193,8 @@ func handleBindMsg(ctx sdk.Context, keeper Keeper, msg BindMsg) sdk.Result {
 		PackageType:  types.BindTypeBind,
 		TokenSymbol:  types.SymbolToBytes(msg.Symbol),
 		ContractAddr: msg.ContractAddress,
-		TotalSupply:  bscTotalSupply.BigInt(),
-		PeggyAmount:  bscAmount.BigInt(),
+		TotalSupply:  axcTotalSupply.BigInt(),
+		PeggyAmount:  axcAmount.BigInt(),
 		Decimals:     uint8(msg.ContractDecimals),
 		ExpireTime:   uint64(msg.ExpireTime),
 	}
@@ -206,7 +206,7 @@ func handleBindMsg(ctx sdk.Context, keeper Keeper, msg BindMsg) sdk.Result {
 	}
 
 	sendSeq, sdkErr := keeper.IbcKeeper.CreateRawIBCPackageByIdWithFee(ctx, keeper.DestChainId, types.BindChannelID, sdk.SynCrossChainPackageType, encodedPackage,
-		*bscRelayFee.BigInt())
+		*axcRelayFee.BigInt())
 	if sdkErr != nil {
 		log.With("module", "bridge").Error("create bind ibc package error", "err", sdkErr.Error())
 		return sdkErr.Result()
@@ -268,12 +268,12 @@ func handleTransferOutMsg(ctx sdk.Context, keeper Keeper, msg TransferOutMsg) sd
 	}
 	transferAmount := sdk.Coins{msg.Amount}.Plus(relayFee.Tokens)
 
-	bscTransferAmount, sdkErr := types.ConvertBCAmountToBSCAmount(token.GetContractDecimals(), msg.Amount.Amount)
+	axcTransferAmount, sdkErr := types.ConvertBCAmountToAXCAmount(token.GetContractDecimals(), msg.Amount.Amount)
 	if sdkErr != nil {
 		return sdkErr.Result()
 	}
 
-	bscRelayFee, sdkErr := types.ConvertBCAmountToBSCAmount(types.BSCBNBDecimals, relayFee.Tokens.AmountOf(cmmtypes.NativeTokenSymbol))
+	axcRelayFee, sdkErr := types.ConvertBCAmountToAXCAmount(types.AXCAXCDecimals, relayFee.Tokens.AmountOf(cmmtypes.NativeTokenSymbol))
 	if sdkErr != nil {
 		return sdkErr.Result()
 	}
@@ -293,7 +293,7 @@ func handleTransferOutMsg(ctx sdk.Context, keeper Keeper, msg TransferOutMsg) sd
 		ContractAddress: contractAddr,
 		RefundAddress:   msg.From.Bytes(),
 		Recipient:       msg.To,
-		Amount:          bscTransferAmount.BigInt(),
+		Amount:          axcTransferAmount.BigInt(),
 		ExpireTime:      uint64(msg.ExpireTime),
 	}
 
@@ -304,7 +304,7 @@ func handleTransferOutMsg(ctx sdk.Context, keeper Keeper, msg TransferOutMsg) sd
 	}
 
 	sendSeq, sdkErr := keeper.IbcKeeper.CreateRawIBCPackageByIdWithFee(ctx, keeper.DestChainId, types.TransferOutChannelID, sdk.SynCrossChainPackageType,
-		encodedPackage, *bscRelayFee.BigInt())
+		encodedPackage, *axcRelayFee.BigInt())
 	if sdkErr != nil {
 		log.With("module", "bridge").Error("create transfer out ibc package error", "err", sdkErr.Error())
 		return sdkErr.Result()

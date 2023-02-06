@@ -1,6 +1,6 @@
 {
   "genesis_time": "2019-04-18T05:59:26.228734998Z",
-  "chain_id": "Binance-Chain-Tigris",
+  "chain_id": "Axim-Chain-Tigris",
   "consensus_params": {
     "block_size": {
       "max_bytes": "1048576",
@@ -19,122 +19,122 @@
   "app_state": {
     "tokens": [
       {
-        "name": "Binance Chain Native Token",
-        "symbol": "BNB",
+        "name": "Aximchain Native Token",
+        "symbol": "AXC",
         "total_supply": "20000000000000000",
-        "owner": "bnb1ultyhpw2p2ktvr68swz56570lgj2rdsadq3ym2",
+        "owner": "axc1ultyhpw2p2ktvr68swz56570lgj2rdsadq3ym2",
         "mintable": false
       }
     ],
     "accounts": [
       {
         "name": "Aconcagua",
-        "address": "bnb1y888axmhzz6yjj464syfy68mkhzy9phlv8fzac",
+        "address": "axc1y888axmhzz6yjj464syfy68mkhzy9phlv8fzac",
         "consensus_addr": ""
       },
       {
         "name": "Aconcagua",
-        "address": "bnb1kdx4xkktr35j2mpxncvtsshswj5gq577me7lx4",
+        "address": "axc1kdx4xkktr35j2mpxncvtsshswj5gq577me7lx4",
         "consensus_addr": "A71E5CD078B8C5C7B1AF88BCE84DD70B0557D93E"
       },
       {
         "name": "Ararat",
-        "address": "bnb15hx3frkdu7vajy2eulu80vl97vehnhyavu927v",
+        "address": "axc15hx3frkdu7vajy2eulu80vl97vehnhyavu927v",
         "consensus_addr": ""
       },
       {
         "name": "Ararat",
-        "address": "bnb1slq53dua0nj3e6y949u4yc3erus0t68k37jcwh",
+        "address": "axc1slq53dua0nj3e6y949u4yc3erus0t68k37jcwh",
         "consensus_addr": "B7707D9F593C62E85BB9E1A2366D12A97CD5DFF2"
       },
       {
         "name": "Carrauntoohil",
-        "address": "bnb1jw9xup8arde2jzarzcs2fv49hh28uad92m4ke0",
+        "address": "axc1jw9xup8arde2jzarzcs2fv49hh28uad92m4ke0",
         "consensus_addr": ""
       },
       {
         "name": "Carrauntoohil",
-        "address": "bnb139l5umk42mam3znr568gw706fwvp485kw5zks3",
+        "address": "axc139l5umk42mam3znr568gw706fwvp485kw5zks3",
         "consensus_addr": "1175946A48EAA473868A0A6F52E6C66CCAF472EA"
       },
       {
         "name": "Elbrus",
-        "address": "bnb1tpagqqqx36gq09kzw4f5a3a9sk3tq54dpl5ldn",
+        "address": "axc1tpagqqqx36gq09kzw4f5a3a9sk3tq54dpl5ldn",
         "consensus_addr": ""
       },
       {
         "name": "Elbrus",
-        "address": "bnb1l8e7nvtl0jn7jps8mc9usum6t3wsdr0a736q9x",
+        "address": "axc1l8e7nvtl0jn7jps8mc9usum6t3wsdr0a736q9x",
         "consensus_addr": "7235EF143D20FC0ABC427615D83014BB02D7C06C"
       },
       {
         "name": "Everest",
-        "address": "bnb19hunw9ps8n9tkrp2j64jvheezgqmfc2eyrxd7a",
+        "address": "axc19hunw9ps8n9tkrp2j64jvheezgqmfc2eyrxd7a",
         "consensus_addr": ""
       },
       {
         "name": "Everest",
-        "address": "bnb1z79qgmv2e9xm6p24f2el0a2evxzyvnsnps0mvx",
+        "address": "axc1z79qgmv2e9xm6p24f2el0a2evxzyvnsnps0mvx",
         "consensus_addr": "B0FBB52FF7EE93CC476DFE6B74FA1FC88584F30D"
       },
       {
         "name": "Fuji",
-        "address": "bnb19klje94mnu53wj7pmrk0zmtpwgr0uz8th0fcvw",
+        "address": "axc19klje94mnu53wj7pmrk0zmtpwgr0uz8th0fcvw",
         "consensus_addr": ""
       },
       {
         "name": "Fuji",
-        "address": "bnb1atdghwrh7wy36frauvl9mem9x4rxhe85fx33t6",
+        "address": "axc1atdghwrh7wy36frauvl9mem9x4rxhe85fx33t6",
         "consensus_addr": "A9157B3FA6EB4C1E396B9B746E95327A07DC42E5"
       },
       {
         "name": "Gahinga",
-        "address": "bnb17kfuzeza2kn46yqx4twxxmlw2jk2ywp5x4gze2",
+        "address": "axc17kfuzeza2kn46yqx4twxxmlw2jk2ywp5x4gze2",
         "consensus_addr": ""
       },
       {
         "name": "Gahinga",
-        "address": "bnb1h9ymecpakr8p8lhchtah2xxx7x4xq099umclqu",
+        "address": "axc1h9ymecpakr8p8lhchtah2xxx7x4xq099umclqu",
         "consensus_addr": "71F253E6FEA9EDD4B4753F5483549FE4F0F3A21C"
       },
       {
         "name": "Kita",
-        "address": "bnb13m056plt2646zse2mwxfft92xawnky4nmncxc3",
+        "address": "axc13m056plt2646zse2mwxfft92xawnky4nmncxc3",
         "consensus_addr": ""
       },
       {
         "name": "Kita",
-        "address": "bnb167z5qvur7xu85q885l906dgcwmgsvm3ppdarpf",
+        "address": "axc167z5qvur7xu85q885l906dgcwmgsvm3ppdarpf",
         "consensus_addr": "414FB3BBA216AF84C47E07D6EBAA2DCFC3563A2F"
       },
       {
         "name": "Scafell",
-        "address": "bnb16k0gajcczwgymfkk0zsysjzl0sxyxdfckplxlr",
+        "address": "axc16k0gajcczwgymfkk0zsysjzl0sxyxdfckplxlr",
         "consensus_addr": ""
       },
       {
         "name": "Scafell",
-        "address": "bnb10fg9t982xa35ddy6v8f5y06hf9hmx6tte4xlpa",
+        "address": "axc10fg9t982xa35ddy6v8f5y06hf9hmx6tte4xlpa",
         "consensus_addr": "14CFCE69B645F3F88BAF08EA5B77FA521E4480F9"
       },
       {
         "name": "Seoraksan",
-        "address": "bnb1xaef2agzycsww32fqyggnk5xgqxs8780vfv2kh",
+        "address": "axc1xaef2agzycsww32fqyggnk5xgqxs8780vfv2kh",
         "consensus_addr": ""
       },
       {
         "name": "Seoraksan",
-        "address": "bnb1u5mvgkqt9rmj4fut60rnpqfv0a865pwnn90v9q",
+        "address": "axc1u5mvgkqt9rmj4fut60rnpqfv0a865pwnn90v9q",
         "consensus_addr": "17B42E8F284D3CA0E420262F89CD76C749BB12C9"
       },
       {
         "name": "Zugspitze",
-        "address": "bnb1jstexazk7zateuwzzwllswu4j3dsllu3dgte4m",
+        "address": "axc1jstexazk7zateuwzzwllswu4j3dsllu3dgte4m",
         "consensus_addr": ""
       },
       {
         "name": "Zugspitze",
-        "address": "bnb1aanuahm2c9z5syvwsk4792vddtp74jkme5d38l",
+        "address": "axc1aanuahm2c9z5syvwsk4792vddtp74jkme5d38l",
         "consensus_addr": "3CD4AABABDDEB7ABFEA9618732E331077A861D2B"
       }
     ],
@@ -298,7 +298,7 @@
       "params": {
         "unbonding_time": "604800000000000",
         "max_validators": 21,
-        "bond_denom": "BNB"
+        "bond_denom": "AXC"
       },
       "validators": null,
       "bonds": null
@@ -308,7 +308,7 @@
       "deposit_params": {
         "min_deposit": [
           {
-            "denom": "BNB",
+            "denom": "AXC",
             "amount": "100000000000"
           }
         ],
@@ -340,14 +340,14 @@
                     "max_rate": "0",
                     "max_change_rate": "0"
                   },
-                  "delegator_address": "bnb1y888axmhzz6yjj464syfy68mkhzy9phlv8fzac",
-                  "validator_address": "bva1kdx4xkktr35j2mpxncvtsshswj5gq577m9l0c3",
+                  "delegator_address": "axc1y888axmhzz6yjj464syfy68mkhzy9phlv8fzac",
+                  "validator_address": "ava1kdx4xkktr35j2mpxncvtsshswj5gq577m9l0c3",
                   "pubkey": {
                     "type": "tendermint/PubKeyEd25519",
                     "value": "Xj/NowvRnUXEtzaI2jXn2h/OfGhZssHyDtUgLSQUTj4="
                   },
                   "delegation": {
-                    "denom": "BNB",
+                    "denom": "AXC",
                     "amount": "1000000000000"
                   }
                 },
@@ -399,14 +399,14 @@
                     "max_rate": "0",
                     "max_change_rate": "0"
                   },
-                  "delegator_address": "bnb15hx3frkdu7vajy2eulu80vl97vehnhyavu927v",
-                  "validator_address": "bva1slq53dua0nj3e6y949u4yc3erus0t68k3zngsn",
+                  "delegator_address": "axc15hx3frkdu7vajy2eulu80vl97vehnhyavu927v",
+                  "validator_address": "ava1slq53dua0nj3e6y949u4yc3erus0t68k3zngsn",
                   "pubkey": {
                     "type": "tendermint/PubKeyEd25519",
                     "value": "cfLXuOwci5mmU0KbARjNIB95T0CdD+pNZbG2YvKwAGM="
                   },
                   "delegation": {
-                    "denom": "BNB",
+                    "denom": "AXC",
                     "amount": "1000000000000"
                   }
                 },
@@ -458,14 +458,14 @@
                     "max_rate": "0",
                     "max_change_rate": "0"
                   },
-                  "delegator_address": "bnb1jw9xup8arde2jzarzcs2fv49hh28uad92m4ke0",
-                  "validator_address": "bva139l5umk42mam3znr568gw706fwvp485kwgrxw4",
+                  "delegator_address": "axc1jw9xup8arde2jzarzcs2fv49hh28uad92m4ke0",
+                  "validator_address": "ava139l5umk42mam3znr568gw706fwvp485kwgrxw4",
                   "pubkey": {
                     "type": "tendermint/PubKeyEd25519",
                     "value": "03adih94tMF6ll96MNQYH6u9H5afRtPI6Dta1IRUIdg="
                   },
                   "delegation": {
-                    "denom": "BNB",
+                    "denom": "AXC",
                     "amount": "1000000000000"
                   }
                 },
@@ -517,14 +517,14 @@
                     "max_rate": "0",
                     "max_change_rate": "0"
                   },
-                  "delegator_address": "bnb1tpagqqqx36gq09kzw4f5a3a9sk3tq54dpl5ldn",
-                  "validator_address": "bva1l8e7nvtl0jn7jps8mc9usum6t3wsdr0a7dmsmz",
+                  "delegator_address": "axc1tpagqqqx36gq09kzw4f5a3a9sk3tq54dpl5ldn",
+                  "validator_address": "ava1l8e7nvtl0jn7jps8mc9usum6t3wsdr0a7dmsmz",
                   "pubkey": {
                     "type": "tendermint/PubKeyEd25519",
                     "value": "6B03l+BUTDpxjh8F8Pt4IhLiSOeEwahRvofneuDbIw4="
                   },
                   "delegation": {
-                    "denom": "BNB",
+                    "denom": "AXC",
                     "amount": "1000000000000"
                   }
                 },
@@ -576,14 +576,14 @@
                     "max_rate": "0",
                     "max_change_rate": "0"
                   },
-                  "delegator_address": "bnb19hunw9ps8n9tkrp2j64jvheezgqmfc2eyrxd7a",
-                  "validator_address": "bva1z79qgmv2e9xm6p24f2el0a2evxzyvnsnpvwtjz",
+                  "delegator_address": "axc19hunw9ps8n9tkrp2j64jvheezgqmfc2eyrxd7a",
+                  "validator_address": "ava1z79qgmv2e9xm6p24f2el0a2evxzyvnsnpvwtjz",
                   "pubkey": {
                     "type": "tendermint/PubKeyEd25519",
                     "value": "DJEOL+ZQ5OAUBrMxC0iftgqEvD/1xb7jpW1YmLaorzI="
                   },
                   "delegation": {
-                    "denom": "BNB",
+                    "denom": "AXC",
                     "amount": "1000000000000"
                   }
                 },
@@ -635,14 +635,14 @@
                     "max_rate": "0",
                     "max_change_rate": "0"
                   },
-                  "delegator_address": "bnb19klje94mnu53wj7pmrk0zmtpwgr0uz8th0fcvw",
-                  "validator_address": "bva1atdghwrh7wy36frauvl9mem9x4rxhe85f6sp47",
+                  "delegator_address": "axc19klje94mnu53wj7pmrk0zmtpwgr0uz8th0fcvw",
+                  "validator_address": "ava1atdghwrh7wy36frauvl9mem9x4rxhe85f6sp47",
                   "pubkey": {
                     "type": "tendermint/PubKeyEd25519",
                     "value": "sGpZotdb9dAU/OfJmbXnHnqWCHD3JYR9S6MjW66qCO8="
                   },
                   "delegation": {
-                    "denom": "BNB",
+                    "denom": "AXC",
                     "amount": "1000000000000"
                   }
                 },
@@ -694,14 +694,14 @@
                     "max_rate": "0",
                     "max_change_rate": "0"
                   },
-                  "delegator_address": "bnb17kfuzeza2kn46yqx4twxxmlw2jk2ywp5x4gze2",
-                  "validator_address": "bva1h9ymecpakr8p8lhchtah2xxx7x4xq099u8e07c",
+                  "delegator_address": "axc17kfuzeza2kn46yqx4twxxmlw2jk2ywp5x4gze2",
+                  "validator_address": "ava1h9ymecpakr8p8lhchtah2xxx7x4xq099u8e07c",
                   "pubkey": {
                     "type": "tendermint/PubKeyEd25519",
                     "value": "A1PGOfgMyAFZRENtqxAyJF1E+RLtwx72aP+fSkXNBZk="
                   },
                   "delegation": {
-                    "denom": "BNB",
+                    "denom": "AXC",
                     "amount": "1000000000000"
                   }
                 },
@@ -753,14 +753,14 @@
                     "max_rate": "0",
                     "max_change_rate": "0"
                   },
-                  "delegator_address": "bnb13m056plt2646zse2mwxfft92xawnky4nmncxc3",
-                  "validator_address": "bva167z5qvur7xu85q885l906dgcwmgsvm3pp3unld",
+                  "delegator_address": "axc13m056plt2646zse2mwxfft92xawnky4nmncxc3",
+                  "validator_address": "ava167z5qvur7xu85q885l906dgcwmgsvm3pp3unld",
                   "pubkey": {
                     "type": "tendermint/PubKeyEd25519",
                     "value": "lEbRSthsjS10eAsIRxEAAaHC4lLu3+pHU+u7/OOiL1I="
                   },
                   "delegation": {
-                    "denom": "BNB",
+                    "denom": "AXC",
                     "amount": "1000000000000"
                   }
                 },
@@ -812,14 +812,14 @@
                     "max_rate": "0",
                     "max_change_rate": "0"
                   },
-                  "delegator_address": "bnb16k0gajcczwgymfkk0zsysjzl0sxyxdfckplxlr",
-                  "validator_address": "bva10fg9t982xa35ddy6v8f5y06hf9hmx6ttef80le",
+                  "delegator_address": "axc16k0gajcczwgymfkk0zsysjzl0sxyxdfckplxlr",
+                  "validator_address": "ava10fg9t982xa35ddy6v8f5y06hf9hmx6ttef80le",
                   "pubkey": {
                     "type": "tendermint/PubKeyEd25519",
                     "value": "K6ToFUL0N7euH4o13bIzx4mo3CJzQ3fZttY68cpAO2E="
                   },
                   "delegation": {
-                    "denom": "BNB",
+                    "denom": "AXC",
                     "amount": "1000000000000"
                   }
                 },
@@ -871,14 +871,14 @@
                     "max_rate": "0",
                     "max_change_rate": "0"
                   },
-                  "delegator_address": "bnb1xaef2agzycsww32fqyggnk5xgqxs8780vfv2kh",
-                  "validator_address": "bva1u5mvgkqt9rmj4fut60rnpqfv0a865pwnnewumy",
+                  "delegator_address": "axc1xaef2agzycsww32fqyggnk5xgqxs8780vfv2kh",
+                  "validator_address": "ava1u5mvgkqt9rmj4fut60rnpqfv0a865pwnnewumy",
                   "pubkey": {
                     "type": "tendermint/PubKeyEd25519",
                     "value": "342oxav9s4WVORMIu3HloeCqvcHQzzgxXVDWvpObJgY="
                   },
                   "delegation": {
-                    "denom": "BNB",
+                    "denom": "AXC",
                     "amount": "1000000000000"
                   }
                 },
@@ -930,14 +930,14 @@
                     "max_rate": "0",
                     "max_change_rate": "0"
                   },
-                  "delegator_address": "bnb1jstexazk7zateuwzzwllswu4j3dsllu3dgte4m",
-                  "validator_address": "bva1aanuahm2c9z5syvwsk4792vddtp74jkmegvpem",
+                  "delegator_address": "axc1jstexazk7zateuwzzwllswu4j3dsllu3dgte4m",
+                  "validator_address": "ava1aanuahm2c9z5syvwsk4792vddtp74jkmegvpem",
                   "pubkey": {
                     "type": "tendermint/PubKeyEd25519",
                     "value": "tmGe3KQUNISAAoHWmLcMk16RUq1Xsx2FwF8vefZLOfM="
                   },
                   "delegation": {
-                    "denom": "BNB",
+                    "denom": "AXC",
                     "amount": "1000000000000"
                   }
                 },

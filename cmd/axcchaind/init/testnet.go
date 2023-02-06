@@ -58,7 +58,7 @@ Note, strict routability for addresses is turned off in the config file.
 
 Example:
 
-	bnbchaind testnet --v 4 --output-dir ./output --starting-ip-address 192.168.10.2
+	axcchaind testnet --v 4 --output-dir ./output --starting-ip-address 192.168.10.2
 	`,
 		RunE: func(_ *cobra.Command, _ []string) error {
 			config := ctx.Config
@@ -85,7 +85,7 @@ Example:
 
 	cmd.Flags().String(client.FlagChainID, "", "genesis file chain-id, if left blank will be randomly created")
 
-	cmd.Flags().StringVar(&app.ServerContext.Bech32PrefixAccAddr, flagAccPrefix, "bnb", "bech32 prefix for AccAddress")
+	cmd.Flags().StringVar(&app.ServerContext.Bech32PrefixAccAddr, flagAccPrefix, "axc", "bech32 prefix for AccAddress")
 	_ = app.ServerContext.BindPFlag("addr.bech32PrefixAccAddr", cmd.Flags().Lookup(flagAccPrefix))
 	cmd.Flags().StringSlice(flagMonikers, nil, "specify monikers for nodes if needed")
 	cmd.Flags().String(flagNodeInfoOutputFile, "", "the file containing all node info with json format, if not specified, will just print it")
@@ -225,7 +225,7 @@ func createConfigFiles(config *cfg.Config, monikers []string, nodeDirs []string,
 
 		appConfigFilePath := filepath.Join(config.RootDir, "config/", appCfg.AppConfigFileName+".toml")
 		if _, err := os.Stat(appConfigFilePath); os.IsNotExist(err) {
-			appCfg.WriteConfigFile(appConfigFilePath, app.ServerContext.BinanceChainConfig)
+			appCfg.WriteConfigFile(appConfigFilePath, app.ServerContext.AximchainConfig)
 		}
 	}
 }

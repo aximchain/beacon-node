@@ -2,8 +2,9 @@ package pub
 
 import (
 	"fmt"
-	"sync"
 	"sync/atomic"
+
+	"github.com/sasha-s/go-deadlock"
 )
 
 type MockMarketDataPublisher struct {
@@ -14,8 +15,8 @@ type MockMarketDataPublisher struct {
 	TransferPublished         []Transfers
 	BlockPublished            []*Block
 
-	Lock             *sync.Mutex // as mock publisher is only used in testing, its no harm to have this granularity Lock
-	MessagePublished uint32      // atomic integer used to determine the published messages
+	Lock             *deadlock.Mutex // as mock publisher is only used in testing, its no harm to have this granularity Lock
+	MessagePublished uint32          // atomic integer used to determine the published messages
 }
 
 func (publisher *MockMarketDataPublisher) publish(msg AvroOrJsonMsg, tpe msgType, height int64, timestamp int64) {
@@ -59,7 +60,7 @@ func NewMockMarketDataPublisher() (publisher *MockMarketDataPublisher) {
 		make([]BlockFee, 0),
 		make([]Transfers, 0),
 		make([]*Block, 0),
-		&sync.Mutex{},
+		&deadlock.Mutex{},
 		0,
 	}
 	return publisher

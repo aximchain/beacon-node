@@ -2,7 +2,7 @@ package order
 
 import "github.com/tendermint/tendermint/libs/common"
 
-//Find and return top K symbols with largest number of order.
+// Find and return top K symbols with largest number of order.
 // The returned top K slice is not sorted. The input orderNums may be re-ordered in place.
 // If more than one symbols have same order numbers, these symbol will be selected by ascending alphabetical sequence.
 func findTopKLargest(orderNums []*SymbolWithOrderNumber, k int) []*SymbolWithOrderNumber {

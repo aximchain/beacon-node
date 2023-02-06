@@ -1,7 +1,7 @@
-BNB Beacon Chain
+AXC Beacon Chain
 ------------
 
-BNB Beacon Chain is a blockchain with a flexible set of native assets and pluggable modules. It uses [tendermint](https://tendermint.com) for consensus and app logic is written in golang. It targets fast block times, a native dApp layer and multi-token support with no smart contract VM.
+AXC Beacon Chain is a blockchain with a flexible set of native assets and pluggable modules. It uses [tendermint](https://tendermint.com) for consensus and app logic is written in golang. It targets fast block times, a native dApp layer and multi-token support with no smart contract VM.
 
 [![Reference](
 https://camo.githubusercontent.com/915b7be44ada53c290eb157634330494ebe3e30a/68747470733a2f2f676f646f632e6f72672f6769746875622e636f6d2f676f6c616e672f6764646f3f7374617475732e737667
@@ -9,12 +9,12 @@ https://camo.githubusercontent.com/915b7be44ada53c290eb157634330494ebe3e30a/6874
 [![Discord](https://img.shields.io/badge/discord-join%20chat-blue.svg)](https://discord.gg/z2VpC455eU)
 
 Beacon Chain has the basic features of most blockchains:
-- Sending and receiving BNB and digital assets
+- Sending and receiving AXC and digital assets
 - Issuing new digital assets (we have a standard called BEP-2)
 - Mint/burn, freeze/unfreeze, lock/unlock of digital assets
 
 Besides, it has many other rich features:
-- Staking/governance for both Beacon Chain and BNB Smart Chain.
+- Staking/governance for both AXC Beacon Chain and AXC Chain.
 - Cross chain communication.
 - Atomic swap support.
 - Support hot sync and state sync.
@@ -41,7 +41,7 @@ Please [install it](https://go.dev/doc/install) or use brew on macOS: `brew inst
 #### Build from Source
 
 ```bash
-$ git clone git@github.com:bnb-chain/node.git 
+$ git clone git@github.com:aximchain/beacon-node.git
 $ cd node && make build
 ```
 
@@ -49,7 +49,7 @@ $ cd node && make build
 To test that installation worked, try to run the cli tool:
 
 ```bash
-$./build/bnbchaind version
+$./build/axcchaind version
 ```
 
 ### Start the blockchain
@@ -57,21 +57,21 @@ $./build/bnbchaind version
 This command will generate a keypair for your node and create the genesis block config:
 
 ```bash
-$ ./build/bnbchaind init --moniker testnode
-$ cat ~/.bnbchaind/config/genesis.json
+$ ./build/axcchaind init --moniker testnode
+$ cat ~/.axcchaind/config/genesis.json
 ```
 
 You may want to check the [Issuing assets](#issuing-assets) section below before you start, but this is how to start the node and begin generating blocks:
 
 ```bash
-$ ./build/bnbchaind start --moniker testnode
+$ ./build/axcchaind start --moniker testnode
 ```
 
 If everything worked you will see blocks being generated around every 1s in your console, like
 ```shell
-I[2023-01-05|20:39:46.960] Starting ABCI with Tendermint                module=main 
+I[2023-01-05|20:39:46.960] Starting ABCI with Tendermint                module=main
 I[2023-01-05|20:39:47.016] Loading order book snapshot from last breathe block module=main blockHeight=0
-I[2023-01-05|20:39:47.016] No breathe block is ever saved. just created match engines for all the pairs. module=main 
+I[2023-01-05|20:39:47.016] No breathe block is ever saved. just created match engines for all the pairs. module=main
 I[2023-01-05|20:39:47.017] get last breathe block height                module=main height=0
 I[2023-01-05|20:39:48.194] Executed block                               module=state height=1 validTxs=0 invalidTxs=0
 I[2023-01-05|20:39:48.200] Committed state                              module=state height=1 txs=0 appHash=45AE480E42446C584BEFF2162941F4A76C542E96E44F878B21546DCC7E79DCE5
@@ -85,23 +85,23 @@ I[2023-01-05|20:39:50.215] Executed block                               module=s
 When you make a change you probably want to reset your chain, remember to kill the node first.
 
 ```bash
-$ ./build/bnbchaind unsafe-reset-all
+$ ./build/axcchaind unsafe-reset-all
 ```
 
-### Join mainnet/testnet
+### Join mainnet/testnet (TODO)
 
-Please refer to the document for joining [mainnet](https://docs.bnbchain.world/docs/beaconchain/develop/node/join-mainnet) or [testnnet](https://docs.bnbchain.world/docs/beaconchain/develop/node/join-testnet).
+Please refer to the document for joining [mainnet](todo) or [testnnet](todo).
 
 ## Assets
 
 ### Issuing assets
 
-Assets may be issued through `bnbcli` while the blockchain is running; see here for an example:
+Assets may be issued through `axccli` while the blockchain is running; see here for an example:
 
 ```bash
-$ chainId=`cat ~/.bnbchaind/config/genesis.json | jq .chain_id --raw-output`
+$ chainId=`cat ~/.axcchaind/config/genesis.json | jq .chain_id --raw-output`
 # Input password "12345678"
-$ ./build/bnbcli token issue --trust-node --symbol FBTC --token-name FunBitCoin  --total-supply  10000000000  --from testnode  --chain-id ${chainId}
+$ ./build/axccli token issue --trust-node --symbol FBTC --token-name FunBitCoin  --total-supply  10000000000  --from testnode  --chain-id ${chainId}
 ```
 
 This will post a transaction with an `IssueMsg` to the blockchain, which contains the data needed for token issuance.
@@ -111,16 +111,16 @@ This will post a transaction with an `IssueMsg` to the blockchain, which contain
 Start your node, then list your keys as below:
 
 ```bash
-$ ./build/bnbcli keys list 
+$ ./build/axccli keys list
 
 NAME:   TYPE:   ADDRESS:                                                PUBKEY:
-testnode        local   bnb1elavnu4uyzt43hw380vhw0m2zl7djz0xeac60t      bnbp1addwnpepqva5fmn4r4hc66fpqafwwdf20nq8xjpr3kezkclpmluufxdk5x4gw9xsln5
+testnode        local   axc1elavnu4uyzt43hw380vhw0m2zl7djz0xeac60t      axcp1addwnpepqva5fmn4r4hc66fpqafwwdf20nq8xjpr3kezkclpmluufxdk5x4gw9xsln5
 ```
 
 Check a balance with this command, e.g.:
 
 ```bash
-$  ./build/bnbcli account bnb1elavnu4uyzt43hw380vhw0m2zl7djz0xeac60t --chain-id ${chainId} | jq
+$  ./build/axccli account axc1elavnu4uyzt43hw380vhw0m2zl7djz0xeac60t --chain-id ${chainId} | jq
 ```
 
 ### Sending assets
@@ -130,7 +130,7 @@ You have to send a transaction to send assets to another address, which is possi
 Make sure `chain-id` is set correctly; you can find it in your `genesis.json`.
 
 ```bash
-$ ./build/bnbcli send --to bnb1u5mvgkqt9rmj4fut60rnpqfv0a865pwnn90v9q --amount 100:FBTC-4C9  --from testnode  --chain-id ${chainId}
+$ ./build/axccli send --to axc1u5mvgkqt9rmj4fut60rnpqfv0a865pwnn90v9q --amount 100:FBTC-4C9  --from testnode  --chain-id ${chainId}
 
 Password to sign with 'you': 12345678
 Committed at block 833 (tx hash: 40C2B27B056A63DFE5BCE32709F160F53633C0EBEBBD05E1AC26419D35303765, response: {Code:0 Data:[] Log:Msg 0:  Info: GasWanted:0 GasUsed:0 Events:[{Type: Attributes:[{Key:[115 101 110 100 101 114] Value:[98 110 98 49 101 108 97 118 110 117 52 117 121 122 116 52 51 104 119 51 56 48 118 104 119 48 109 50 122 108 55 100 106 122 48 120 101 97 99 54 48 116] XXX_NoUnkeyedLiteral:{} XXX_unrecognized:[] XXX_sizecache:0} {Key:[114 101 99 105 112 105 101 110 116] Value:[98 110 98 49 117 53 109 118 103 107 113 116 57 114 109 106 52 102 117 116 54 48 114 110 112 113 102 118 48 97 56 54 53 112 119 110 110 57 48 118 57 113] XXX_NoUnkeyedLiteral:{} XXX_unrecognized:[] XXX_sizecache:0} {Key:[97 99 116 105 111 110] Value:[115 101 110 100] XXX_NoUnkeyedLiteral:{} XXX_unrecognized:[] XXX_sizecache:0}] XXX_NoUnkeyedLiteral:{} XXX_unrecognized:[] XXX_sizecache:0}] Codespace: XXX_NoUnkeyedLiteral:{} XXX_unrecognized:[] XXX_sizecache:0})
@@ -139,18 +139,18 @@ Committed at block 833 (tx hash: 40C2B27B056A63DFE5BCE32709F160F53633C0EBEBBD05E
 You can look at the contents of the tx, use the tx hash above:
 
 ```bash
-$  ./build/bnbcli tx 40C2B27B056A63DFE5BCE32709F160F53633C0EBEBBD05E1AC26419D35303765 --chain-id ${chainId} 
+$  ./build/axccli tx 40C2B27B056A63DFE5BCE32709F160F53633C0EBEBBD05E1AC26419D35303765 --chain-id ${chainId}
 ```
 
 Then you can check the balance of pepe's key to see that he now has 100 satoshi units of `FBTC-4C9`:
 
 ```bash
-$ ./build/bnbcli account bnb1u5mvgkqt9rmj4fut60rnpqfv0a865pwnn90v9q  --chain-id ${chainId} | jq
+$ ./build/axccli account axc1u5mvgkqt9rmj4fut60rnpqfv0a865pwnn90v9q  --chain-id ${chainId} | jq
 {
-  "type": "bnbchain/Account",
+  "type": "axcchain/Account",
   "value": {
     "base": {
-      "address": "bnb1u5mvgkqt9rmj4fut60rnpqfv0a865pwnn90v9q",
+      "address": "axc1u5mvgkqt9rmj4fut60rnpqfv0a865pwnn90v9q",
       "coins": [
         {
           "denom": "FBTC-4C9",

@@ -11,6 +11,7 @@ var Mgr = sdk.UpgradeMgr
 // improvement: (maybe bep ?)
 const (
 	// Galileo Upgrade
+	// TODO: github repo
 	BEP6  = "BEP6"   // https://github.com/bnb-chain/BEPs/pull/6
 	BEP9  = sdk.BEP9 // https://github.com/bnb-chain/BEPs/pull/9
 	BEP10 = "BEP10"  // https://github.com/bnb-chain/BEPs/pull/10
@@ -25,7 +26,7 @@ const (
 	ListingRuleUpgrade   = "ListingRuleUpgrade" // Remove restriction that only the owner of base asset can list trading pair
 	FixZeroBalance       = "FixZeroBalance"
 
-	LaunchBscUpgrade = sdk.LaunchBscUpgrade
+	LaunchAxcUpgrade = sdk.LaunchAxcUpgrade
 
 	EnableAccountScriptsForCrossChainTransfer = "EnableAccountScriptsForCrossChainTransfer"
 
@@ -39,13 +40,13 @@ const (
 	BEP87             = "BEP87"   // https://github.com/bnb-chain/BEPs/pull/87
 	FixFailAckPackage = sdk.FixFailAckPackage
 
-	BEP128       = sdk.BEP128 // https://github.com/bnb-chain/BEPs/pull/128 Staking reward distribution upgrade
-	BEP151       = "BEP151"   // https://github.com/bnb-chain/BEPs/pull/151 Decommission Decentralized Exchange
-	BEP153       = sdk.BEP153 // https://github.com/bnb-chain/BEPs/pull/153 Native Staking
-	BEP159       = sdk.BEP159 // https://github.com/bnb-chain/BEPs/pull/159 New Staking Mechanism
-	BEP159Phase2 = sdk.BEP159Phase2
-	BEP173       = sdk.BEP173 // https://github.com/bnb-chain/BEPs/pull/173 Text Proposal
-        FixDoubleSignChainId = sdk.FixDoubleSignChainId
+	BEP128               = sdk.BEP128 // https://github.com/bnb-chain/BEPs/pull/128 Staking reward distribution upgrade
+	BEP151               = "BEP151"   // https://github.com/bnb-chain/BEPs/pull/151 Decommission Decentralized Exchange
+	BEP153               = sdk.BEP153 // https://github.com/bnb-chain/BEPs/pull/153 Native Staking
+	BEP159               = sdk.BEP159 // https://github.com/bnb-chain/BEPs/pull/159 New Staking Mechanism
+	BEP159Phase2         = sdk.BEP159Phase2
+	BEP173               = sdk.BEP173 // https://github.com/bnb-chain/BEPs/pull/173 Text Proposal
+	FixDoubleSignChainId = sdk.FixDoubleSignChainId
 )
 
 func UpgradeBEP10(before func(), after func()) {
