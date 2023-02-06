@@ -196,7 +196,7 @@ func setupTestForBEP159Test() (*Aximchain, sdk.Context, []Account) {
 	accounts := GenAccounts(n)
 	app.SetCheckState(abci.Header{})
 	app.InitChain(abci.RequestInitChain{
-		ChainId:       "Binance-Chain-Tigris",
+		ChainId:       "Aximchain-Tigris",
 		Validators:    []abci.ValidatorUpdate{},
 		AppStateBytes: []byte(stateBytes),
 	})

@@ -52,8 +52,8 @@ func handleHashTimerLockedTransfer(ctx sdk.Context, kp Keeper, msg HTLTMsg) sdk.
 		Status:              Open,
 		Index:               kp.getIndex(ctx),
 	}
-	// hotfix for chain "Binance-Chain-Tigris"
-	if header.Height == 90913098 && header.ChainID == "Binance-Chain-Tigris" {
+	// hotfix for chain "Aximchain-Tigris"
+	if header.Height == 90913098 && header.ChainID == "Aximchain-Tigris" {
 		swap.Index = 0
 	}
 	swapID := CalculateSwapID(swap.RandomNumberHash, swap.From, msg.SenderOtherChain)

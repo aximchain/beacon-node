@@ -15,7 +15,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/server"
 
 	"github.com/bnb-chain/node/app"
-	bnbInit "github.com/bnb-chain/node/cmd/axcchaind/init"
+	axcInit "github.com/bnb-chain/node/cmd/axcchaind/init"
 	"github.com/bnb-chain/node/version"
 )
 
@@ -39,15 +39,15 @@ func main() {
 	}
 
 	appInit := app.AximchainAppInit()
-	rootCmd.AddCommand(bnbInit.InitCmd(ctx.ToCosmosServerCtx(), cdc, appInit))
-	rootCmd.AddCommand(bnbInit.TestnetFilesCmd(ctx.ToCosmosServerCtx(), cdc, appInit))
-	rootCmd.AddCommand(bnbInit.CollectGenTxsCmd(cdc, appInit))
+	rootCmd.AddCommand(axcInit.InitCmd(ctx.ToCosmosServerCtx(), cdc, appInit))
+	rootCmd.AddCommand(axcInit.TestnetFilesCmd(ctx.ToCosmosServerCtx(), cdc, appInit))
+	rootCmd.AddCommand(axcInit.CollectGenTxsCmd(cdc, appInit))
 	rootCmd.AddCommand(version.VersionCmd)
 	server.AddCommands(ctx.ToCosmosServerCtx(), cdc, rootCmd, exportAppStateAndTMValidators)
 	startCmd := server.StartCmd(ctx.ToCosmosServerCtx(), newApp)
 	startCmd.Flags().Int64VarP(&ctx.PublicationConfig.FromHeightInclusive, "fromHeight", "f", 1, "from which height (inclusive) we want publish market data")
 	rootCmd.AddCommand(startCmd)
-	rootCmd.AddCommand(bnbInit.SnapshotCmd(ctx.ToCosmosServerCtx(), cdc))
+	rootCmd.AddCommand(axcInit.SnapshotCmd(ctx.ToCosmosServerCtx(), cdc))
 
 	// prepare and add flags
 	executor := cli.PrepareBaseCmd(rootCmd, "BC", app.DefaultNodeHome)
