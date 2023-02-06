@@ -1,6 +1,6 @@
 {
   "genesis_time": "2019-04-18T05:59:26.228734998Z",
-  "chain_id": "Axim-Chain-Tigris",
+  "chain_id": "Aximchain-Tigris",
   "consensus_params": {
     "block_size": {
       "max_bytes": "1048576",

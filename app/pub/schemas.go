@@ -306,7 +306,7 @@ const (
 			"namespace":"com.company",
 			"type":"record",
 			"name":"blockData",
-			"doc":"The fields in this record contain information about the data in the single block of the Binance Chain.",
+			"doc":"The fields in this record contain information about the data in the single block of the Aximchain.",
 			"fields":[
 				{
 					"name":"chainId",

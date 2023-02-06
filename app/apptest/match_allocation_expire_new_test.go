@@ -1051,7 +1051,7 @@ func Test_Expire_8_new(t *testing.T) {
 		m.Unlock()
 	})
 	assert.Equal(3, len(transfers))
-	assert.Equal("", transfers[0].Fee.Tokens[0].Denom)
+	assert.Equal("AXC", transfers[0].Fee.Tokens[0].Denom)
 	assert.Equal(int64(0.0002e8), transfers[0].Fee.Tokens[0].Amount)
 	assert.Equal("BTC-000", transfers[1].Fee.Tokens[0].Denom)
 	assert.Equal(int64(0.0001e8), transfers[1].Fee.Tokens[0].Amount)

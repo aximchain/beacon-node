@@ -1,6 +1,6 @@
 {
   "genesis_time": "2020-07-09T00:00:00.051674734Z",
-  "chain_id": "Axim-Chain-Ganges",
+  "chain_id": "Aximchain-Ganges",
   "consensus_params": {
     "block_size": {
       "max_bytes": "1048576",
