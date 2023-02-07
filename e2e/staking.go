@@ -14,11 +14,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/aximchain/go-sdk/client/rpc"
-	sdkTypes "github.com/aximchain/go-sdk/common/types"
-	"github.com/aximchain/go-sdk/keys"
-	"github.com/aximchain/go-sdk/types/msg"
-	"github.com/aximchain/go-sdk/types/tx"
+	"github.com/binance-chain/go-sdk/client/rpc"
+	sdkTypes "github.com/binance-chain/go-sdk/common/types"
+	"github.com/binance-chain/go-sdk/keys"
+	"github.com/binance-chain/go-sdk/types/msg"
+	"github.com/binance-chain/go-sdk/types/tx"
 	cosmosTypes "github.com/cosmos/cosmos-sdk/types"
 	"github.com/tendermint/go-amino"
 	"github.com/tendermint/tendermint/crypto"
@@ -550,7 +550,7 @@ func Staking() error {
 	return nil
 }
 
-// nolint
+//nolint
 func UndelegateTest() error {
 	rand.Seed(time.Now().UnixNano())
 	// rpc client

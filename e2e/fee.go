@@ -6,8 +6,8 @@ import (
 	"io/ioutil"
 	"log"
 
-	"github.com/aximchain/go-sdk/client/rpc"
-	sdkTypes "github.com/aximchain/go-sdk/common/types"
+	"github.com/binance-chain/go-sdk/client/rpc"
+	sdkTypes "github.com/binance-chain/go-sdk/common/types"
 	"golang.org/x/xerrors"
 )
 
@@ -16,7 +16,7 @@ var (
 	c = rpc.NewRPCClient("http://127.0.0.1:26657", sdkTypes.ProdNetwork)
 )
 
-// const sideChainId = "rialto"
+//const sideChainId = "rialto"
 const sideChainId = "axc"
 
 type Validator struct {
@@ -128,7 +128,7 @@ func saveSnapshot(s *SnapShot, path string) error {
 	return ioutil.WriteFile(fmt.Sprintf("%s/%d.json", path, s.Height), data, 0644)
 }
 
-// nolint
+//nolint
 func TestFee() error {
 	latestSnap := &SnapShot{}
 	for {
