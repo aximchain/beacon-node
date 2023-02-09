@@ -3,9 +3,9 @@ package cli
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/cosmos/cosmos-sdk/client"
+	"github.com/aximchain/axc-cosmos-sdk/client"
 
-	"github.com/aximchain/beacon-node/wire"
+	"github.com/aximchain/flash-node/wire"
 )
 
 func AddCommands(cmd *cobra.Command, cdc *wire.Codec) {

@@ -5,14 +5,14 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/stake"
+	"github.com/aximchain/axc-cosmos-sdk/client/context"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/stake"
 	"github.com/gorilla/mux"
 	"github.com/tendermint/tendermint/crypto"
 	cmn "github.com/tendermint/tendermint/libs/common"
 
-	"github.com/aximchain/beacon-node/wire"
+	"github.com/aximchain/flash-node/wire"
 )
 
 // ValidatorQueryReqHandler queries the whole validator set

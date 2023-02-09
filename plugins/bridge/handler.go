@@ -6,14 +6,14 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cosmos/cosmos-sdk/axc/rlp"
-	"github.com/cosmos/cosmos-sdk/pubsub"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/bank"
+	"github.com/aximchain/axc-cosmos-sdk/asc/rlp"
+	"github.com/aximchain/axc-cosmos-sdk/pubsub"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/bank"
 
-	"github.com/aximchain/beacon-node/common/log"
-	cmmtypes "github.com/aximchain/beacon-node/common/types"
-	"github.com/aximchain/beacon-node/plugins/bridge/types"
+	"github.com/aximchain/flash-node/common/log"
+	cmmtypes "github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/plugins/bridge/types"
 )
 
 func NewHandler(keeper Keeper) sdk.Handler {

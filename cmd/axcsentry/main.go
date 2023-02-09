@@ -3,10 +3,10 @@ package main
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/cosmos/cosmos-sdk/server"
+	"github.com/aximchain/axc-cosmos-sdk/server"
 	"github.com/tendermint/tendermint/libs/cli"
 
-	"github.com/aximchain/beacon-node/app"
+	"github.com/aximchain/flash-node/app"
 )
 
 func main() {

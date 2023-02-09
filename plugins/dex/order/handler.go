@@ -7,15 +7,15 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/cosmos/cosmos-sdk/baseapp"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/fees"
+	"github.com/aximchain/axc-cosmos-sdk/baseapp"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/types/fees"
 
-	common "github.com/aximchain/beacon-node/common/types"
-	"github.com/aximchain/beacon-node/common/upgrade"
-	me "github.com/aximchain/beacon-node/plugins/dex/matcheng"
-	"github.com/aximchain/beacon-node/plugins/dex/types"
-	"github.com/aximchain/beacon-node/plugins/dex/utils"
+	common "github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/common/upgrade"
+	me "github.com/aximchain/flash-node/plugins/dex/matcheng"
+	"github.com/aximchain/flash-node/plugins/dex/types"
+	"github.com/aximchain/flash-node/plugins/dex/utils"
 )
 
 type NewOrderResponse struct {

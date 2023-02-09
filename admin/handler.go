@@ -1,12 +1,12 @@
 package admin
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 	abci "github.com/tendermint/tendermint/abci/types"
 	"github.com/tendermint/tendermint/config"
 
-	"github.com/aximchain/beacon-node/common/runtime"
-	"github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/flash-node/common/runtime"
+	"github.com/aximchain/flash-node/common/types"
 )
 
 // path:

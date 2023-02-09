@@ -5,7 +5,7 @@ import (
 	"encoding/hex"
 	"fmt"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 )
 
 func NewHandler(kp Keeper) sdk.Handler {

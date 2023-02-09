@@ -9,11 +9,11 @@ import (
 	"github.com/tendermint/tendermint/libs/log"
 	tmserver "github.com/tendermint/tendermint/rpc/lib/server"
 
-	sdk "github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/client/context"
+	sdk "github.com/aximchain/axc-cosmos-sdk/client"
+	"github.com/aximchain/axc-cosmos-sdk/client/context"
 
-	"github.com/aximchain/beacon-node/common/types"
-	"github.com/aximchain/beacon-node/wire"
+	"github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/wire"
 )
 
 // ServeCommand will generate a long-running rest server

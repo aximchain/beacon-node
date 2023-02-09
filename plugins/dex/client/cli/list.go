@@ -8,11 +8,11 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
-	"github.com/aximchain/beacon-node/common/client"
-	"github.com/aximchain/beacon-node/common/types"
-	"github.com/aximchain/beacon-node/common/utils"
-	dextypes "github.com/aximchain/beacon-node/plugins/dex/types"
-	"github.com/aximchain/beacon-node/wire"
+	"github.com/aximchain/flash-node/common/client"
+	"github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/common/utils"
+	dextypes "github.com/aximchain/flash-node/plugins/dex/types"
+	"github.com/aximchain/flash-node/wire"
 )
 
 const flagBaseAsset = "base-asset-symbol"

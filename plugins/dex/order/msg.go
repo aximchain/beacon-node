@@ -6,11 +6,11 @@ import (
 	"fmt"
 	"strings"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	txbuilder "github.com/cosmos/cosmos-sdk/x/auth/client/txbuilder"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	txbuilder "github.com/aximchain/axc-cosmos-sdk/x/auth/client/txbuilder"
 
-	"github.com/aximchain/beacon-node/plugins/dex/matcheng"
-	"github.com/aximchain/beacon-node/plugins/dex/types"
+	"github.com/aximchain/flash-node/plugins/dex/matcheng"
+	"github.com/aximchain/flash-node/plugins/dex/types"
 )
 
 const (

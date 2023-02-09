@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"text/template"
 
-	"github.com/cosmos/cosmos-sdk/server"
+	"github.com/aximchain/axc-cosmos-sdk/server"
 	"github.com/spf13/viper"
 	"github.com/tendermint/tendermint/libs/cli"
 	"github.com/tendermint/tendermint/libs/common"
@@ -66,7 +66,7 @@ ListingRuleUpgradeHeight = {{ .UpgradeConfig.ListingRuleUpgradeHeight }}
 # Block height of FixZeroBalanceHeight upgrade
 FixZeroBalanceHeight = {{ .UpgradeConfig.FixZeroBalanceHeight }}
 # Block height of smart chain upgrade
-LaunchAxcUpgradeHeight = {{ .UpgradeConfig.LaunchAxcUpgradeHeight }}
+LaunchAscUpgradeHeight = {{ .UpgradeConfig.LaunchAscUpgradeHeight }}
 # Block height of BEP8 upgrade
 BEP8Height = {{ .UpgradeConfig.BEP8Height }}
 # Block height of BEP67 upgrade
@@ -222,9 +222,9 @@ logBuffSize = {{ .LogConfig.LogBuffSize }}
 # IBC chain-id for current chain
 ibcChainId = {{ .CrossChainConfig.IbcChainId }}
 # chain-id for axc chain
-axcChainId = "{{ .CrossChainConfig.AxcChainId }}"
+ascChainId = "{{ .CrossChainConfig.AscChainId }}"
 # IBC chain-id for axc chain
-axcIbcChainId = {{ .CrossChainConfig.AxcIbcChainId }}
+ascIbcChainId = {{ .CrossChainConfig.AscIbcChainId }}
 
 [dex]
 # The suffixed symbol of BUSD
@@ -460,16 +460,16 @@ func (pubCfg PublicationConfig) ShouldPublishAny() bool {
 type CrossChainConfig struct {
 	IbcChainId uint16 `mapstructure:"ibcChainId"`
 
-	AxcChainId    string `mapstructure:"axcChainId"`
-	AxcIbcChainId uint16 `mapstructure:"axcIBCChainId"`
+	AscChainId    string `mapstructure:"ascChainId"`
+	AscIbcChainId uint16 `mapstructure:"ascIBCChainId"`
 }
 
 func defaultCrossChainConfig() *CrossChainConfig {
 	return &CrossChainConfig{
 		IbcChainId: 1,
 
-		AxcChainId:    "axc",
-		AxcIbcChainId: 2,
+		AscChainId:    "asc",
+		AscIbcChainId: 2,
 	}
 }
 
@@ -524,7 +524,7 @@ type UpgradeConfig struct {
 	LotSizeUpgradeHeight       int64 `mapstructure:"LotSizeUpgradeHeight"`
 	ListingRuleUpgradeHeight   int64 `mapstructure:"ListingRuleUpgradeHeight"`
 	FixZeroBalanceHeight       int64 `mapstructure:"FixZeroBalanceHeight"`
-	LaunchAxcUpgradeHeight     int64 `mapstructure:"LaunchAxcUpgradeHeight"`
+	LaunchAscUpgradeHeight     int64 `mapstructure:"LaunchAscUpgradeHeight"`
 
 	BEP8Height  int64 `mapstructure:"BEP8Height"`
 	BEP67Height int64 `mapstructure:"BEP67Height"`
@@ -560,7 +560,7 @@ func defaultUpgradeConfig() *UpgradeConfig {
 		BEP8Height:                 1,
 		BEP67Height:                1,
 		BEP70Height:                1,
-		LaunchAxcUpgradeHeight:     1,
+		LaunchAscUpgradeHeight:     1,
 		BEP128Height:               math.MaxInt64,
 		BEP151Height:               math.MaxInt64,
 		BEP153Height:               math.MaxInt64,

@@ -6,18 +6,18 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/cosmos/cosmos-sdk/baseapp"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	"github.com/cosmos/cosmos-sdk/x/bank"
+	"github.com/aximchain/axc-cosmos-sdk/baseapp"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
+	"github.com/aximchain/axc-cosmos-sdk/x/bank"
 
 	abci "github.com/tendermint/tendermint/abci/types"
 	"github.com/tendermint/tendermint/libs/log"
 
-	"github.com/aximchain/beacon-node/common/testutils"
-	"github.com/aximchain/beacon-node/common/types"
-	"github.com/aximchain/beacon-node/plugins/tokens/store"
-	"github.com/aximchain/beacon-node/wire"
+	"github.com/aximchain/flash-node/common/testutils"
+	"github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/plugins/tokens/store"
+	"github.com/aximchain/flash-node/wire"
 )
 
 func setupMini() (sdk.Context, sdk.Handler, auth.AccountKeeper, store.Mapper) {

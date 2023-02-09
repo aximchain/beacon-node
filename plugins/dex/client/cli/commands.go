@@ -1,10 +1,10 @@
 package commands
 
 import (
-	"github.com/cosmos/cosmos-sdk/client"
+	"github.com/aximchain/axc-cosmos-sdk/client"
 	"github.com/spf13/cobra"
 
-	"github.com/aximchain/beacon-node/wire"
+	"github.com/aximchain/flash-node/wire"
 )
 
 const (

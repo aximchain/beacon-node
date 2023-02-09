@@ -1,8 +1,8 @@
 package bridge
 
 import (
-	"github.com/aximchain/beacon-node/plugins/bridge/keeper"
-	"github.com/aximchain/beacon-node/plugins/bridge/types"
+	"github.com/aximchain/flash-node/plugins/bridge/keeper"
+	"github.com/aximchain/flash-node/plugins/bridge/types"
 )
 
 var (

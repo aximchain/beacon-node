@@ -7,11 +7,11 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 
-	"github.com/aximchain/beacon-node/common/client"
-	"github.com/aximchain/beacon-node/common/types"
-	"github.com/aximchain/beacon-node/plugins/tokens/ownership"
+	"github.com/aximchain/flash-node/common/client"
+	"github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/plugins/tokens/ownership"
 )
 
 const flagNewOwner = "new-owner"

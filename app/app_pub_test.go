@@ -10,12 +10,12 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/cosmos/cosmos-sdk/baseapp"
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/fees"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	"github.com/cosmos/cosmos-sdk/x/stake"
+	"github.com/aximchain/axc-cosmos-sdk/baseapp"
+	"github.com/aximchain/axc-cosmos-sdk/codec"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/types/fees"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
+	"github.com/aximchain/axc-cosmos-sdk/x/stake"
 
 	abci "github.com/tendermint/tendermint/abci/types"
 	"github.com/tendermint/tendermint/crypto"
@@ -23,13 +23,13 @@ import (
 	dbm "github.com/tendermint/tendermint/libs/db"
 	"github.com/tendermint/tendermint/libs/log"
 
-	"github.com/aximchain/beacon-node/app/config"
-	"github.com/aximchain/beacon-node/app/pub"
-	appsub "github.com/aximchain/beacon-node/app/pub/sub"
-	"github.com/aximchain/beacon-node/common/testutils"
-	orderPkg "github.com/aximchain/beacon-node/plugins/dex/order"
-	dextypes "github.com/aximchain/beacon-node/plugins/dex/types"
-	"github.com/aximchain/beacon-node/wire"
+	"github.com/aximchain/flash-node/app/config"
+	"github.com/aximchain/flash-node/app/pub"
+	appsub "github.com/aximchain/flash-node/app/pub/sub"
+	"github.com/aximchain/flash-node/common/testutils"
+	orderPkg "github.com/aximchain/flash-node/plugins/dex/order"
+	dextypes "github.com/aximchain/flash-node/plugins/dex/types"
+	"github.com/aximchain/flash-node/wire"
 )
 
 const (

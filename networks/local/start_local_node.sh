@@ -2,7 +2,7 @@
 set -e
 
 ORG="name_it"
-REPO="$ORG/AxcChain"
+REPO="$ORG/AscChain"
 
 cli_home="./testnodecli"
 home="./testnoded"

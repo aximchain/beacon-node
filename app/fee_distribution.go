@@ -4,13 +4,13 @@ import (
 	"bytes"
 	"fmt"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/fees"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	"github.com/cosmos/cosmos-sdk/x/stake"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/types/fees"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
+	"github.com/aximchain/axc-cosmos-sdk/x/stake"
 
-	"github.com/aximchain/beacon-node/app/pub"
-	"github.com/aximchain/beacon-node/common/log"
+	"github.com/aximchain/flash-node/app/pub"
+	"github.com/aximchain/flash-node/common/log"
 )
 
 func NewValAddrCache(stakeKeeper stake.Keeper) *ValAddrCache {

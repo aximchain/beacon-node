@@ -3,8 +3,8 @@ package store_test
 import (
 	"testing"
 
-	"github.com/aximchain/beacon-node/common/types"
-	"github.com/aximchain/beacon-node/plugins/dex/store"
+	"github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/plugins/dex/store"
 )
 
 func TestValidatePairSymbol(t *testing.T) {

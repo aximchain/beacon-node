@@ -1,9 +1,9 @@
 package commands
 
 import (
-	"github.com/aximchain/beacon-node/common/client"
-	"github.com/aximchain/beacon-node/common/types"
-	"github.com/aximchain/beacon-node/plugins/tokens/seturi"
+	"github.com/aximchain/flash-node/common/client"
+	"github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/plugins/tokens/seturi"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )

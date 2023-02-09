@@ -7,7 +7,7 @@ import (
 
 	"github.com/tendermint/tendermint/libs/common"
 
-	"github.com/aximchain/beacon-node/common/log"
+	"github.com/aximchain/flash-node/common/log"
 )
 
 const fileName = "recover_params.json"

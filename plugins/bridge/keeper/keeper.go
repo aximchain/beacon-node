@@ -6,18 +6,18 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/cosmos/cosmos-sdk/axc/rlp"
-	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/cosmos/cosmos-sdk/pubsub"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	"github.com/cosmos/cosmos-sdk/x/bank"
-	"github.com/cosmos/cosmos-sdk/x/ibc"
-	"github.com/cosmos/cosmos-sdk/x/sidechain"
+	"github.com/aximchain/axc-cosmos-sdk/asc/rlp"
+	"github.com/aximchain/axc-cosmos-sdk/codec"
+	"github.com/aximchain/axc-cosmos-sdk/pubsub"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
+	"github.com/aximchain/axc-cosmos-sdk/x/bank"
+	"github.com/aximchain/axc-cosmos-sdk/x/ibc"
+	"github.com/aximchain/axc-cosmos-sdk/x/sidechain"
 
-	"github.com/aximchain/beacon-node/common/upgrade"
-	"github.com/aximchain/beacon-node/plugins/bridge/types"
-	"github.com/aximchain/beacon-node/plugins/tokens/store"
+	"github.com/aximchain/flash-node/common/upgrade"
+	"github.com/aximchain/flash-node/plugins/bridge/types"
+	"github.com/aximchain/flash-node/plugins/tokens/store"
 )
 
 // Keeper maintains the link to data storage and

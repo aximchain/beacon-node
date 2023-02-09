@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	"github.com/cosmos/cosmos-sdk/x/stake"
+	"github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
+	"github.com/aximchain/axc-cosmos-sdk/x/stake"
 	"github.com/sasha-s/go-deadlock"
 	abci "github.com/tendermint/tendermint/abci/types"
 	"github.com/tendermint/tendermint/crypto/tmhash"
@@ -15,8 +15,8 @@ import (
 	"github.com/tendermint/tendermint/libs/log"
 	tmtypes "github.com/tendermint/tendermint/types"
 
-	"github.com/aximchain/beacon-node/common/utils"
-	"github.com/aximchain/beacon-node/wire"
+	"github.com/aximchain/flash-node/common/utils"
+	"github.com/aximchain/flash-node/wire"
 )
 
 var (

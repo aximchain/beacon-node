@@ -7,17 +7,17 @@ import (
 	"path"
 	"strconv"
 
-	"github.com/cosmos/cosmos-sdk/store"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/auth"
+	"github.com/aximchain/axc-cosmos-sdk/store"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
 	"github.com/tendermint/go-amino"
 	"github.com/tendermint/iavl"
 	cryptoAmino "github.com/tendermint/tendermint/crypto/encoding/amino"
 	"github.com/tendermint/tendermint/libs/db"
 	"github.com/tendermint/tendermint/state"
 
-	"github.com/aximchain/beacon-node/common"
-	"github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/flash-node/common"
+	"github.com/aximchain/flash-node/common/types"
 )
 
 var codec = amino.NewCodec()

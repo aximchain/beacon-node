@@ -7,10 +7,10 @@ import (
 	"regexp"
 	"strings"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 
-	"github.com/aximchain/beacon-node/common/upgrade"
-	"github.com/aximchain/beacon-node/common/utils"
+	"github.com/aximchain/flash-node/common/upgrade"
+	"github.com/aximchain/flash-node/common/utils"
 )
 
 const (

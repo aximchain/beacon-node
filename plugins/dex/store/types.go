@@ -1,7 +1,7 @@
 package store
 
 import (
-	"github.com/aximchain/beacon-node/common/utils"
+	"github.com/aximchain/flash-node/common/utils"
 )
 
 // OrderBook represents an order book at the current point block height, which is included in its struct.

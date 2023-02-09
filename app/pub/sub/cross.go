@@ -1,10 +1,10 @@
 package sub
 
 import (
-	"github.com/cosmos/cosmos-sdk/pubsub"
-	oTypes "github.com/cosmos/cosmos-sdk/x/oracle/types"
+	"github.com/aximchain/axc-cosmos-sdk/pubsub"
+	oTypes "github.com/aximchain/axc-cosmos-sdk/x/oracle/types"
 
-	"github.com/aximchain/beacon-node/plugins/bridge"
+	"github.com/aximchain/flash-node/plugins/bridge"
 )
 
 func SubscribeCrossTransferEvent(sub *pubsub.Subscriber) error {

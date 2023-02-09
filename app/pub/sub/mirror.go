@@ -1,9 +1,9 @@
 package sub
 
 import (
-	"github.com/cosmos/cosmos-sdk/pubsub"
+	"github.com/aximchain/axc-cosmos-sdk/pubsub"
 
-	"github.com/aximchain/beacon-node/plugins/bridge"
+	"github.com/aximchain/flash-node/plugins/bridge"
 )
 
 func SubscribeMirrorEvent(sub *pubsub.Subscriber) error {

@@ -1,13 +1,13 @@
 package dex
 
 import (
-	"github.com/aximchain/beacon-node/plugins/dex/types"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/gov"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/gov"
+	"github.com/aximchain/flash-node/plugins/dex/types"
 
-	"github.com/aximchain/beacon-node/plugins/dex/list"
-	"github.com/aximchain/beacon-node/plugins/dex/order"
-	"github.com/aximchain/beacon-node/plugins/tokens"
+	"github.com/aximchain/flash-node/plugins/dex/list"
+	"github.com/aximchain/flash-node/plugins/dex/order"
+	"github.com/aximchain/flash-node/plugins/tokens"
 )
 
 // Routes exports dex message routes

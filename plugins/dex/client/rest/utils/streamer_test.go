@@ -5,12 +5,12 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/cosmos/cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/types"
 
-	util "github.com/aximchain/beacon-node/common/utils"
-	"github.com/aximchain/beacon-node/plugins/dex"
-	"github.com/aximchain/beacon-node/plugins/dex/client/rest/utils"
-	"github.com/aximchain/beacon-node/plugins/dex/store"
+	util "github.com/aximchain/flash-node/common/utils"
+	"github.com/aximchain/flash-node/plugins/dex"
+	"github.com/aximchain/flash-node/plugins/dex/client/rest/utils"
+	"github.com/aximchain/flash-node/plugins/dex/store"
 )
 
 func TestStreamDepthResponse(t *testing.T) {

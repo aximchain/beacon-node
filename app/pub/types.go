@@ -1,7 +1,7 @@
 package pub
 
 import (
-	orderPkg "github.com/aximchain/beacon-node/plugins/dex/order"
+	orderPkg "github.com/aximchain/flash-node/plugins/dex/order"
 )
 
 // intermediate data structures to deal with concurrent publication between main thread and publisher thread

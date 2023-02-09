@@ -1,11 +1,11 @@
 package api
 
 import (
-	rpc "github.com/cosmos/cosmos-sdk/client/rpc"
-	tx "github.com/cosmos/cosmos-sdk/client/tx"
-	auth "github.com/cosmos/cosmos-sdk/x/auth/client/rest"
-	bank "github.com/cosmos/cosmos-sdk/x/bank/client/rest"
-	gov "github.com/cosmos/cosmos-sdk/x/gov/client/rest"
+	rpc "github.com/aximchain/axc-cosmos-sdk/client/rpc"
+	tx "github.com/aximchain/axc-cosmos-sdk/client/tx"
+	auth "github.com/aximchain/axc-cosmos-sdk/x/auth/client/rest"
+	bank "github.com/aximchain/axc-cosmos-sdk/x/bank/client/rest"
+	gov "github.com/aximchain/axc-cosmos-sdk/x/gov/client/rest"
 )
 
 const version = "v1"

@@ -13,13 +13,13 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/cosmos/cosmos-sdk/server"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	authtx "github.com/cosmos/cosmos-sdk/x/auth/client/txbuilder"
-	"github.com/cosmos/cosmos-sdk/x/stake"
+	"github.com/aximchain/axc-cosmos-sdk/client"
+	"github.com/aximchain/axc-cosmos-sdk/codec"
+	"github.com/aximchain/axc-cosmos-sdk/server"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
+	authtx "github.com/aximchain/axc-cosmos-sdk/x/auth/client/txbuilder"
+	"github.com/aximchain/axc-cosmos-sdk/x/stake"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	cfg "github.com/tendermint/tendermint/config"
@@ -27,10 +27,10 @@ import (
 	"github.com/tendermint/tendermint/libs/cli"
 	"github.com/tendermint/tendermint/libs/common"
 
-	"github.com/aximchain/beacon-node/app"
-	"github.com/aximchain/beacon-node/common/types"
-	"github.com/aximchain/beacon-node/common/utils"
-	"github.com/aximchain/beacon-node/wire"
+	"github.com/aximchain/flash-node/app"
+	"github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/common/utils"
+	"github.com/aximchain/flash-node/wire"
 )
 
 const (

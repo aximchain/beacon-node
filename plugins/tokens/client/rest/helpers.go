@@ -3,15 +3,15 @@ package rest
 import (
 	"fmt"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/auth"
+	"github.com/aximchain/axc-cosmos-sdk/client/context"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
 
-	"github.com/aximchain/beacon-node/common"
-	"github.com/aximchain/beacon-node/common/types"
-	"github.com/aximchain/beacon-node/common/utils"
-	"github.com/aximchain/beacon-node/plugins/tokens"
-	"github.com/aximchain/beacon-node/wire"
+	"github.com/aximchain/flash-node/common"
+	"github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/common/utils"
+	"github.com/aximchain/flash-node/plugins/tokens"
+	"github.com/aximchain/flash-node/wire"
 )
 
 type TokenBalance struct {

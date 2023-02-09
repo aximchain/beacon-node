@@ -6,12 +6,12 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/client/context"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 	"github.com/gorilla/mux"
 
-	"github.com/aximchain/beacon-node/plugins/tokens/timelock"
-	"github.com/aximchain/beacon-node/wire"
+	"github.com/aximchain/flash-node/plugins/tokens/timelock"
+	"github.com/aximchain/flash-node/wire"
 )
 
 func getTimeLocks(ctx context.CLIContext, cdc *wire.Codec, address sdk.AccAddress) ([]timelock.TimeLockRecord, error) {

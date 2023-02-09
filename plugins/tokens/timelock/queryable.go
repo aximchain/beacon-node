@@ -3,10 +3,10 @@ package timelock
 import (
 	"fmt"
 
-	"github.com/cosmos/cosmos-sdk/codec"
+	"github.com/aximchain/axc-cosmos-sdk/codec"
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 )
 
 const (

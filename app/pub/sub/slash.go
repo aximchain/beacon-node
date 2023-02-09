@@ -3,9 +3,9 @@ package sub
 import (
 	"time"
 
-	"github.com/cosmos/cosmos-sdk/pubsub"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/slashing"
+	"github.com/aximchain/axc-cosmos-sdk/pubsub"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/slashing"
 )
 
 type SlashData struct {

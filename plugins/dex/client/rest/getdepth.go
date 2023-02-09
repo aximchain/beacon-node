@@ -5,11 +5,11 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
+	"github.com/aximchain/axc-cosmos-sdk/client/context"
 
-	rutils "github.com/aximchain/beacon-node/plugins/dex/client/rest/utils"
-	"github.com/aximchain/beacon-node/plugins/dex/store"
-	"github.com/aximchain/beacon-node/wire"
+	rutils "github.com/aximchain/flash-node/plugins/dex/client/rest/utils"
+	"github.com/aximchain/flash-node/plugins/dex/store"
+	"github.com/aximchain/flash-node/wire"
 )
 
 var allowedLimits = [7]int{5, 10, 20, 50, 100, 500, 1000}

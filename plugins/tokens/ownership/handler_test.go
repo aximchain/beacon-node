@@ -3,16 +3,16 @@ package ownership
 import (
 	"testing"
 
-	"github.com/cosmos/cosmos-sdk/baseapp"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	"github.com/cosmos/cosmos-sdk/x/bank"
+	"github.com/aximchain/axc-cosmos-sdk/baseapp"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
+	"github.com/aximchain/axc-cosmos-sdk/x/bank"
 
-	"github.com/aximchain/beacon-node/common/testutils"
-	"github.com/aximchain/beacon-node/common/types"
-	"github.com/aximchain/beacon-node/plugins/tokens/issue"
-	"github.com/aximchain/beacon-node/plugins/tokens/store"
-	"github.com/aximchain/beacon-node/wire"
+	"github.com/aximchain/flash-node/common/testutils"
+	"github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/plugins/tokens/issue"
+	"github.com/aximchain/flash-node/plugins/tokens/store"
+	"github.com/aximchain/flash-node/wire"
 
 	abci "github.com/tendermint/tendermint/abci/types"
 	"github.com/tendermint/tendermint/libs/log"

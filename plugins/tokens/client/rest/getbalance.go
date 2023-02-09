@@ -7,12 +7,12 @@ import (
 
 	"github.com/gorilla/mux"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/client/context"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 
-	"github.com/aximchain/beacon-node/common/utils"
-	"github.com/aximchain/beacon-node/plugins/tokens"
-	"github.com/aximchain/beacon-node/wire"
+	"github.com/aximchain/flash-node/common/utils"
+	"github.com/aximchain/flash-node/plugins/tokens"
+	"github.com/aximchain/flash-node/wire"
 )
 
 // BalanceReqHandler creates an http request handler to get an individual token balance of a given address

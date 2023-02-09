@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"strings"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/bank"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/bank"
 
-	"github.com/aximchain/beacon-node/common/log"
-	common "github.com/aximchain/beacon-node/common/types"
-	"github.com/aximchain/beacon-node/plugins/tokens/store"
+	"github.com/aximchain/flash-node/common/log"
+	common "github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/plugins/tokens/store"
 )
 
 func handleIssueMiniToken(ctx sdk.Context, tokenMapper store.Mapper, bankKeeper bank.Keeper, msg IssueMiniMsg) sdk.Result {

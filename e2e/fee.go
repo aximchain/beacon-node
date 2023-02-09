@@ -16,8 +16,8 @@ var (
 	c = rpc.NewRPCClient("http://127.0.0.1:26657", sdkTypes.ProdNetwork)
 )
 
-//const sideChainId = "rialto"
-const sideChainId = "axc"
+// const sideChainId = "rialto"
+const sideChainId = "asc"
 
 type Validator struct {
 	OperatorAddr  sdkTypes.ValAddress   `json:"operator_addr"`
@@ -128,7 +128,7 @@ func saveSnapshot(s *SnapShot, path string) error {
 	return ioutil.WriteFile(fmt.Sprintf("%s/%d.json", path, s.Height), data, 0644)
 }
 
-//nolint
+// nolint
 func TestFee() error {
 	latestSnap := &SnapShot{}
 	for {

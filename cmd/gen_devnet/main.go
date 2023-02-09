@@ -7,12 +7,12 @@ import (
 	"path"
 	"path/filepath"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 
-	"github.com/aximchain/beacon-node/app"
-	"github.com/aximchain/beacon-node/app/config"
-	axcInit "github.com/aximchain/beacon-node/cmd/axcchaind/init"
-	"github.com/aximchain/beacon-node/common/utils"
+	"github.com/aximchain/flash-node/app"
+	"github.com/aximchain/flash-node/app/config"
+	axcInit "github.com/aximchain/flash-node/cmd/axcchaind/init"
+	"github.com/aximchain/flash-node/common/utils"
 )
 
 var (

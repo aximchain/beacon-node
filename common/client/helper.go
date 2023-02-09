@@ -3,13 +3,13 @@ package client
 import (
 	"github.com/pkg/errors"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
-	txutils "github.com/cosmos/cosmos-sdk/client/utils"
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	txbuilder "github.com/cosmos/cosmos-sdk/x/auth/client/txbuilder"
+	"github.com/aximchain/axc-cosmos-sdk/client/context"
+	txutils "github.com/aximchain/axc-cosmos-sdk/client/utils"
+	"github.com/aximchain/axc-cosmos-sdk/codec"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	txbuilder "github.com/aximchain/axc-cosmos-sdk/x/auth/client/txbuilder"
 
-	"github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/flash-node/common/types"
 )
 
 func PrepareCtx(cdc *codec.Codec) (context.CLIContext, txbuilder.TxBuilder) {

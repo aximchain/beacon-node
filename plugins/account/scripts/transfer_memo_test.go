@@ -5,16 +5,16 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	bankclient "github.com/cosmos/cosmos-sdk/x/bank/client"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
+	bankclient "github.com/aximchain/axc-cosmos-sdk/x/bank/client"
 
 	abci "github.com/tendermint/tendermint/abci/types"
 	"github.com/tendermint/tendermint/libs/log"
 
-	"github.com/aximchain/beacon-node/common/testutils"
-	"github.com/aximchain/beacon-node/common/upgrade"
-	"github.com/aximchain/beacon-node/wire"
+	"github.com/aximchain/flash-node/common/testutils"
+	"github.com/aximchain/flash-node/common/upgrade"
+	"github.com/aximchain/flash-node/wire"
 )
 
 func setup() (sdk.Context, auth.AccountKeeper) {

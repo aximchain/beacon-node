@@ -6,13 +6,13 @@ import (
 
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 
-	app "github.com/aximchain/beacon-node/common/types"
-	"github.com/aximchain/beacon-node/plugins/dex/order"
-	"github.com/aximchain/beacon-node/plugins/dex/store"
-	"github.com/aximchain/beacon-node/plugins/dex/types"
-	"github.com/aximchain/beacon-node/plugins/dex/utils"
+	app "github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/plugins/dex/order"
+	"github.com/aximchain/flash-node/plugins/dex/store"
+	"github.com/aximchain/flash-node/plugins/dex/types"
+	"github.com/aximchain/flash-node/plugins/dex/utils"
 )
 
 const MaxDepthLevels = 1000    // matches UI requirement

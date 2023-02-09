@@ -6,7 +6,7 @@ import (
 	"github.com/tendermint/tendermint/libs/common"
 	rpcclient "github.com/tendermint/tendermint/rpc/client"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
+	"github.com/aximchain/axc-cosmos-sdk/client/context"
 )
 
 // QueryWithData queries information about the connected node

@@ -4,16 +4,16 @@ import (
 	"encoding/binary"
 	"fmt"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	"github.com/cosmos/cosmos-sdk/x/bank"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
+	"github.com/aximchain/axc-cosmos-sdk/x/bank"
 
-	bnclog "github.com/aximchain/beacon-node/common/log"
-	"github.com/aximchain/beacon-node/common/types"
-	app "github.com/aximchain/beacon-node/common/types"
-	"github.com/aximchain/beacon-node/common/upgrade"
-	"github.com/aximchain/beacon-node/plugins/tokens/swap"
-	"github.com/aximchain/beacon-node/plugins/tokens/timelock"
+	bnclog "github.com/aximchain/flash-node/common/log"
+	"github.com/aximchain/flash-node/common/types"
+	app "github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/common/upgrade"
+	"github.com/aximchain/flash-node/plugins/tokens/swap"
+	"github.com/aximchain/flash-node/plugins/tokens/timelock"
 )
 
 const abciQueryPrefix = "tokens"
@@ -39,7 +39,7 @@ func InitPlugin(
 
 func RegisterUpgradeBeginBlocker(mapper Mapper) {
 	// bind bnb smart chain contract address to bnb token
-	upgrade.Mgr.RegisterBeginBlocker(upgrade.LaunchAxcUpgrade, func(ctx sdk.Context) {
+	upgrade.Mgr.RegisterBeginBlocker(upgrade.LaunchAscUpgrade, func(ctx sdk.Context) {
 		err := mapper.UpdateBind(ctx, types.NativeTokenSymbol, "0x0000000000000000000000000000000000000000", 18)
 		if err != nil {
 			panic(err)

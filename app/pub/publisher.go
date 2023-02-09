@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"time"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 
 	tmlog "github.com/tendermint/tendermint/libs/log"
 
-	"github.com/aximchain/beacon-node/app/config"
-	"github.com/aximchain/beacon-node/app/pub/sub"
-	orderPkg "github.com/aximchain/beacon-node/plugins/dex/order"
+	"github.com/aximchain/flash-node/app/config"
+	"github.com/aximchain/flash-node/app/pub/sub"
+	orderPkg "github.com/aximchain/flash-node/plugins/dex/order"
 )
 
 const (

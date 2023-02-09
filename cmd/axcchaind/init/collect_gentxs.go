@@ -9,10 +9,10 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
-	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/cosmos/cosmos-sdk/server"
-	"github.com/cosmos/cosmos-sdk/x/auth"
+	"github.com/aximchain/axc-cosmos-sdk/client"
+	"github.com/aximchain/axc-cosmos-sdk/codec"
+	"github.com/aximchain/axc-cosmos-sdk/server"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
 )
 
 const (

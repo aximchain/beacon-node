@@ -6,19 +6,19 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/cosmos/cosmos-sdk/server"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	"github.com/cosmos/cosmos-sdk/x/gov"
-	"github.com/cosmos/cosmos-sdk/x/paramHub"
-	paramtypes "github.com/cosmos/cosmos-sdk/x/paramHub/types"
-	"github.com/cosmos/cosmos-sdk/x/stake"
+	"github.com/aximchain/axc-cosmos-sdk/server"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
+	"github.com/aximchain/axc-cosmos-sdk/x/gov"
+	"github.com/aximchain/axc-cosmos-sdk/x/paramHub"
+	paramtypes "github.com/aximchain/axc-cosmos-sdk/x/paramHub/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/stake"
 	"github.com/tendermint/tendermint/crypto"
 
-	"github.com/aximchain/beacon-node/common/types"
-	"github.com/aximchain/beacon-node/plugins/dex"
-	"github.com/aximchain/beacon-node/plugins/tokens"
-	"github.com/aximchain/beacon-node/wire"
+	"github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/plugins/dex"
+	"github.com/aximchain/flash-node/plugins/tokens"
+	"github.com/aximchain/flash-node/wire"
 )
 
 // DefaultKeyPass only for private test net

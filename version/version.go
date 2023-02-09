@@ -15,9 +15,9 @@ var (
 const NodeVersion = "v0.10.6"
 
 func init() {
-	Version = fmt.Sprintf("AXC Beacon Chain Release: %s;", NodeVersion)
+	Version = fmt.Sprintf("AXC Flash Chain Release: %s;", NodeVersion)
 	if GitCommit != "" {
-		Version += fmt.Sprintf("AXC Beacon Chain Commit: %s;", GitCommit)
+		Version += fmt.Sprintf("AXC Flash Chain Commit: %s;", GitCommit)
 	}
 	if CosmosRelease != "" {
 		Version += fmt.Sprintf(" Cosmos Release: %s;", CosmosRelease)

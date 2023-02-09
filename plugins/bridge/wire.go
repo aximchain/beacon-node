@@ -1,7 +1,7 @@
 package bridge
 
 import (
-	"github.com/aximchain/beacon-node/wire"
+	"github.com/aximchain/flash-node/wire"
 )
 
 // Register concrete types on wire codec

@@ -3,7 +3,7 @@ package timelock
 import (
 	"fmt"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 )
 
 func KeyRecord(addr sdk.AccAddress, id int64) []byte {

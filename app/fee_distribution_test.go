@@ -7,13 +7,13 @@ import (
 	"os"
 	"testing"
 
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/fees"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	"github.com/cosmos/cosmos-sdk/x/bank"
-	"github.com/cosmos/cosmos-sdk/x/mock"
-	"github.com/cosmos/cosmos-sdk/x/stake"
+	"github.com/aximchain/axc-cosmos-sdk/codec"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/types/fees"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
+	"github.com/aximchain/axc-cosmos-sdk/x/bank"
+	"github.com/aximchain/axc-cosmos-sdk/x/mock"
+	"github.com/aximchain/axc-cosmos-sdk/x/stake"
 	"github.com/stretchr/testify/require"
 	abci "github.com/tendermint/tendermint/abci/types"
 	"github.com/tendermint/tendermint/crypto"
@@ -21,11 +21,11 @@ import (
 	"github.com/tendermint/tendermint/libs/log"
 	"github.com/tidwall/gjson"
 
-	"github.com/aximchain/beacon-node/app/pub"
-	"github.com/aximchain/beacon-node/common/testutils"
-	"github.com/aximchain/beacon-node/common/types"
-	"github.com/aximchain/beacon-node/common/upgrade"
-	"github.com/aximchain/beacon-node/wire"
+	"github.com/aximchain/flash-node/app/pub"
+	"github.com/aximchain/flash-node/common/testutils"
+	"github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/common/upgrade"
+	"github.com/aximchain/flash-node/wire"
 )
 
 const BREATHE_BLOCK_INTERVAL = 5
@@ -160,7 +160,7 @@ func setupTestForBEP159Test() (*Aximchain, sdk.Context, []Account) {
 	upgrade.Mgr.Reset()
 	context := ServerContext
 	ServerContext.BreatheBlockInterval = BREATHE_BLOCK_INTERVAL
-	ServerContext.LaunchAxcUpgradeHeight = 1
+	ServerContext.LaunchAscUpgradeHeight = 1
 	ServerContext.BEP128Height = 2
 	ServerContext.BEP151Height = 3
 	ServerContext.BEP153Height = 4
@@ -178,8 +178,8 @@ func setupTestForBEP159Test() (*Aximchain, sdk.Context, []Account) {
 	logger.Info("BEP159Phase2Height", "BEP159Phase2Height", ServerContext.BEP159Phase2Height)
 	logger.Info("BreatheBlockInterval", "BreatheBlockInterval", ServerContext.BreatheBlockInterval)
 	logger.Info("IbcChainId", "IbcChainId", ServerContext.IbcChainId)
-	logger.Info("AxcChainId", "AxcChainId", ServerContext.AxcChainId)
-	logger.Info("AxcIbcChainId", "AxcIbcChainId", ServerContext.AxcIbcChainId)
+	logger.Info("AscChainId", "AscChainId", ServerContext.AscChainId)
+	logger.Info("AscIbcChainId", "AscIbcChainId", ServerContext.AscIbcChainId)
 
 	// read genesis
 	genesisJsonFile, err := os.Open("../asset/mainnet/genesis.json")

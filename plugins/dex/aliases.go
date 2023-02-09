@@ -1,9 +1,9 @@
 package dex
 
 import (
-	"github.com/aximchain/beacon-node/plugins/dex/order"
-	"github.com/aximchain/beacon-node/plugins/dex/store"
-	"github.com/aximchain/beacon-node/plugins/dex/types"
+	"github.com/aximchain/flash-node/plugins/dex/order"
+	"github.com/aximchain/flash-node/plugins/dex/store"
+	"github.com/aximchain/flash-node/plugins/dex/types"
 )
 
 // type MsgList = list.Msg

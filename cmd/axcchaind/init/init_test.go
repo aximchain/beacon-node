@@ -15,11 +15,11 @@ import (
 	"github.com/tendermint/tendermint/libs/cli"
 	"github.com/tendermint/tendermint/libs/log"
 
-	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/server"
-	"github.com/cosmos/cosmos-sdk/server/mock"
+	"github.com/aximchain/axc-cosmos-sdk/client"
+	"github.com/aximchain/axc-cosmos-sdk/server"
+	"github.com/aximchain/axc-cosmos-sdk/server/mock"
 
-	"github.com/aximchain/beacon-node/app"
+	"github.com/aximchain/flash-node/app"
 )
 
 func TestInitCmd(t *testing.T) {

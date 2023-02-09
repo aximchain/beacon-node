@@ -8,11 +8,11 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
+	"github.com/aximchain/axc-cosmos-sdk/client/context"
 
-	"github.com/aximchain/beacon-node/common"
-	"github.com/aximchain/beacon-node/common/types"
-	"github.com/aximchain/beacon-node/wire"
+	"github.com/aximchain/flash-node/common"
+	"github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/wire"
 )
 
 func getTokenInfoCmd(cmdr Commander) *cobra.Command {

@@ -4,15 +4,15 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
-	paramapi "github.com/cosmos/cosmos-sdk/x/paramHub/client/rest"
+	"github.com/aximchain/axc-cosmos-sdk/client/context"
+	paramapi "github.com/aximchain/axc-cosmos-sdk/x/paramHub/client/rest"
 
-	hnd "github.com/aximchain/beacon-node/plugins/api/handlers"
-	"github.com/aximchain/beacon-node/plugins/dex"
-	dexapi "github.com/aximchain/beacon-node/plugins/dex/client/rest"
-	tksapi "github.com/aximchain/beacon-node/plugins/tokens/client/rest"
-	tkstore "github.com/aximchain/beacon-node/plugins/tokens/store"
-	"github.com/aximchain/beacon-node/wire"
+	hnd "github.com/aximchain/flash-node/plugins/api/handlers"
+	"github.com/aximchain/flash-node/plugins/dex"
+	dexapi "github.com/aximchain/flash-node/plugins/dex/client/rest"
+	tksapi "github.com/aximchain/flash-node/plugins/tokens/client/rest"
+	tkstore "github.com/aximchain/flash-node/plugins/tokens/store"
+	"github.com/aximchain/flash-node/wire"
 )
 
 // middleware (limits, parsing, etc)

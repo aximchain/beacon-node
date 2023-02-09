@@ -7,13 +7,13 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/auth"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
 	"github.com/stretchr/testify/require"
 	abci "github.com/tendermint/tendermint/abci/types"
 	"github.com/tendermint/tendermint/libs/log"
 
-	"github.com/aximchain/beacon-node/common/testutils"
+	"github.com/aximchain/flash-node/common/testutils"
 )
 
 func setup() (sdk.Context, sdk.Handler, Keeper, auth.AccountKeeper) {

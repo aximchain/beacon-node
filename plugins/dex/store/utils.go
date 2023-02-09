@@ -4,7 +4,7 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/aximchain/beacon-node/common/types"
+	"github.com/aximchain/flash-node/common/types"
 )
 
 // ValidatePairSymbol validates the given trading pair.

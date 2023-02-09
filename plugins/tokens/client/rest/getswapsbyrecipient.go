@@ -6,12 +6,12 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/client/context"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 	"github.com/gorilla/mux"
 
-	"github.com/aximchain/beacon-node/plugins/tokens/swap"
-	"github.com/aximchain/beacon-node/wire"
+	"github.com/aximchain/flash-node/plugins/tokens/swap"
+	"github.com/aximchain/flash-node/wire"
 )
 
 // QuerySwapIDsByRecipientReqHandler creates an http request handler to query swapID list by recipient address

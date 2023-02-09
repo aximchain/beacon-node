@@ -11,9 +11,9 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
-	"github.com/cosmos/cosmos-sdk/baseapp"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/version"
+	"github.com/aximchain/axc-cosmos-sdk/baseapp"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/version"
 
 	tmcmd "github.com/tendermint/tendermint/cmd/tendermint/commands"
 	tmcfg "github.com/tendermint/tendermint/config"
@@ -25,11 +25,11 @@ import (
 	"github.com/tendermint/tendermint/snapshot"
 	tmstore "github.com/tendermint/tendermint/store"
 
-	"github.com/aximchain/beacon-node/app/config"
-	"github.com/aximchain/beacon-node/common"
-	axclog "github.com/aximchain/beacon-node/common/log"
-	"github.com/aximchain/beacon-node/common/utils"
-	"github.com/aximchain/beacon-node/plugins/dex/order"
+	"github.com/aximchain/flash-node/app/config"
+	"github.com/aximchain/flash-node/common"
+	axclog "github.com/aximchain/flash-node/common/log"
+	"github.com/aximchain/flash-node/common/utils"
+	"github.com/aximchain/flash-node/plugins/dex/order"
 )
 
 // If a new config is created, change some of the default tendermint settings

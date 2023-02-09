@@ -1,13 +1,13 @@
 package bridge
 
 import (
-	"github.com/cosmos/cosmos-sdk/baseapp"
-	"github.com/cosmos/cosmos-sdk/pubsub"
-	"github.com/cosmos/cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/baseapp"
+	"github.com/aximchain/axc-cosmos-sdk/pubsub"
+	"github.com/aximchain/axc-cosmos-sdk/types"
 
-	btype "github.com/aximchain/beacon-node/plugins/bridge/types"
+	btype "github.com/aximchain/flash-node/plugins/bridge/types"
 
-	"github.com/aximchain/beacon-node/plugins/bridge/keeper"
+	"github.com/aximchain/flash-node/plugins/bridge/keeper"
 )
 
 const (

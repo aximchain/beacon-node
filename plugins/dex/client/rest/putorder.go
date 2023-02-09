@@ -6,17 +6,17 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	authcmd "github.com/cosmos/cosmos-sdk/x/auth/client/cli"
-	txbuilder "github.com/cosmos/cosmos-sdk/x/auth/client/txbuilder"
+	"github.com/aximchain/axc-cosmos-sdk/client/context"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
+	authcmd "github.com/aximchain/axc-cosmos-sdk/x/auth/client/cli"
+	txbuilder "github.com/aximchain/axc-cosmos-sdk/x/auth/client/txbuilder"
 
-	"github.com/aximchain/beacon-node/common/client"
-	"github.com/aximchain/beacon-node/common/utils"
-	"github.com/aximchain/beacon-node/plugins/dex/order"
-	"github.com/aximchain/beacon-node/plugins/dex/store"
-	"github.com/aximchain/beacon-node/wire"
+	"github.com/aximchain/flash-node/common/client"
+	"github.com/aximchain/flash-node/common/utils"
+	"github.com/aximchain/flash-node/plugins/dex/order"
+	"github.com/aximchain/flash-node/plugins/dex/store"
+	"github.com/aximchain/flash-node/wire"
 )
 
 // PutOrderReqHandler creates an http request handler to create a new order transaction and return its binary tx

@@ -3,10 +3,10 @@ package sub
 import (
 	"time"
 
-	"github.com/aximchain/beacon-node/app/config"
-	"github.com/aximchain/beacon-node/plugins/bridge"
+	"github.com/aximchain/flash-node/app/config"
+	"github.com/aximchain/flash-node/plugins/bridge"
 
-	"github.com/cosmos/cosmos-sdk/pubsub"
+	"github.com/aximchain/axc-cosmos-sdk/pubsub"
 )
 
 func SubscribeEvent(sub *pubsub.Subscriber, cfg *config.PublicationConfig) error {

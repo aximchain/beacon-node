@@ -7,16 +7,16 @@ import (
 	lru "github.com/hashicorp/golang-lru"
 	"github.com/pkg/errors"
 
-	"github.com/cosmos/cosmos-sdk/baseapp"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkfees "github.com/cosmos/cosmos-sdk/types/fees"
-	"github.com/cosmos/cosmos-sdk/x/auth"
+	"github.com/aximchain/axc-cosmos-sdk/baseapp"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	sdkfees "github.com/aximchain/axc-cosmos-sdk/types/fees"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
 
 	"github.com/tendermint/tendermint/crypto"
 	"github.com/tendermint/tendermint/crypto/tmhash"
 	"github.com/tendermint/tendermint/libs/common"
 
-	"github.com/aximchain/beacon-node/common/log"
+	"github.com/aximchain/flash-node/common/log"
 )
 
 const (

@@ -8,10 +8,10 @@ import (
 
 	"github.com/gorilla/mux"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
+	"github.com/aximchain/axc-cosmos-sdk/client/context"
 
-	"github.com/aximchain/beacon-node/common/types"
-	"github.com/aximchain/beacon-node/wire"
+	"github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/wire"
 )
 
 func getTokenInfo(ctx context.CLIContext, cdc *wire.Codec, symbol string, isMini bool) (types.IToken, error) {

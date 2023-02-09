@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"strings"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 
-	"github.com/aximchain/beacon-node/common/types"
-	orderPkg "github.com/aximchain/beacon-node/plugins/dex/order"
+	"github.com/aximchain/flash-node/common/types"
+	orderPkg "github.com/aximchain/flash-node/plugins/dex/order"
 )
 
 type msgType int8

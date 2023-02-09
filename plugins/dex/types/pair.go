@@ -1,8 +1,8 @@
 package types
 
 import (
-	ctuils "github.com/aximchain/beacon-node/common/utils"
-	"github.com/aximchain/beacon-node/plugins/dex/utils"
+	ctuils "github.com/aximchain/flash-node/common/utils"
+	"github.com/aximchain/flash-node/plugins/dex/utils"
 )
 
 type TradingPair struct {

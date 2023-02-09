@@ -3,9 +3,9 @@ package types
 import (
 	"fmt"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 
-	cmmtypes "github.com/aximchain/beacon-node/common/types"
+	cmmtypes "github.com/aximchain/flash-node/common/types"
 )
 
 func ConvertAXCAmountToBCAmountBigInt(contractDecimals int8, axcAmount sdk.Int) (sdk.Int, sdk.Error) {

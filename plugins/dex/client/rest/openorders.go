@@ -5,12 +5,12 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/cosmos/cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/types"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
+	"github.com/aximchain/axc-cosmos-sdk/client/context"
 
-	"github.com/aximchain/beacon-node/plugins/dex/store"
-	"github.com/aximchain/beacon-node/wire"
+	"github.com/aximchain/flash-node/plugins/dex/store"
+	"github.com/aximchain/flash-node/wire"
 )
 
 func OpenOrdersReqHandler(cdc *wire.Codec, ctx context.CLIContext) http.HandlerFunc {

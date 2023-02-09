@@ -1,14 +1,14 @@
 package tokens
 
 import (
-	"github.com/aximchain/beacon-node/plugins/tokens/burn"
-	"github.com/aximchain/beacon-node/plugins/tokens/freeze"
-	"github.com/aximchain/beacon-node/plugins/tokens/issue"
-	"github.com/aximchain/beacon-node/plugins/tokens/ownership"
-	"github.com/aximchain/beacon-node/plugins/tokens/seturi"
-	"github.com/aximchain/beacon-node/plugins/tokens/swap"
-	"github.com/aximchain/beacon-node/plugins/tokens/timelock"
-	"github.com/aximchain/beacon-node/wire"
+	"github.com/aximchain/flash-node/plugins/tokens/burn"
+	"github.com/aximchain/flash-node/plugins/tokens/freeze"
+	"github.com/aximchain/flash-node/plugins/tokens/issue"
+	"github.com/aximchain/flash-node/plugins/tokens/ownership"
+	"github.com/aximchain/flash-node/plugins/tokens/seturi"
+	"github.com/aximchain/flash-node/plugins/tokens/swap"
+	"github.com/aximchain/flash-node/plugins/tokens/timelock"
+	"github.com/aximchain/flash-node/wire"
 )
 
 // Register concrete types on wire codec

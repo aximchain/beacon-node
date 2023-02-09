@@ -3,21 +3,21 @@ package admin
 import (
 	"fmt"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/bank"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/bank"
 
-	"github.com/aximchain/beacon-node/common/runtime"
-	"github.com/aximchain/beacon-node/plugins/account"
-	"github.com/aximchain/beacon-node/plugins/bridge"
-	"github.com/aximchain/beacon-node/plugins/dex/order"
-	list "github.com/aximchain/beacon-node/plugins/dex/types"
-	"github.com/aximchain/beacon-node/plugins/tokens/burn"
-	"github.com/aximchain/beacon-node/plugins/tokens/freeze"
-	"github.com/aximchain/beacon-node/plugins/tokens/issue"
-	"github.com/aximchain/beacon-node/plugins/tokens/ownership"
-	"github.com/aximchain/beacon-node/plugins/tokens/seturi"
-	"github.com/aximchain/beacon-node/plugins/tokens/swap"
-	"github.com/aximchain/beacon-node/plugins/tokens/timelock"
+	"github.com/aximchain/flash-node/common/runtime"
+	"github.com/aximchain/flash-node/plugins/account"
+	"github.com/aximchain/flash-node/plugins/bridge"
+	"github.com/aximchain/flash-node/plugins/dex/order"
+	list "github.com/aximchain/flash-node/plugins/dex/types"
+	"github.com/aximchain/flash-node/plugins/tokens/burn"
+	"github.com/aximchain/flash-node/plugins/tokens/freeze"
+	"github.com/aximchain/flash-node/plugins/tokens/issue"
+	"github.com/aximchain/flash-node/plugins/tokens/ownership"
+	"github.com/aximchain/flash-node/plugins/tokens/seturi"
+	"github.com/aximchain/flash-node/plugins/tokens/swap"
+	"github.com/aximchain/flash-node/plugins/tokens/timelock"
 )
 
 var transferOnlyModeBlackList = []string{
