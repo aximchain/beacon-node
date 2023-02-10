@@ -41,7 +41,7 @@ Please [install it](https://go.dev/doc/install) or use brew on macOS: `brew inst
 #### Build from Source
 
 ```bash
-$ git clone git@github.com:aximchain/beacon-node.git
+$ git clone git@github.com:aximchain/flash-node.git
 $ cd node && make build
 ```
 

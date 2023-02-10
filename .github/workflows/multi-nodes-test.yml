@@ -13,7 +13,7 @@ jobs:
           go-version: 1.17
       - run: make docker.build docker.generate docker.start
       # fix docker permission issue
-      - run: chmod 777 -R ~/work/beacon-node/beacon-node/build/devnet
+      - run: chmod 777 -R ~/work/flash-node/flash-node/build/devnet
       - run: sleep 20
       # used to debug workflow
 #      - name: Setup tmate session
