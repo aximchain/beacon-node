@@ -221,9 +221,9 @@ logBuffSize = {{ .LogConfig.LogBuffSize }}
 [cross_chain]
 # IBC chain-id for current chain
 ibcChainId = {{ .CrossChainConfig.IbcChainId }}
-# chain-id for axc chain
+# chain-id for asc chain
 ascChainId = "{{ .CrossChainConfig.AscChainId }}"
-# IBC chain-id for axc chain
+# IBC chain-id for asc chain
 ascIbcChainId = {{ .CrossChainConfig.AscIbcChainId }}
 
 [dex]
