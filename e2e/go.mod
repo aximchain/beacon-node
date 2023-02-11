@@ -3,7 +3,7 @@ module github.com/aximchain/flash-node/e2e
 go 1.17
 
 require (
-	github.com/aximchain/axc-cosmos-sdk v0.1.5
+	github.com/aximchain/axc-cosmos-sdk v0.1.8
 	github.com/aximchain/go-sdk v0.1.4
 	github.com/tendermint/go-amino v0.15.0
 	github.com/tendermint/tendermint v0.32.3
