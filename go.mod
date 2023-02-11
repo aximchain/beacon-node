@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/Shopify/sarama v1.21.0
-	github.com/aximchain/axc-cosmos-sdk v0.1.5
+	github.com/aximchain/axc-cosmos-sdk v0.1.8
 	github.com/deathowl/go-metrics-prometheus v0.0.0-20200518174047-74482eab5bfb
 	github.com/eapache/go-resiliency v1.1.0
 	github.com/go-kit/kit v0.9.0
@@ -74,7 +74,7 @@ require (
 	github.com/tidwall/pretty v1.2.0 // indirect
 	github.com/zondax/hid v0.9.0 // indirect
 	github.com/zondax/ledger-cosmos-go v0.9.9 // indirect
-	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519 // indirect
+	golang.org/x/crypto v0.5.0 // indirect
 	golang.org/x/net v0.3.0 // indirect
 	golang.org/x/sys v0.3.0 // indirect
 	golang.org/x/text v0.5.0 // indirect
