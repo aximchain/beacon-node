@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/aximchain/axc-cosmos-sdk v0.1.8
-	github.com/aximchain/go-sdk v0.1.4
+	github.com/aximchain/go-sdk v0.1.5
 	github.com/tendermint/go-amino v0.15.0
 	github.com/tendermint/tendermint v0.32.3
 	github.com/tidwall/gjson v1.14.3
@@ -12,7 +12,7 @@ require (
 )
 
 require (
-	github.com/aximchain/flash-node v0.1.4 // indirect
+	github.com/aximchain/flash-node v0.1.5 // indirect
 	github.com/bartekn/go-bip39 v0.0.0-20171116152956-a05967ea095d // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/bgentry/speakeasy v0.1.0 // indirect
@@ -68,10 +68,10 @@ require (
 	github.com/zondax/hid v0.9.0 // indirect
 	github.com/zondax/ledger-cosmos-go v0.9.9 // indirect
 	github.com/zondax/ledger-go v0.9.0 // indirect
-	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519 // indirect
-	golang.org/x/net v0.3.0 // indirect
-	golang.org/x/sys v0.3.0 // indirect
-	golang.org/x/text v0.5.0 // indirect
+	golang.org/x/crypto v0.5.0 // indirect
+	golang.org/x/net v0.5.0 // indirect
+	golang.org/x/sys v0.4.0 // indirect
+	golang.org/x/text v0.6.0 // indirect
 	google.golang.org/genproto v0.0.0-20190425155659-357c62f0e4bb // indirect
 	google.golang.org/grpc v1.23.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
