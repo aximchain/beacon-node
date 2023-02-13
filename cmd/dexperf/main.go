@@ -28,7 +28,6 @@ import (
 	"github.com/aximchain/axc-cosmos-sdk/x/auth"
 	txbuilder "github.com/aximchain/axc-cosmos-sdk/x/auth/client/txbuilder"
 	"github.com/aximchain/axc-cosmos-sdk/x/bank"
-	"github.com/sasha-s/go-deadlock"
 	"github.com/spf13/viper"
 	abci "github.com/tendermint/tendermint/abci/types"
 	rpcclient "github.com/tendermint/tendermint/rpc/client"
@@ -89,11 +88,11 @@ type DEXSubmit struct {
 }
 
 type sequence struct {
-	m      deadlock.Mutex
+	m      sync.Mutex
 	seqMap map[string]int64
 }
 type txhash struct {
-	m     deadlock.Mutex
+	m     sync.Mutex
 	trans []string
 }
 

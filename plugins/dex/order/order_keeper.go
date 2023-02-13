@@ -1,8 +1,9 @@
 package order
 
 import (
+	"sync"
+
 	sdk "github.com/aximchain/axc-cosmos-sdk/types"
-	"github.com/sasha-s/go-deadlock"
 	tmlog "github.com/tendermint/tendermint/libs/log"
 
 	bnclog "github.com/aximchain/flash-node/common/log"
@@ -58,7 +59,7 @@ type BaseOrderKeeper struct {
 	roundIOCOrders map[string][]string
 
 	collectOrderInfoForPublish bool
-	orderChangesMtx            *deadlock.Mutex     // guard orderChanges and orderInfosForPub during PreDevlierTx (which is async)
+	orderChangesMtx            *sync.Mutex         // guard orderChanges and orderInfosForPub during PreDevlierTx (which is async)
 	orderChanges               OrderChanges        // order changed in this block, will be cleaned before matching for new block
 	orderInfosForPub           OrderInfoForPublish // for publication usage
 
@@ -74,7 +75,7 @@ func NewBaseOrderKeeper(moduleName string) BaseOrderKeeper {
 		roundIOCOrders: make(map[string][]string, 256),
 
 		collectOrderInfoForPublish: false, // default to false, need a explicit set if needed
-		orderChangesMtx:            &deadlock.Mutex{},
+		orderChangesMtx:            &sync.Mutex{},
 		orderChanges:               make(OrderChanges, 0),
 		orderInfosForPub:           make(OrderInfoForPublish),
 		logger:                     logger,
