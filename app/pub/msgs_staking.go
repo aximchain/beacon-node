@@ -277,7 +277,7 @@ func (msg *Validator) toNativeMap() map[string]interface{} {
 	native["distributionAddr"] = msg.DistributionAddr.String()
 	native["sideChainId"] = msg.SideChainId
 	if msg.SideChainId == "" {
-		native["sideChainId"] = stake.ChainIDForBeaconChain
+		native["sideChainId"] = stake.ChainIDForFlashChain
 	}
 	native["sideConsAddr"] = sdk.HexAddress(msg.SideConsAddr)
 	native["sideFeeAddr"] = sdk.HexAddress(msg.SideFeeAddr)

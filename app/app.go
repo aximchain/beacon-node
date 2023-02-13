@@ -83,7 +83,7 @@ var (
 	ServerContext = config.NewDefaultContext()
 )
 
-// Aximchain is the AXCBeaconChain ABCI application
+// Aximchain is the AXCFlashChain ABCI application
 type Aximchain struct {
 	*baseapp.BaseApp
 	Codec *wire.Codec

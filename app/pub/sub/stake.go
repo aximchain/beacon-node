@@ -53,7 +53,7 @@ func SubscribeStakeEvent(sub *pubsub.Subscriber) error {
 			sub.Logger.Debug(fmt.Sprintf("validator removed event: %v \n", e))
 			chainId := e.ChainId
 			if len(chainId) == 0 {
-				chainId = stake.ChainIDForBeaconChain
+				chainId = stake.ChainIDForFlashChain
 			}
 			if e.IsFromTx {
 				stagingArea.StakeData.appendRemovedValidator(chainId, e.Operator)

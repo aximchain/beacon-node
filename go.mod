@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/Shopify/sarama v1.21.0
-	github.com/aximchain/axc-cosmos-sdk v0.1.8
+	github.com/aximchain/axc-cosmos-sdk v0.1.9
 	github.com/deathowl/go-metrics-prometheus v0.0.0-20200518174047-74482eab5bfb
 	github.com/eapache/go-resiliency v1.1.0
 	github.com/go-kit/kit v0.9.0
