@@ -22,7 +22,7 @@ BUILD_CLI_FLAGS = -tags "${BUILD_CLI_TAGS}" -ldflags "-X github.com/aximchain/fl
 # Without -lstdc++ on CentOS we will encounter link error, solution comes from: https://stackoverflow.com/a/29285011/1147187
 BUILD_CGOFLAGS = CGO_ENABLED=1 CGO_LDFLAGS="-lleveldb -lsnappy -lstdc++"
 BUILD_CFLAGS = ${BUILD_FLAGS} -tags "cleveldb"
-BUILD_TESTNET_FLAGS = ${BUILD_CLI_FLAGS} -ldflags "-X github.com/aximchain/flash-node/app.Bech32PrefixAccAddr=tbnb"
+BUILD_TESTNET_FLAGS = ${BUILD_CLI_FLAGS} -ldflags "-X github.com/aximchain/flash-node/app.Bech32PrefixAccAddr=taxc"
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
