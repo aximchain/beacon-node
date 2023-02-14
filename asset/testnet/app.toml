@@ -191,6 +191,6 @@ logBuffSize = 10000
 [cross_chain]
 ibcChainId = 1
 ascChainId = "chapel"
-ascIbcChainId = 97
+ascIbcChainId = 9998
 [dex]
 BUSDSymbol = "BUSD-BAF"
