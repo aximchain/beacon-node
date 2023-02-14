@@ -12,14 +12,14 @@ import (
 	"github.com/tendermint/tendermint/snapshot"
 	tmstore "github.com/tendermint/tendermint/store"
 
-	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/cosmos/cosmos-sdk/server"
-	"github.com/cosmos/cosmos-sdk/store"
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/codec"
+	"github.com/aximchain/axc-cosmos-sdk/server"
+	"github.com/aximchain/axc-cosmos-sdk/store"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 
-	"github.com/bnb-chain/node/app"
-	configPkg "github.com/bnb-chain/node/app/config"
-	"github.com/bnb-chain/node/common"
+	"github.com/aximchain/flash-node/app"
+	configPkg "github.com/aximchain/flash-node/app/config"
+	"github.com/aximchain/flash-node/common"
 )
 
 const (

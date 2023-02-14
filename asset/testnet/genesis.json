@@ -1,6 +1,6 @@
 {
-  "genesis_time": "2020-07-09T00:00:00.051674734Z",
-  "chain_id": "Axim-Chain-Ganges",
+  "genesis_time": "2023-02-14T09:27:03.111926Z",
+  "chain_id": "Aximchain-Ganges",
   "consensus_params": {
     "block_size": {
       "max_bytes": "1048576",
@@ -22,40 +22,15 @@
         "name": "Aximchain Native Token",
         "symbol": "AXC",
         "total_supply": "20000000000000000",
-        "owner": "taxc1l9ffdr8e2pk7h4agvhwcslh2urwpuhqm2u82hy",
+        "owner": "taxc1kzqq2rlc68cqkayn949pc4ukr7wa025wg06psj",
         "mintable": false
       }
     ],
     "accounts": [
       {
-        "name": "Fuji",
-        "address": "taxc1l9ffdr8e2pk7h4agvhwcslh2urwpuhqm2u82hy",
-        "consensus_addr": ""
-      },
-      {
-        "name": "Fuji",
-        "address": "taxc1l9ffdr8e2pk7h4agvhwcslh2urwpuhqm2u82hy",
-        "consensus_addr": "9CCDDD479C0AD8DCD01D754DD95FE15384E8BBDC"
-      },
-      {
-        "name": "Kita",
-        "address": "taxc104s2prgzua8e3te6jumqsp0qn2dvqhlyemrf0g",
-        "consensus_addr": ""
-      },
-      {
-        "name": "Kita",
-        "address": "taxc104s2prgzua8e3te6jumqsp0qn2dvqhlyemrf0g",
-        "consensus_addr": "F42F1D05AC568D12E26B9655395E7FBBD46BC5BB"
-      },
-      {
-        "name": "Everest",
-        "address": "taxc19kecg6c93u7wh2cts4vsql52l33fa6a37y2tte",
-        "consensus_addr": ""
-      },
-      {
-        "name": "Everest",
-        "address": "taxc19kecg6c93u7wh2cts4vsql52l33fa6a37y2tte",
-        "consensus_addr": "D4CECEF238E778C7063552C3A7AB95DA35C3FB47"
+        "name": "owner",
+        "address": "taxc1kzqq2rlc68cqkayn949pc4ukr7wa025wg06psj",
+        "consensus_addr": "1D609784B7F2F3FE53B814E30F2DE0B8E0CDACE1"
       }
     ],
     "dex": {},
@@ -218,7 +193,14 @@
       "params": {
         "unbonding_time": "604800000000000",
         "max_validators": 21,
-        "bond_denom": "AXC"
+        "bond_denom": "AXC",
+        "min_self_delegation": "1000000000000",
+        "min_delegation_change": "100000000",
+        "reward_distribution_batch_size": "1000",
+        "max_stake_snapshots": 30,
+        "base_proposer_reward_ratio": "1000000",
+        "bonus_proposer_reward_ratio": "4000000",
+        "fee_from_asc_to_fc_ratio": "10000000"
       },
       "validators": null,
       "bonds": null
@@ -250,7 +232,7 @@
               "value": {
                 "MsgCreateValidator": {
                   "Description": {
-                    "moniker": "Fuji",
+                    "moniker": "owner",
                     "identity": "",
                     "website": "",
                     "details": ""
@@ -260,15 +242,15 @@
                     "max_rate": "0",
                     "max_change_rate": "0"
                   },
-                  "delegator_address": "taxc1l9ffdr8e2pk7h4agvhwcslh2urwpuhqm2u82hy",
-                  "validator_address": "ava1l9ffdr8e2pk7h4agvhwcslh2urwpuhqmy407f3",
+                  "delegator_address": "taxc1kzqq2rlc68cqkayn949pc4ukr7wa025wg06psj",
+                  "validator_address": "ava1kzqq2rlc68cqkayn949pc4ukr7wa025wke4x9f",
                   "pubkey": {
                     "type": "tendermint/PubKeyEd25519",
-                    "value": "TRvmTw6aRmwuZqU0M5KBkng+Kfj6Ib6yEzSZte93D2A="
+                    "value": "m6pm7leIjhtzdp4VmFK7DH7HEoLqd2vp6ZIzWnvL9ok="
                   },
                   "delegation": {
                     "denom": "AXC",
-                    "amount": "1000000000000"
+                    "amount": "9000000000000"
                   }
                 },
                 "proposal_id": "0"
@@ -279,114 +261,14 @@
             {
               "pub_key": {
                 "type": "tendermint/PubKeySecp256k1",
-                "value": "A//eGMq4IXOWB/WC35sexMnrspP+2aC8QHWGOF3isHYs"
+                "value": "AjTp6MsMQJyLjCk0Ag0IWb5t1TJrn7mwXPFS9PSsK1zH"
               },
-              "signature": "eyDu8Pr93FRxz6+7nNNDNbynU9uLYxnTWMcexhMSEC9VCvpk1LZ16uvqApQw07LyZQuliB52QCb3VJfhUqRMGA==",
+              "signature": "hmD4Hld6bVl3qslh6sqgIWJWUZRw/QXXenqFVG3703oUt1wIpE3j19/K/4ruLCFDFZWXlZqsqRasQ2XTOz8s0w==",
               "account_number": "0",
               "sequence": "0"
             }
           ],
-          "memo": "",
-          "source": "0",
-          "data": null
-        }
-      },
-      {
-        "type": "auth/StdTx",
-        "value": {
-          "msg": [
-            {
-              "type": "cosmos-sdk/MsgCreateValidatorProposal",
-              "value": {
-                "MsgCreateValidator": {
-                  "Description": {
-                    "moniker": "Kita",
-                    "identity": "",
-                    "website": "",
-                    "details": ""
-                  },
-                  "Commission": {
-                    "rate": "0",
-                    "max_rate": "0",
-                    "max_change_rate": "0"
-                  },
-                  "delegator_address": "taxc104s2prgzua8e3te6jumqsp0qn2dvqhlyemrf0g",
-                  "validator_address": "ava104s2prgzua8e3te6jumqsp0qn2dvqhlyhjta3a",
-                  "pubkey": {
-                    "type": "tendermint/PubKeyEd25519",
-                    "value": "AXdpIP8LDzjXjPlcAzwhrfcEV4URTjkqdUQXllLgphI="
-                  },
-                  "delegation": {
-                    "denom": "AXC",
-                    "amount": "1000000000000"
-                  }
-                },
-                "proposal_id": "0"
-              }
-            }
-          ],
-          "signatures": [
-            {
-              "pub_key": {
-                "type": "tendermint/PubKeySecp256k1",
-                "value": "AxsnY0fJovfRkhmroAglhnKdPy57GOSM3lw2yeOt90on"
-              },
-              "signature": "lD/MdF306w0yoTsQG4eD62tfgzbSyd4NjvGnkRtq/hhzkdPo0WkK0xPohVtDlceLmJlPQduE0+roRczlif/3gA==",
-              "account_number": "0",
-              "sequence": "0"
-            }
-          ],
-          "memo": "",
-          "source": "0",
-          "data": null
-        }
-      },
-      {
-        "type": "auth/StdTx",
-        "value": {
-          "msg": [
-            {
-              "type": "cosmos-sdk/MsgCreateValidatorProposal",
-              "value": {
-                "MsgCreateValidator": {
-                  "Description": {
-                    "moniker": "Everest",
-                    "identity": "",
-                    "website": "",
-                    "details": ""
-                  },
-                  "Commission": {
-                    "rate": "0",
-                    "max_rate": "0",
-                    "max_change_rate": "0"
-                  },
-                  "delegator_address": "taxc19kecg6c93u7wh2cts4vsql52l33fa6a37y2tte",
-                  "validator_address": "ava19kecg6c93u7wh2cts4vsql52l33fa6a3sdzl4v",
-                  "pubkey": {
-                    "type": "tendermint/PubKeyEd25519",
-                    "value": "mTCKo2XEBVS8iZgq9QXYXalSUURdXdSpuzfdJYT9ktM="
-                  },
-                  "delegation": {
-                    "denom": "AXC",
-                    "amount": "1000000000000"
-                  }
-                },
-                "proposal_id": "0"
-              }
-            }
-          ],
-          "signatures": [
-            {
-              "pub_key": {
-                "type": "tendermint/PubKeySecp256k1",
-                "value": "AgVUOiG88AZKnRiHGjZnx2wKp0FrU9sseuDxFsui+Fmj"
-              },
-              "signature": "eXeQxIPQpHpwA1i1vxOMdj6d5Wov0xyAGjpgZs/eKx8PMRoay0n9sQQB4yZCSO/A6Ihn/pCuxtwCU2gK7zAkuA==",
-              "account_number": "0",
-              "sequence": "0"
-            }
-          ],
-          "memo": "",
+          "memo": "9213d0df6ed7f9e87bf0134ea84f73bb5ccd7aea@192.168.0.1:26656",
           "source": "0",
           "data": null
         }

@@ -8,13 +8,13 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
-	clientFlags "github.com/cosmos/cosmos-sdk/client"
+	clientFlags "github.com/aximchain/axc-cosmos-sdk/client"
 
-	"github.com/bnb-chain/node/common/client"
-	"github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/plugins/account"
-	"github.com/bnb-chain/node/plugins/account/scripts"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/flash-node/common/client"
+	"github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/plugins/account"
+	"github.com/aximchain/flash-node/plugins/account/scripts"
+	"github.com/aximchain/flash-node/wire"
 )
 
 const (

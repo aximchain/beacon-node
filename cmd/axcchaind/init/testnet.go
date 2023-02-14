@@ -9,20 +9,20 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/cosmos/cosmos-sdk/server"
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/client"
+	"github.com/aximchain/axc-cosmos-sdk/codec"
+	"github.com/aximchain/axc-cosmos-sdk/server"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	cfg "github.com/tendermint/tendermint/config"
 	"github.com/tendermint/tendermint/crypto"
 	cmn "github.com/tendermint/tendermint/libs/common"
 
-	"github.com/bnb-chain/node/app"
-	appCfg "github.com/bnb-chain/node/app/config"
-	"github.com/bnb-chain/node/common/utils"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/flash-node/app"
+	appCfg "github.com/aximchain/flash-node/app/config"
+	"github.com/aximchain/flash-node/common/utils"
+	"github.com/aximchain/flash-node/wire"
 )
 
 var (

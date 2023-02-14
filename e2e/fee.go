@@ -6,8 +6,8 @@ import (
 	"io/ioutil"
 	"log"
 
-	"github.com/binance-chain/go-sdk/client/rpc"
-	sdkTypes "github.com/binance-chain/go-sdk/common/types"
+	"github.com/aximchain/go-sdk/client/rpc"
+	sdkTypes "github.com/aximchain/go-sdk/common/types"
 	"golang.org/x/xerrors"
 )
 
@@ -17,7 +17,7 @@ var (
 )
 
 // const sideChainId = "rialto"
-const sideChainId = "axc"
+const sideChainId = "asc"
 
 type Validator struct {
 	OperatorAddr  sdkTypes.ValAddress   `json:"operator_addr"`

@@ -5,19 +5,19 @@ import (
 	"math"
 	"testing"
 
-	cstore "github.com/cosmos/cosmos-sdk/store"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/auth"
+	cstore "github.com/aximchain/axc-cosmos-sdk/store"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
 	"github.com/stretchr/testify/require"
 	abci "github.com/tendermint/tendermint/abci/types"
 	dbm "github.com/tendermint/tendermint/libs/db"
 	"github.com/tendermint/tendermint/libs/log"
 
-	"github.com/bnb-chain/node/common"
-	"github.com/bnb-chain/node/plugins/dex/store"
-	"github.com/bnb-chain/node/plugins/dex/types"
-	dextypes "github.com/bnb-chain/node/plugins/dex/types"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/flash-node/common"
+	"github.com/aximchain/flash-node/plugins/dex/store"
+	"github.com/aximchain/flash-node/plugins/dex/types"
+	dextypes "github.com/aximchain/flash-node/plugins/dex/types"
+	"github.com/aximchain/flash-node/wire"
 )
 
 func setupMultiStore() (sdk.MultiStore, *sdk.KVStoreKey, *sdk.KVStoreKey, *sdk.KVStoreKey) {

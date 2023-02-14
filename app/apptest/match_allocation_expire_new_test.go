@@ -2,16 +2,16 @@ package apptest
 
 import (
 	"fmt"
+	"sync"
 	"testing"
 	"time"
 
-	"github.com/sasha-s/go-deadlock"
 	"github.com/stretchr/testify/assert"
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/bnb-chain/node/common/utils"
-	"github.com/bnb-chain/node/plugins/dex/matcheng"
-	"github.com/bnb-chain/node/plugins/dex/order"
+	"github.com/aximchain/flash-node/common/utils"
+	"github.com/aximchain/flash-node/plugins/dex/matcheng"
+	"github.com/aximchain/flash-node/plugins/dex/order"
 )
 
 /*
@@ -52,7 +52,7 @@ func Test_Expire_1_new(t *testing.T) {
 
 	ctx = UpdateContextB(addr, ctx, 3, tNow.AddDate(0, 0, 3))
 
-	var m deadlock.Mutex
+	var m sync.Mutex
 	transfers := make([]*order.Transfer, 0)
 	testApp.DexKeeper.ExpireOrders(ctx, ctx.BlockHeader().Time, func(transfer order.Transfer) {
 		m.Lock()
@@ -163,7 +163,7 @@ func Test_Expire_2a_new(t *testing.T) {
 
 	ctx = UpdateContextB(addr, ctx, 3, tNow.AddDate(0, 0, 3))
 
-	var m deadlock.Mutex
+	var m sync.Mutex
 	transfers := make([]*order.Transfer, 0)
 	testApp.DexKeeper.ExpireOrders(ctx, ctx.BlockHeader().Time, func(transfer order.Transfer) {
 		m.Lock()
@@ -333,7 +333,7 @@ func Test_Expire_2b_new(t *testing.T) {
 
 	ctx = UpdateContextB(addr, ctx, 3, tNow.AddDate(0, 0, 3))
 
-	var m deadlock.Mutex
+	var m sync.Mutex
 	transfers := make([]*order.Transfer, 0)
 	testApp.DexKeeper.ExpireOrders(ctx, ctx.BlockHeader().Time, func(transfer order.Transfer) {
 		m.Lock()
@@ -565,7 +565,7 @@ func Test_Expire_3_new(t *testing.T) {
 
 	ctx = UpdateContextB(addr, ctx, 3, tNow.AddDate(0, 0, 3))
 
-	var m deadlock.Mutex
+	var m sync.Mutex
 	transfers := make([]*order.Transfer, 0)
 	testApp.DexKeeper.ExpireOrders(ctx, ctx.BlockHeader().Time, func(transfer order.Transfer) {
 		m.Lock()
@@ -642,7 +642,7 @@ func Test_Expire_4a_new(t *testing.T) {
 
 	ctx = UpdateContextB(addr, ctx, 3, tNow.AddDate(0, 0, 3))
 
-	var m deadlock.Mutex
+	var m sync.Mutex
 	transfers := make([]*order.Transfer, 0)
 	testApp.DexKeeper.ExpireOrders(ctx, ctx.BlockHeader().Time, func(transfer order.Transfer) {
 		m.Lock()
@@ -714,7 +714,7 @@ func Test_Expire_4b_new(t *testing.T) {
 
 	ctx = UpdateContextB(addr, ctx, 3, tNow.AddDate(0, 0, 3))
 
-	var m deadlock.Mutex
+	var m sync.Mutex
 	transfers := make([]*order.Transfer, 0)
 	testApp.DexKeeper.ExpireOrders(ctx, ctx.BlockHeader().Time, func(transfer order.Transfer) {
 		m.Lock()
@@ -891,7 +891,7 @@ func Test_Expire_6_new(t *testing.T) {
 
 	ctx = UpdateContextB(addr, ctx, 3, tNow.AddDate(0, 0, 3))
 
-	var m deadlock.Mutex
+	var m sync.Mutex
 	transfers := make([]*order.Transfer, 0)
 	testApp.DexKeeper.ExpireOrders(ctx, ctx.BlockHeader().Time, func(transfer order.Transfer) {
 		m.Lock()
@@ -959,7 +959,7 @@ func Test_Expire_7_new(t *testing.T) {
 
 	ctx = UpdateContextB(addr, ctx, 3, tNow.AddDate(0, 0, 3))
 
-	var m deadlock.Mutex
+	var m sync.Mutex
 	transfers := make([]*order.Transfer, 0)
 	testApp.DexKeeper.ExpireOrders(ctx, ctx.BlockHeader().Time, func(transfer order.Transfer) {
 		m.Lock()
@@ -1043,7 +1043,7 @@ func Test_Expire_8_new(t *testing.T) {
 
 	ctx = UpdateContextB(addr, ctx, 3, tNow.AddDate(0, 0, 3))
 
-	var m deadlock.Mutex
+	var m sync.Mutex
 	transfers := make([]*order.Transfer, 0)
 	testApp.DexKeeper.ExpireOrders(ctx, ctx.BlockHeader().Time, func(transfer order.Transfer) {
 		m.Lock()
@@ -1051,7 +1051,7 @@ func Test_Expire_8_new(t *testing.T) {
 		m.Unlock()
 	})
 	assert.Equal(3, len(transfers))
-	assert.Equal("", transfers[0].Fee.Tokens[0].Denom)
+	assert.Equal("AXC", transfers[0].Fee.Tokens[0].Denom)
 	assert.Equal(int64(0.0002e8), transfers[0].Fee.Tokens[0].Amount)
 	assert.Equal("BTC-000", transfers[1].Fee.Tokens[0].Denom)
 	assert.Equal(int64(0.0001e8), transfers[1].Fee.Tokens[0].Amount)

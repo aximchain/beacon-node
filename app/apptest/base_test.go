@@ -6,11 +6,11 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkfees "github.com/cosmos/cosmos-sdk/types/fees"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	"github.com/cosmos/cosmos-sdk/x/mock"
-	"github.com/cosmos/cosmos-sdk/x/paramHub"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	sdkfees "github.com/aximchain/axc-cosmos-sdk/types/fees"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
+	"github.com/aximchain/axc-cosmos-sdk/x/mock"
+	"github.com/aximchain/axc-cosmos-sdk/x/paramHub"
 
 	abcicli "github.com/tendermint/tendermint/abci/client"
 	"github.com/tendermint/tendermint/abci/types"
@@ -24,11 +24,11 @@ import (
 	dbm "github.com/tendermint/tendermint/libs/db"
 	"github.com/tendermint/tendermint/libs/log"
 
-	"github.com/bnb-chain/node/app"
-	common "github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/plugins/dex"
-	"github.com/bnb-chain/node/plugins/tokens"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/flash-node/app"
+	common "github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/plugins/dex"
+	"github.com/aximchain/flash-node/plugins/tokens"
+	"github.com/aximchain/flash-node/wire"
 )
 
 type TestClient struct {

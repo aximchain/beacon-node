@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/stake"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/stake"
 	"github.com/linkedin/goavro"
 )
 
@@ -277,7 +277,7 @@ func (msg *Validator) toNativeMap() map[string]interface{} {
 	native["distributionAddr"] = msg.DistributionAddr.String()
 	native["sideChainId"] = msg.SideChainId
 	if msg.SideChainId == "" {
-		native["sideChainId"] = stake.ChainIDForBeaconChain
+		native["sideChainId"] = stake.ChainIDForFlashChain
 	}
 	native["sideConsAddr"] = sdk.HexAddress(msg.SideConsAddr)
 	native["sideFeeAddr"] = sdk.HexAddress(msg.SideFeeAddr)

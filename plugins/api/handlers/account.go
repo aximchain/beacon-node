@@ -7,15 +7,15 @@ import (
 
 	"github.com/gorilla/mux"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	authcmd "github.com/cosmos/cosmos-sdk/x/auth/client/cli"
+	"github.com/aximchain/axc-cosmos-sdk/client/context"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
+	authcmd "github.com/aximchain/axc-cosmos-sdk/x/auth/client/cli"
 
-	"github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/common/utils"
-	tkclient "github.com/bnb-chain/node/plugins/tokens/client/rest"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/common/utils"
+	tkclient "github.com/aximchain/flash-node/plugins/tokens/client/rest"
+	"github.com/aximchain/flash-node/wire"
 )
 
 // AccountReqHandler queries for an account and returns its information.

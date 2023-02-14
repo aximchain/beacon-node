@@ -3,13 +3,13 @@ package api
 import (
 	"github.com/gorilla/mux"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
-	keyscli "github.com/cosmos/cosmos-sdk/client/keys"
-	"github.com/cosmos/cosmos-sdk/crypto/keys"
+	"github.com/aximchain/axc-cosmos-sdk/client/context"
+	keyscli "github.com/aximchain/axc-cosmos-sdk/client/keys"
+	"github.com/aximchain/axc-cosmos-sdk/crypto/keys"
 
-	"github.com/bnb-chain/node/common"
-	"github.com/bnb-chain/node/plugins/tokens"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/flash-node/common"
+	"github.com/aximchain/flash-node/plugins/tokens"
+	"github.com/aximchain/flash-node/wire"
 )
 
 // config consts

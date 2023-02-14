@@ -6,11 +6,11 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/client/context"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 
-	cctx "github.com/bnb-chain/node/common/client/context"
-	"github.com/bnb-chain/node/wire"
+	cctx "github.com/aximchain/flash-node/common/client/context"
+	"github.com/aximchain/flash-node/wire"
 )
 
 // SimulateReqHandler simulates the execution of a single transaction, given its binary form

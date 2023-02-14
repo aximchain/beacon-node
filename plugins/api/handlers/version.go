@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
+	"github.com/aximchain/axc-cosmos-sdk/client/context"
 
-	"github.com/bnb-chain/node/version"
+	"github.com/aximchain/flash-node/version"
 )
 
 // CLIVersionReqHandler handles requests to the cli version REST handler endpoint

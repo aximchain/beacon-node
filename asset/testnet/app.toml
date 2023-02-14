@@ -40,7 +40,7 @@ BEP70Height = 1
 BEP67Height = 1
 BEP8Height = 1
 
-LaunchAxcUpgradeHeight = 1
+LaunchAscUpgradeHeight = 1
 # Block height of Fix Distribution upgrade
 FixSideChainRewardDistribution = 2208000
 
@@ -190,7 +190,7 @@ logFilePath = "axc.log"
 logBuffSize = 10000
 [cross_chain]
 ibcChainId = 1
-axcChainId = "chapel"
-axcIbcChainId = 97
+ascChainId = "chapel"
+ascIbcChainId = 9998
 [dex]
 BUSDSymbol = "BUSD-BAF"

@@ -1,13 +1,13 @@
 package list
 
 import (
-	"github.com/bnb-chain/node/common/log"
-	ctypes "github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/common/upgrade"
-	"github.com/bnb-chain/node/plugins/dex/order"
-	"github.com/bnb-chain/node/plugins/dex/types"
-	"github.com/bnb-chain/node/plugins/tokens"
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/flash-node/common/log"
+	ctypes "github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/common/upgrade"
+	"github.com/aximchain/flash-node/plugins/dex/order"
+	"github.com/aximchain/flash-node/plugins/dex/types"
+	"github.com/aximchain/flash-node/plugins/tokens"
 )
 
 func handleListMini(ctx sdk.Context, dexKeeper *order.DexKeeper, tokenMapper tokens.Mapper,

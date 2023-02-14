@@ -1,8 +1,8 @@
 package bridge
 
 import (
-	"github.com/bnb-chain/node/plugins/bridge/keeper"
-	"github.com/bnb-chain/node/plugins/bridge/types"
+	"github.com/aximchain/flash-node/plugins/bridge/keeper"
+	"github.com/aximchain/flash-node/plugins/bridge/types"
 )
 
 var (

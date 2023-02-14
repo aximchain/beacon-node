@@ -7,9 +7,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/bnb-chain/node/common/utils"
-	"github.com/bnb-chain/node/plugins/dex/matcheng"
-	"github.com/bnb-chain/node/plugins/dex/order"
+	"github.com/aximchain/flash-node/common/utils"
+	"github.com/aximchain/flash-node/plugins/dex/matcheng"
+	"github.com/aximchain/flash-node/plugins/dex/order"
 )
 
 /*
@@ -683,10 +683,10 @@ func Test_Fill_7_new(t *testing.T) {
 	assert.Equal(int8(matcheng.Neutral), trades[0].TickType)
 	// buy 10 btc, 10*10 = 100 axc, fee is 100*0.0005 = 0.05 axc
 	assert.Equal(int64(0.05e8), trades[0].BuyerFee.Tokens[0].Amount)
-	assert.Equal("", trades[0].BuyerFee.Tokens[0].Denom)
+	assert.Equal("AXC", trades[0].BuyerFee.Tokens[0].Denom)
 	// sell 50 eth, 50*15=750 axc, fee is 750*0.0005 = 0.375 axc
 	assert.Equal(int64(0.375e8), trades[0].SellerFee.Tokens[0].Amount)
-	assert.Equal("", trades[0].SellerFee.Tokens[0].Denom)
+	assert.Equal("AXC", trades[0].SellerFee.Tokens[0].Denom)
 
 	buys, sells = GetOrderBook("BTC-000_ETH-000")
 	assert.Equal(0, len(buys))

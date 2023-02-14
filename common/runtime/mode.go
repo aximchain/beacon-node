@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"sync"
 
-	"github.com/sasha-s/go-deadlock"
 	"github.com/tendermint/tendermint/config"
 
-	"github.com/bnb-chain/node/common/log"
+	"github.com/aximchain/flash-node/common/log"
 )
 
 type Mode uint8
@@ -21,7 +21,7 @@ const (
 
 var (
 	runningMode = NormalMode
-	mtx         = new(deadlock.RWMutex)
+	mtx         = new(sync.RWMutex)
 )
 
 func GetRunningMode() Mode {

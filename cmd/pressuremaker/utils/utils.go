@@ -7,11 +7,11 @@ import (
 	"math/rand"
 	"time"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/mock"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/mock"
 
-	"github.com/bnb-chain/node/app/pub"
-	orderPkg "github.com/bnb-chain/node/plugins/dex/order"
+	"github.com/aximchain/flash-node/app/pub"
+	orderPkg "github.com/aximchain/flash-node/plugins/dex/order"
 )
 
 type MessageGenerator struct {

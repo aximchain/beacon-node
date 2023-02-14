@@ -22,24 +22,23 @@ import (
 
 	"go.uber.org/ratelimit"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
-	"github.com/cosmos/cosmos-sdk/client/keys"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	txbuilder "github.com/cosmos/cosmos-sdk/x/auth/client/txbuilder"
-	"github.com/cosmos/cosmos-sdk/x/bank"
-	"github.com/sasha-s/go-deadlock"
+	"github.com/aximchain/axc-cosmos-sdk/client/context"
+	"github.com/aximchain/axc-cosmos-sdk/client/keys"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
+	txbuilder "github.com/aximchain/axc-cosmos-sdk/x/auth/client/txbuilder"
+	"github.com/aximchain/axc-cosmos-sdk/x/bank"
 	"github.com/spf13/viper"
 	abci "github.com/tendermint/tendermint/abci/types"
 	rpcclient "github.com/tendermint/tendermint/rpc/client"
 
-	"github.com/bnb-chain/node/common/client"
-	"github.com/bnb-chain/node/common/tx"
-	"github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/plugins/dex"
-	"github.com/bnb-chain/node/plugins/dex/order"
-	"github.com/bnb-chain/node/plugins/tokens"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/flash-node/common/client"
+	"github.com/aximchain/flash-node/common/tx"
+	"github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/plugins/dex"
+	"github.com/aximchain/flash-node/plugins/dex/order"
+	"github.com/aximchain/flash-node/plugins/tokens"
+	"github.com/aximchain/flash-node/wire"
 )
 
 const (
@@ -89,11 +88,11 @@ type DEXSubmit struct {
 }
 
 type sequence struct {
-	m      deadlock.Mutex
+	m      sync.Mutex
 	seqMap map[string]int64
 }
 type txhash struct {
-	m     deadlock.Mutex
+	m     sync.Mutex
 	trans []string
 }
 

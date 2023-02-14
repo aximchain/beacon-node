@@ -7,7 +7,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/bnb-chain/node/common/utils"
+	"github.com/aximchain/flash-node/common/utils"
 )
 
 func TestConcurrentExecuteAsync(t *testing.T) {

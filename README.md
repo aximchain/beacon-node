@@ -1,20 +1,20 @@
-AXC Beacon Chain
+AXC Flash Chain
 ------------
 
-AXC Beacon Chain is a blockchain with a flexible set of native assets and pluggable modules. It uses [tendermint](https://tendermint.com) for consensus and app logic is written in golang. It targets fast block times, a native dApp layer and multi-token support with no smart contract VM.
+AXC Flash Chain is a blockchain with a flexible set of native assets and pluggable modules. It uses [tendermint](https://tendermint.com) for consensus and app logic is written in golang. It targets fast block times, a native dApp layer and multi-token support with no smart contract VM.
 
 [![Reference](
 https://camo.githubusercontent.com/915b7be44ada53c290eb157634330494ebe3e30a/68747470733a2f2f676f646f632e6f72672f6769746875622e636f6d2f676f6c616e672f6764646f3f7374617475732e737667
 )](https://docs.bnbchain.world/docs/learn/beaconIntro)
 [![Discord](https://img.shields.io/badge/discord-join%20chat-blue.svg)](https://discord.gg/z2VpC455eU)
 
-Beacon Chain has the basic features of most blockchains:
+Flash Chain has the basic features of most blockchains:
 - Sending and receiving AXC and digital assets
 - Issuing new digital assets (we have a standard called BEP-2)
 - Mint/burn, freeze/unfreeze, lock/unlock of digital assets
 
 Besides, it has many other rich features:
-- Staking/governance for both AXC Beacon Chain and AXC Chain.
+- Staking/governance for both AXC Flash Chain and AXC Chain.
 - Cross chain communication.
 - Atomic swap support.
 - Support hot sync and state sync.
@@ -41,7 +41,7 @@ Please [install it](https://go.dev/doc/install) or use brew on macOS: `brew inst
 #### Build from Source
 
 ```bash
-$ git clone git@github.com:aximchain/beacon-node.git
+$ git clone git@github.com:aximchain/flash-node.git
 $ cd node && make build
 ```
 

@@ -1,11 +1,11 @@
 package order
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 
-	bnclog "github.com/bnb-chain/node/common/log"
-	"github.com/bnb-chain/node/common/upgrade"
-	dexUtils "github.com/bnb-chain/node/plugins/dex/utils"
+	bnclog "github.com/aximchain/flash-node/common/log"
+	"github.com/aximchain/flash-node/common/upgrade"
+	dexUtils "github.com/aximchain/flash-node/plugins/dex/utils"
 )
 
 const (

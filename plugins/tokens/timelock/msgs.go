@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"time"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 
-	"github.com/bnb-chain/node/common/types"
+	"github.com/aximchain/flash-node/common/types"
 )
 
 const (

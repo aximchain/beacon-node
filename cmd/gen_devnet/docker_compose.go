@@ -46,9 +46,9 @@ services:
 
   node{{ .Index }}:
     container_name: node{{ .Index }}
-    image: "binance/bnbdnode"
+    image: "aximchain/axcdnode"
     restart: always
-    command: bnbchaind start --home /data/testnoded
+    command: axcchaind start --home /data/testnoded
     ports:
       - "{{ .PortExpose1 }}:26656"
       - "{{ .PortExpose2 }}:26657"

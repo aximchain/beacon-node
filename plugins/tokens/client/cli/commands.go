@@ -3,9 +3,9 @@ package commands
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/cosmos/cosmos-sdk/client"
+	"github.com/aximchain/axc-cosmos-sdk/client"
 
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/flash-node/wire"
 )
 
 const (

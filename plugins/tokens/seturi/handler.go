@@ -5,11 +5,11 @@ import (
 	"reflect"
 	"strings"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 
-	"github.com/bnb-chain/node/common/log"
-	common "github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/plugins/tokens/store"
+	"github.com/aximchain/flash-node/common/log"
+	common "github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/plugins/tokens/store"
 )
 
 func NewHandler(tokenMapper store.Mapper) sdk.Handler {

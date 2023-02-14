@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"math/big"
 
-	"github.com/cosmos/cosmos-sdk/axc/rlp"
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/asc/rlp"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 )
 
 type BindPackageType uint8

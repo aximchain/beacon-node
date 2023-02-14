@@ -7,15 +7,15 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/cosmos/cosmos-sdk/baseapp"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/bank"
+	"github.com/aximchain/axc-cosmos-sdk/baseapp"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/bank"
 	tmlog "github.com/tendermint/tendermint/libs/log"
 
-	"github.com/bnb-chain/node/common/log"
-	"github.com/bnb-chain/node/common/types"
-	common "github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/plugins/tokens/store"
+	"github.com/aximchain/flash-node/common/log"
+	"github.com/aximchain/flash-node/common/types"
+	common "github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/plugins/tokens/store"
 )
 
 // NewHandler creates a new token issue message handler

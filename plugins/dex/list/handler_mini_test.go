@@ -5,17 +5,17 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 
 	abci "github.com/tendermint/tendermint/abci/types"
 	"github.com/tendermint/tendermint/libs/log"
 
-	"github.com/bnb-chain/node/common/types"
-	common "github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/common/upgrade"
-	"github.com/bnb-chain/node/plugins/dex/order"
-	dextypes "github.com/bnb-chain/node/plugins/dex/types"
-	"github.com/bnb-chain/node/plugins/tokens"
+	"github.com/aximchain/flash-node/common/types"
+	common "github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/common/upgrade"
+	"github.com/aximchain/flash-node/plugins/dex/order"
+	dextypes "github.com/aximchain/flash-node/plugins/dex/types"
+	"github.com/aximchain/flash-node/plugins/tokens"
 )
 
 func setChainVersion() {

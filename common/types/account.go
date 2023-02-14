@@ -1,10 +1,10 @@
 package types
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/auth"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
 
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/flash-node/wire"
 )
 
 var _ sdk.Account = (NamedAccount)(nil)

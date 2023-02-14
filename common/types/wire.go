@@ -1,9 +1,9 @@
 package types
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/flash-node/wire"
 )
 
 func RegisterWire(cdc *wire.Codec) {

@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
+	"github.com/aximchain/axc-cosmos-sdk/client/context"
 	"github.com/gorilla/mux"
 
-	"github.com/bnb-chain/node/plugins/tokens/swap"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/flash-node/plugins/tokens/swap"
+	"github.com/aximchain/flash-node/wire"
 )
 
 // QuerySwapReqHandler creates an http request handler to query an AtomicSwap record by swapID

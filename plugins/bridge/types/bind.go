@@ -1,6 +1,6 @@
 package types
 
-import sdk "github.com/cosmos/cosmos-sdk/types"
+import sdk "github.com/aximchain/axc-cosmos-sdk/types"
 
 type BindRequest struct {
 	From             sdk.AccAddress        `json:"from"`

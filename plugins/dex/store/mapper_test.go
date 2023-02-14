@@ -14,13 +14,13 @@ import (
 	dbm "github.com/tendermint/tendermint/libs/db"
 	"github.com/tendermint/tendermint/libs/log"
 
-	"github.com/cosmos/cosmos-sdk/store"
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/store"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 
-	"github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/common/utils"
-	dextypes "github.com/bnb-chain/node/plugins/dex/types"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/common/utils"
+	dextypes "github.com/aximchain/flash-node/plugins/dex/types"
+	"github.com/aximchain/flash-node/wire"
 )
 
 func setup() (TradingPairMapper, sdk.Context) {

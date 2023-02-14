@@ -43,7 +43,7 @@ BEP67Height = 99550000
 # Block height of BEP70 upgrade
 BEP70Height = 99550000
 # Block height of smart chain upgrade
-LaunchAxcUpgradeHeight = 109999000
+LaunchAscUpgradeHeight = 109999000
 # Block height of BEP82Height upgrade
 BEP82Height = 146060000
 # Block height of BEP84Height upgrade
@@ -165,8 +165,8 @@ logBuffSize = 10000
 
 [cross_chain]
 ibcChainId = 1
-axcChainId = "axc"
-axcIbcChainId = 56
+ascChainId = "asc"
+ascIbcChainId = 988
 
 [dex]
 # The suffixed symbol of BUSD

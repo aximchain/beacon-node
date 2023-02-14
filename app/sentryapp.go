@@ -3,11 +3,11 @@ package app
 import (
 	"fmt"
 	"io"
+	"sync"
 
-	"github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	"github.com/cosmos/cosmos-sdk/x/stake"
-	"github.com/sasha-s/go-deadlock"
+	"github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
+	"github.com/aximchain/axc-cosmos-sdk/x/stake"
 	abci "github.com/tendermint/tendermint/abci/types"
 	"github.com/tendermint/tendermint/crypto/tmhash"
 	"github.com/tendermint/tendermint/libs/common"
@@ -15,8 +15,8 @@ import (
 	"github.com/tendermint/tendermint/libs/log"
 	tmtypes "github.com/tendermint/tendermint/types"
 
-	"github.com/bnb-chain/node/common/utils"
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/flash-node/common/utils"
+	"github.com/aximchain/flash-node/wire"
 )
 
 var (
@@ -132,7 +132,7 @@ func (app *SentryApplication) ReCheckTx(req abci.RequestCheckTx) (res abci.Respo
 // --------------------------------------------------------------------------------
 // A mirror of mempool.txs
 type mapTxCache struct {
-	mtx  deadlock.Mutex
+	mtx  sync.Mutex
 	pool map[string]*surviveTx
 }
 

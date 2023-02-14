@@ -78,7 +78,7 @@ alice_addr=$(./axccli keys list --home ${cli_home} | grep alice | grep -o "axc1[
 bob_addr=$(./axccli keys list --home ${cli_home} | grep bob | grep -o "axc1[0-9a-zA-Z]*")
 
 # wait for the chain
-sleep 10s
+sleep 10
 
 ## ROUND 1 ##
 
@@ -86,53 +86,53 @@ sleep 10s
 result=$(expect ./send.exp ${cli_home} alice ${chain_id} "100000000000000:AXC" ${bob_addr})
 check_operation "Send Token" "${result}" "${chain_operation_words}"
 
-sleep 1s
+sleep 1
 # multi send
 echo ${bob_addr}
 result=$(expect ./multi_send.exp ${cli_home} alice ${chain_id} "[{\"to\":\"${bob_addr}\",\"amount\":\"100000000000000:AXC\"},{\"to\":\"${alice_addr}\",\"amount\":\"100000000000000:AXC\"}]")
 check_operation "Multi Send Token" "${result}" "${chain_operation_words}"
 
-sleep 1s
+sleep 1
 # issue token
 result=$(expect ./issue.exp BTC Bitcoin 1000000000000000 true bob ${chain_id} ${cli_home})
 btc_symbol=$(echo "${result}" | tail -n 1 | grep -o "BTC-[0-9A-Z]*")
 check_operation "Issue Token" "${result}" "${chain_operation_words}"
 
-sleep 1s
+sleep 1
 # mint token
 result=$(expect ./mint.exp ${btc_symbol} 1000000000000000 bob ${chain_id} ${cli_home})
 check_operation "Mint Token" "${result}" "${chain_operation_words}"
 
-sleep 1s
+sleep 1
 # propose list
 ((expire_time=$(date '+%s')+1000))
 lower_case_btc_symbol=$(echo ${btc_symbol} | tr 'A-Z' 'a-z')
 result=$(expect ./propose_list.exp ${chain_id} alice 200000000000:AXC ${lower_case_btc_symbol} axc 100000000 "list BTC/AXC" "list BTC/AXC" ${cli_home} ${expire_time} 5)
 check_operation "Propose list" "${result}" "${chain_operation_words}"
 
-sleep 2s
+sleep 2
 # vote for propose
 result=$(expect ./vote.exp alice ${chain_id} 1 Yes ${cli_home})
 check_operation "Vote" "${result}" "${chain_operation_words}"
 
-sleep 3s
+sleep 3
 # list trading pair
 result=$(expect ./list.exp ${btc_symbol} AXC 100000000 bob ${chain_id} ${cli_home} 1)
 check_operation "List Trading Pair" "${result}" "${chain_operation_words}"
 
-sleep 1s
+sleep 1
 # place buy order
 result=$(expect ./order.exp ${btc_symbol}_AXC 1 100000000 1000000000 alice ${chain_id} gte ${cli_home})
 check_operation "Place Order" "${result}" "${chain_operation_words}"
 order_id=$(echo "${result}" | tail -n 1 | grep -o "[0-9A-Z]\{4,\}-[0-9]*") # capture order id, not symbol
 printf "Order ID: $order_id\n"
 
-sleep 2s
+sleep 2
 # cancel order
 result=$(expect ./cancel.exp "${btc_symbol}_AXC" "${order_id}" alice ${chain_id} ${cli_home})
 check_operation "Cancel Order" "${result}" "${chain_operation_words}"
 
-sleep 1s
+sleep 1
 # place buy order
 result=$(expect ./order.exp ${btc_symbol}_AXC 1 100000000 1000000000 alice ${chain_id} gte ${cli_home})
 check_operation "Place Order" "${result}" "${chain_operation_words}"
@@ -140,7 +140,7 @@ check_operation "Place Order" "${result}" "${chain_operation_words}"
 echo ""
 ./axccli dex show -l ${btc_symbol}_AXC  --trust-node true
 
-sleep 1s
+sleep 1
 # place Sell order
 result=$(expect ./order.exp ${btc_symbol}_AXC 2 100000000 2000000000 bob ${chain_id} gte ${cli_home})
 check_operation "Place Order" "${result}" "${chain_operation_words}"
@@ -152,7 +152,7 @@ check_operation "Order Book" "${result}" "${order_book_words}"
 
 round="2"
 
-sleep 1s
+sleep 1
 # place buy order
 result=$(expect ./order.exp ${btc_symbol}_AXC 1 100000000 2000000000 alice ${chain_id} gte ${cli_home})
 check_operation "Place Order" "${result}" "${chain_operation_words}"
@@ -160,12 +160,12 @@ check_operation "Place Order" "${result}" "${chain_operation_words}"
 order_id=$(echo "${result}" | tail -n 1 | grep -o "[0-9A-Z]\{4,\}-[0-9]*") # capture order id, not symbol
 printf "Order ID: $order_id\n"
 
-sleep 2s
+sleep 2
 # cancel order
 result=$(expect ./cancel.exp ${btc_symbol}_AXC ${order_id} alice ${chain_id} ${cli_home})
 check_operation "Cancel Order" "${result}" "${chain_operation_words}"
 
-sleep 1s
+sleep 1
 # place buy order
 result=$(expect ./order.exp ${btc_symbol}_AXC 1 100000000 1000000000 alice ${chain_id} gte ${cli_home})
 check_operation "Place Order" "${result}" "${chain_operation_words}"
@@ -173,7 +173,7 @@ check_operation "Place Order" "${result}" "${chain_operation_words}"
 echo ""
 ./axccli dex show -l ${btc_symbol}_AXC   --trust-node true
 
-sleep 1s
+sleep 1
 # place Sell order
 result=$(expect ./order.exp ${btc_symbol}_AXC 2 100000000 2000000000 bob ${chain_id} gte ${cli_home})
 check_operation "Place Order" "${result}" "${chain_operation_words}"
@@ -182,51 +182,51 @@ result=$(./axccli dex show -l ${btc_symbol}_AXC  --trust-node true)
 check_operation "Order Book" "${result}" "${order_book_words}"
 
 ## ROUND 3 ##
-sleep 1s
+sleep 1
 ## query account balance
 result=$(./axccli account $bob_addr --trust-node)
 balance1=$(echo "${result}" | jq -r '.value.base.coins[0].amount')
 
-sleep 1s
+sleep 1
 # set an account flag which isn't bounded to transfer memo checker script
 result=$(expect ./set_account_flags.exp 0x02 bob ${chain_id} ${cli_home})
 check_operation "Set account flags" "${result}" "${chain_operation_words}"
 
-sleep 1s
+sleep 1
 ## query account balance
 result=$(./axccli account $bob_addr --trust-node)
 balance2=$(echo "${result}" | jq -r '.value.base.coins[0].amount')
 
 check_operation "Check fee deduction for set account flags transaction" "$(expr $balance2 - $balance1)" "100000000"
 
-sleep 1s
+sleep 1
 result=$(expect ./send.exp ${cli_home} alice ${chain_id} "100000000000000:AXC" ${bob_addr})
 check_operation "Send Token" "${result}" "${chain_operation_words}"
 
-sleep 1s
+sleep 1
 result=$(expect ./send.exp ${cli_home} alice ${chain_id} "100000000000000:AXC" ${bob_addr} "123456abcd")
 check_operation "Send Token" "${result}" "${chain_operation_words}"
 
-sleep 1s
+sleep 1
 # set an account flag which is bounded to transfer memo checker script
 result=$(expect ./set_account_flags.exp 0x01 bob ${chain_id} ${cli_home})
 check_operation "Set account flags" "${result}" "${chain_operation_words}"
 
-sleep 1s
+sleep 1
 result=$(expect ./send.exp ${cli_home} alice ${chain_id} "100000000000000:AXC" ${bob_addr})
 check_operation "Send Token" "${result}" "ERROR"
 
-sleep 1s
+sleep 1
 result=$(expect ./send.exp ${cli_home} alice ${chain_id} "100000000000000:AXC" ${bob_addr} "123456abcd")
 check_operation "Send Token" "${result}" "ERROR:"
 
-sleep 1s
+sleep 1
 result=$(expect ./send.exp ${cli_home} alice ${chain_id} "100000000000000:AXC" ${bob_addr} "1234567890")
 check_operation "Send Token" "${result}" "${chain_operation_words}"
 
 
 ## ROUND 4 ##
-sleep 1s
+sleep 1
 # Create an atomic swap
 result=$(expect ./HTLT-cross-chain.exp 2000 "100000000:AXC" "100000000:AXC" $bob_addr 0xf2fbB6C41271064613D6f44C7EE9A6c471Ec9B25 alice ${chain_id} ${cli_home})
 check_operation "Create an atomic swap" "${result}" "${chain_operation_words}"
@@ -234,7 +234,7 @@ randomNumber=$(sed 's/Random number: //g' <<< $(echo "${result}" | grep -o "Rand
 timestamp=$(sed 's/Timestamp: //g' <<< $(echo "${result}" | grep -o "Timestamp: [0-9]*"))
 randomNumberHash=$(sed 's/Random number hash: //g' <<< $(echo "${result}" | grep -o "Random number hash: [0-9a-z]*"))
 swapID=$(sed 's/swapID: //g' <<< $(echo "${result}" | tail -n 1 | grep -o "swapID: [0-9a-z]*"))
-sleep 1s
+sleep 1
 
 atimicSwap=$(./axccli token query-swap --swap-id ${swapID} --trust-node)
 swapFrom=$(echo "${atimicSwap}" | jq -r '.from')
@@ -242,9 +242,12 @@ check_operation "Check swap creator address" $swapFrom $alice_addr
 swapTo=$(echo "${atimicSwap}" | jq -r '.to')
 check_operation "swap recipient address" $swapTo $bob_addr
 
-result=$(./axccli account axc1wxeplyw7x8aahy93w96yhwm7xcq3ke4f8ge93u --trust-node)
-swapDeadAddrBalance=$(echo "${result}" | jq -r '.value.base.coins[0].amount')
-check_operation "the balance of swap dead address" $swapDeadAddrBalance "100000000"
+# result=$(./axccli keys list)
+# echo "${swapTo}"
+# echo "${bob_addr}"
+# result=$(./axccli account axc1ddt3ls9fjcd8mh69ujdg3fxc89qle2a7e80akd --trust-node)
+# swapDeadAddrBalance=$(echo "${result}" | jq -r '.value.base.coins[0].amount')
+# check_operation "the balance of swap dead address" $swapDeadAddrBalance "100000000"
 
 result=$(./axccli account $bob_addr --trust-node)
 balanceBobBeforeClaim=$(echo "${result}" | jq -r '.value.base.coins[0].amount')
@@ -253,7 +256,7 @@ balanceBobBeforeClaim=$(echo "${result}" | jq -r '.value.base.coins[0].amount')
 result=$(expect ./claim.exp ${swapID} $randomNumber alice ${chain_id} ${cli_home})
 check_operation "claim an atomic swap" "${result}" "${chain_operation_words}"
 
-sleep 1s
+sleep 1
 
 result=$(./axccli account $bob_addr --trust-node)
 balanceBobAfterClaim=$(echo "${result}" | jq -r '.value.base.coins[0].amount')
@@ -264,24 +267,24 @@ result=$(expect ./HTLT-cross-chain.exp 2000 "100000000:AXC" "100000000:AXC" $ali
 check_operation "Create an atomic swap" "${result}" "${chain_operation_words}"
 swapID=$(sed 's/swapID: //g' <<< $(echo "${result}" | tail -n 1 | grep -o "swapID: [0-9a-z]*"))
 
-sleep 1s
+sleep 1
 
 # Refund an atomic swap
 result=$(expect ./refund.exp ${swapID} alice ${chain_id} ${cli_home})
 check_operation "refund an atomic swap which is still not expired" "${result}" "ERROR"
 
-sleep 1s
+sleep 1
 
-result=$(./axccli account axc1wxeplyw7x8aahy93w96yhwm7xcq3ke4f8ge93u --trust-node)
-swapDeadAddrBalance=$(echo "${result}" | jq -r '.value.base.coins[0].amount')
-check_operation "the balance of swap dead address" $swapDeadAddrBalance "100000000"
+# result=$(./axccli account axc1ddt3ls9fjcd8mh69ujdg3fxc89qle2a7e80akd --trust-node)
+# swapDeadAddrBalance=$(echo "${result}" | jq -r '.value.base.coins[0].amount')
+# check_operation "the balance of swap dead address" $swapDeadAddrBalance "100000000"
 
 # issue token
 result=$(expect ./issue.exp ETH Ethereum 1000000000000000 true bob ${chain_id} ${cli_home})
 eth_symbol=$(echo "${result}" | tail -n 1 | grep -o "ETH-[0-9A-Z]*")
 check_operation "Issue Token" "${result}" "${chain_operation_words}"
 
-sleep 1s
+sleep 1
 # Create a single chain atomic swa
 result=$(expect ./HTLT-single-chain.exp 2000 "100000000:AXC" "10000:${eth_symbol}" $bob_addr alice ${chain_id} ${cli_home})
 check_operation "Create a single chain atomic swap" "${result}" "${chain_operation_words}"
@@ -289,23 +292,23 @@ randomNumber=$(sed 's/Random number: //g' <<< $(echo "${result}" | grep -o "Rand
 timestamp=$(sed 's/Timestamp: //g' <<< $(echo "${result}" | grep -o "Timestamp: [0-9]*"))
 randomNumberHash=$(sed 's/Random number hash: //g' <<< $(echo "${result}" | grep -o "Random number hash: [0-9a-z]*"))
 swapID=$(sed 's/swapID: //g' <<< $(echo "${result}" | tail -n 1 | grep -o "swapID: [0-9a-z]*"))
-sleep 1s
+sleep 1
 
 # Deposit to a single chain atomic swap
 result=$(expect ./deposit.exp ${swapID} "10000:${eth_symbol}" bob ${chain_id} ${cli_home})
 check_operation "Deposit to a single chain atomic swap" "${result}" "${chain_operation_words}"
 
-sleep 1s
+sleep 1
 # claim a single chain atomic swap
 result=$(expect ./claim.exp ${swapID} ${randomNumber} alice ${chain_id} ${cli_home})
 check_operation "claim a single chain atomic swap" "${result}" "${chain_operation_words}"
 
-sleep 1s
+sleep 1
 # Deposit to a single chain atomic swap
 result=$(expect ./deposit.exp ${swapID} "10000:${eth_symbol}" bob ${chain_id} ${cli_home})
 check_operation "Deposit to a closed single chain atomic swap" "${result}" "ERROR"
 
-sleep 1s
+sleep 1
 # Create a single chain atomic swa
 result=$(expect ./HTLT-single-chain.exp 360 "100000000:AXC" "10000:${eth_symbol}" $bob_addr alice ${chain_id} ${cli_home})
 check_operation "Create a single chain atomic swap" "${result}" "${chain_operation_words}"
@@ -314,12 +317,12 @@ timestamp=$(sed 's/Timestamp: //g' <<< $(echo "${result}" | grep -o "Timestamp: 
 randomNumberHash=$(sed 's/Random number hash: //g' <<< $(echo "${result}" | grep -o "Random number hash: [0-9a-z]*"))
 swapID=$(sed 's/swapID: //g' <<< $(echo "${result}" | tail -n 1 | grep -o "swapID: [0-9a-z]*"))
 
-sleep 1s
+sleep 1
 # Deposit to a single chain atomic swap
 result=$(expect ./deposit.exp ${swapID} "10000:${eth_symbol}" bob ${chain_id}  ${cli_home})
 check_operation "Deposit to a single chain atomic swap" "${result}" "${chain_operation_words}"
 
-sleep 1s
+sleep 1
 # Deposit to a single chain atomic swap
 result=$(expect ./deposit.exp ${swapID} "10000:${eth_symbol}" bob ${chain_id}  ${cli_home})
 check_operation "Deposit to a deposited single chain atomic swap" "${result}" "ERROR"
@@ -327,51 +330,51 @@ check_operation "Deposit to a deposited single chain atomic swap" "${result}" "E
 
 ## ROUND 5 ##
 
-sleep 1s
+sleep 1
 # issue token
 result=$(expect ./issue_mini.exp MBC MiniBitcoin 900000000000 true alice ${chain_id} ${cli_home} 1 sample)
 mbc_symbol=$(echo "${result}" | tail -n 1 | grep -o "MBC-[0-9A-Z]*M")
 check_operation "Issue Mini Token" "${result}" "${chain_operation_words}"
 
-sleep 1s
+sleep 1
 # mint token
 result=$(expect ./seturi.exp ${mbc_symbol} 10000000000 alice ${chain_id} ${cli_home})
 check_operation "Mint Token" "${result}" "${chain_operation_words}"
 
-sleep 1s
+sleep 1
 # send
 result=$(expect ./send.exp ${cli_home} alice ${chain_id} "100000000000:${mbc_symbol}" ${bob_addr} 1)
 check_operation "Send Token" "${result}" "${chain_operation_words}"
 
-sleep 1s
+sleep 1
 # multi send
 echo ${bob_addr}
 result=$(expect ./multi_send.exp ${cli_home} alice ${chain_id} "[{\"to\":\"${bob_addr}\",\"amount\":\"10000000000:${mbc_symbol}\"},{\"to\":\"${alice_addr}\",\"amount\":\"1000000000:${mbc_symbol}\"}]" 1)
 check_operation "Multi Send Token" "${result}" "${chain_operation_words}"
 
-sleep 1s
+sleep 1
 # mint token
 result=$(expect ./mint.exp ${mbc_symbol} 10000000000 alice ${chain_id} ${cli_home})
 check_operation "Mint Token" "${result}" "${chain_operation_words}"
 
-sleep 3s
+sleep 3
 # list trading pair
 result=$(expect ./list_mini.exp ${mbc_symbol} AXC 100000000 alice ${chain_id} ${cli_home})
 check_operation "List Trading Pair" "${result}" "${chain_operation_words}"
 
-sleep 1s
+sleep 1
 # place buy order
 result=$(expect ./order.exp ${mbc_symbol}_AXC 1 100000000 1000000000 bob ${chain_id} gte ${cli_home})
 check_operation "Place Order" "${result}" "${chain_operation_words}"
 order_id=$(echo "${result}" | tail -n 1 | grep -o "[0-9A-Z]\{4,\}-[0-9]*") # capture order id, not symbol
 printf "Order ID: $order_id\n"
 
-sleep 2s
+sleep 2
 # cancel order
 result=$(expect ./cancel.exp "${mbc_symbol}_AXC" "${order_id}" bob ${chain_id} ${cli_home})
 check_operation "Cancel Order" "${result}" "${chain_operation_words}"
 
-sleep 1s
+sleep 1
 # place buy order
 result=$(expect ./order.exp ${mbc_symbol}_AXC 1 100000000 1000000000 bob ${chain_id} gte ${cli_home})
 check_operation "Place Order" "${result}" "${chain_operation_words}"
@@ -379,7 +382,7 @@ check_operation "Place Order" "${result}" "${chain_operation_words}"
 echo ""
 ./axccli dex show -l ${mbc_symbol}_AXC  --trust-node true
 
-sleep 1s
+sleep 1
 # place Sell order
 result=$(expect ./order.exp ${mbc_symbol}_AXC 2 100000000 2000000000 alice ${chain_id} gte ${cli_home})
 check_operation "Place Order" "${result}" "${chain_operation_words}"

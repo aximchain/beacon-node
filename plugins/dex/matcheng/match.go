@@ -4,7 +4,7 @@ import (
 	"math"
 	"math/big"
 
-	"github.com/bnb-chain/node/common/utils"
+	"github.com/aximchain/flash-node/common/utils"
 )
 
 type LevelIndex struct {

@@ -7,12 +7,12 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/bank"
-	"github.com/cosmos/cosmos-sdk/x/paramHub/types"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/bank"
+	"github.com/aximchain/axc-cosmos-sdk/x/paramHub/types"
 
-	"github.com/bnb-chain/node/common/testutils"
-	common "github.com/bnb-chain/node/common/types"
+	"github.com/aximchain/flash-node/common/testutils"
+	common "github.com/aximchain/flash-node/common/types"
 )
 
 func newAddr() sdk.AccAddress {

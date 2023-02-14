@@ -1,7 +1,7 @@
 package upgrade
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 )
 
 var Mgr = sdk.UpgradeMgr
@@ -26,7 +26,7 @@ const (
 	ListingRuleUpgrade   = "ListingRuleUpgrade" // Remove restriction that only the owner of base asset can list trading pair
 	FixZeroBalance       = "FixZeroBalance"
 
-	LaunchAxcUpgrade = sdk.LaunchAxcUpgrade
+	LaunchAscUpgrade = sdk.LaunchAscUpgrade
 
 	EnableAccountScriptsForCrossChainTransfer = "EnableAccountScriptsForCrossChainTransfer"
 

@@ -11,24 +11,24 @@ import (
 	"sort"
 	"time"
 
-	"github.com/cosmos/cosmos-sdk/baseapp"
-	"github.com/cosmos/cosmos-sdk/pubsub"
-	"github.com/cosmos/cosmos-sdk/store"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/fees"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	"github.com/cosmos/cosmos-sdk/x/bank"
-	"github.com/cosmos/cosmos-sdk/x/gov"
-	"github.com/cosmos/cosmos-sdk/x/ibc"
-	"github.com/cosmos/cosmos-sdk/x/oracle"
-	"github.com/cosmos/cosmos-sdk/x/paramHub"
-	param "github.com/cosmos/cosmos-sdk/x/paramHub/keeper"
-	paramTypes "github.com/cosmos/cosmos-sdk/x/paramHub/types"
-	"github.com/cosmos/cosmos-sdk/x/sidechain"
-	"github.com/cosmos/cosmos-sdk/x/slashing"
-	"github.com/cosmos/cosmos-sdk/x/stake"
-	"github.com/cosmos/cosmos-sdk/x/stake/keeper"
-	sTypes "github.com/cosmos/cosmos-sdk/x/stake/types"
+	"github.com/aximchain/axc-cosmos-sdk/baseapp"
+	"github.com/aximchain/axc-cosmos-sdk/pubsub"
+	"github.com/aximchain/axc-cosmos-sdk/store"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/types/fees"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
+	"github.com/aximchain/axc-cosmos-sdk/x/bank"
+	"github.com/aximchain/axc-cosmos-sdk/x/gov"
+	"github.com/aximchain/axc-cosmos-sdk/x/ibc"
+	"github.com/aximchain/axc-cosmos-sdk/x/oracle"
+	"github.com/aximchain/axc-cosmos-sdk/x/paramHub"
+	param "github.com/aximchain/axc-cosmos-sdk/x/paramHub/keeper"
+	paramTypes "github.com/aximchain/axc-cosmos-sdk/x/paramHub/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/sidechain"
+	"github.com/aximchain/axc-cosmos-sdk/x/slashing"
+	"github.com/aximchain/axc-cosmos-sdk/x/stake"
+	"github.com/aximchain/axc-cosmos-sdk/x/stake/keeper"
+	sTypes "github.com/aximchain/axc-cosmos-sdk/x/stake/types"
 	abci "github.com/tendermint/tendermint/abci/types"
 	"github.com/tendermint/tendermint/crypto/tmhash"
 	cmn "github.com/tendermint/tendermint/libs/common"
@@ -37,31 +37,31 @@ import (
 	tmstore "github.com/tendermint/tendermint/store"
 	tmtypes "github.com/tendermint/tendermint/types"
 
-	"github.com/bnb-chain/node/admin"
-	"github.com/bnb-chain/node/app/config"
-	"github.com/bnb-chain/node/app/pub"
-	appsub "github.com/bnb-chain/node/app/pub/sub"
-	"github.com/bnb-chain/node/common"
-	"github.com/bnb-chain/node/common/runtime"
-	"github.com/bnb-chain/node/common/tx"
-	"github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/common/upgrade"
-	"github.com/bnb-chain/node/common/utils"
-	"github.com/bnb-chain/node/plugins/account"
-	"github.com/bnb-chain/node/plugins/bridge"
-	bTypes "github.com/bnb-chain/node/plugins/bridge/types"
-	"github.com/bnb-chain/node/plugins/dex"
-	"github.com/bnb-chain/node/plugins/dex/list"
-	"github.com/bnb-chain/node/plugins/dex/order"
-	dextypes "github.com/bnb-chain/node/plugins/dex/types"
-	"github.com/bnb-chain/node/plugins/tokens"
-	"github.com/bnb-chain/node/plugins/tokens/issue"
-	"github.com/bnb-chain/node/plugins/tokens/ownership"
-	"github.com/bnb-chain/node/plugins/tokens/seturi"
-	"github.com/bnb-chain/node/plugins/tokens/swap"
-	"github.com/bnb-chain/node/plugins/tokens/timelock"
-	"github.com/bnb-chain/node/wire"
-	cStake "github.com/cosmos/cosmos-sdk/x/stake/cross_stake"
+	cStake "github.com/aximchain/axc-cosmos-sdk/x/stake/cross_stake"
+	"github.com/aximchain/flash-node/admin"
+	"github.com/aximchain/flash-node/app/config"
+	"github.com/aximchain/flash-node/app/pub"
+	appsub "github.com/aximchain/flash-node/app/pub/sub"
+	"github.com/aximchain/flash-node/common"
+	"github.com/aximchain/flash-node/common/runtime"
+	"github.com/aximchain/flash-node/common/tx"
+	"github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/common/upgrade"
+	"github.com/aximchain/flash-node/common/utils"
+	"github.com/aximchain/flash-node/plugins/account"
+	"github.com/aximchain/flash-node/plugins/bridge"
+	bTypes "github.com/aximchain/flash-node/plugins/bridge/types"
+	"github.com/aximchain/flash-node/plugins/dex"
+	"github.com/aximchain/flash-node/plugins/dex/list"
+	"github.com/aximchain/flash-node/plugins/dex/order"
+	dextypes "github.com/aximchain/flash-node/plugins/dex/types"
+	"github.com/aximchain/flash-node/plugins/tokens"
+	"github.com/aximchain/flash-node/plugins/tokens/issue"
+	"github.com/aximchain/flash-node/plugins/tokens/ownership"
+	"github.com/aximchain/flash-node/plugins/tokens/seturi"
+	"github.com/aximchain/flash-node/plugins/tokens/swap"
+	"github.com/aximchain/flash-node/plugins/tokens/timelock"
+	"github.com/aximchain/flash-node/wire"
 )
 
 const (
@@ -83,7 +83,7 @@ var (
 	ServerContext = config.NewDefaultContext()
 )
 
-// Aximchain is the AXCBeaconChain ABCI application
+// Aximchain is the AXCFlashChain ABCI application
 type Aximchain struct {
 	*baseapp.BaseApp
 	Codec *wire.Codec
@@ -173,8 +173,8 @@ func NewAximchain(logger log.Logger, db dbm.DB, traceStore io.Writer, baseAppOpt
 		common.StakeStoreKey, common.StakeRewardStoreKey, common.TStakeStoreKey,
 		app.CoinKeeper, app.Pool, app.ParamHub.Subspace(stake.DefaultParamspace),
 		app.RegisterCodespace(stake.DefaultCodespace),
-		sdk.ChainID(app.crossChainConfig.AxcIbcChainId),
-		app.crossChainConfig.AxcChainId,
+		sdk.ChainID(app.crossChainConfig.AscIbcChainId),
+		app.crossChainConfig.AscChainId,
 	)
 
 	app.ValAddrCache = NewValAddrCache(app.stakeKeeper)
@@ -194,7 +194,7 @@ func NewAximchain(logger log.Logger, db dbm.DB, traceStore io.Writer, baseAppOpt
 	app.oracleKeeper = oracle.NewKeeper(cdc, common.OracleStoreKey, app.ParamHub.Subspace(oracle.DefaultParamSpace),
 		app.stakeKeeper, app.scKeeper, app.ibcKeeper, app.CoinKeeper, app.Pool)
 	app.bridgeKeeper = bridge.NewKeeper(cdc, common.BridgeStoreKey, app.AccountKeeper, app.TokenMapper, app.scKeeper, app.CoinKeeper,
-		app.ibcKeeper, app.Pool, sdk.ChainID(app.crossChainConfig.AxcIbcChainId), app.crossChainConfig.AxcChainId)
+		app.ibcKeeper, app.Pool, sdk.ChainID(app.crossChainConfig.AscIbcChainId), app.crossChainConfig.AscChainId)
 
 	if ServerContext.Config.Instrumentation.Prometheus {
 		app.metrics = pub.PrometheusMetrics() // TODO(#246): make it an aggregated wrapper of all component metrics (i.e. DexKeeper, StakeKeeper)
@@ -321,7 +321,7 @@ func SetUpgradeConfig(upgradeConfig *config.UpgradeConfig) {
 	upgrade.Mgr.AddUpgradeHeight(upgrade.LotSizeOptimization, upgradeConfig.LotSizeUpgradeHeight)
 	upgrade.Mgr.AddUpgradeHeight(upgrade.ListingRuleUpgrade, upgradeConfig.ListingRuleUpgradeHeight)
 	upgrade.Mgr.AddUpgradeHeight(upgrade.FixZeroBalance, upgradeConfig.FixZeroBalanceHeight)
-	upgrade.Mgr.AddUpgradeHeight(upgrade.LaunchAxcUpgrade, upgradeConfig.LaunchAxcUpgradeHeight)
+	upgrade.Mgr.AddUpgradeHeight(upgrade.LaunchAscUpgrade, upgradeConfig.LaunchAscUpgradeHeight)
 	upgrade.Mgr.AddUpgradeHeight(upgrade.EnableAccountScriptsForCrossChainTransfer, upgradeConfig.EnableAccountScriptsForCrossChainTransferHeight)
 
 	upgrade.Mgr.AddUpgradeHeight(upgrade.BEP8, upgradeConfig.BEP8Height)
@@ -342,7 +342,7 @@ func SetUpgradeConfig(upgradeConfig *config.UpgradeConfig) {
 	// register store keys of upgrade
 	upgrade.Mgr.RegisterStoreKeys(upgrade.BEP9, common.TimeLockStoreKey.Name())
 	upgrade.Mgr.RegisterStoreKeys(upgrade.BEP3, common.AtomicSwapStoreKey.Name())
-	upgrade.Mgr.RegisterStoreKeys(upgrade.LaunchAxcUpgrade, common.IbcStoreKey.Name(), common.SideChainStoreKey.Name(),
+	upgrade.Mgr.RegisterStoreKeys(upgrade.LaunchAscUpgrade, common.IbcStoreKey.Name(), common.SideChainStoreKey.Name(),
 		common.SlashingStoreKey.Name(), common.BridgeStoreKey.Name(), common.OracleStoreKey.Name())
 	upgrade.Mgr.RegisterStoreKeys(upgrade.BEP128, common.StakeRewardStoreKey.Name())
 
@@ -359,13 +359,13 @@ func SetUpgradeConfig(upgradeConfig *config.UpgradeConfig) {
 		swap.ClaimHTLTMsg{}.Type(),
 		swap.RefundHTLTMsg{}.Type(),
 	)
-	upgrade.Mgr.RegisterMsgTypes(upgrade.LaunchAxcUpgrade,
+	upgrade.Mgr.RegisterMsgTypes(upgrade.LaunchAscUpgrade,
 		stake.MsgCreateSideChainValidator{}.Type(),
 		stake.MsgEditSideChainValidator{}.Type(),
 		stake.MsgSideChainDelegate{}.Type(),
 		stake.MsgSideChainRedelegate{}.Type(),
 		stake.MsgSideChainUndelegate{}.Type(),
-		slashing.MsgAxcSubmitEvidence{}.Type(),
+		slashing.MsgAscSubmitEvidence{}.Type(),
 		slashing.MsgSideChainUnjail{}.Type(),
 		gov.MsgSideChainSubmitProposal{}.Type(),
 		gov.MsgSideChainDeposit{}.Type(),
@@ -480,11 +480,11 @@ func (app *Aximchain) initPlugins() {
 func (app *Aximchain) initSideChain() {
 	app.scKeeper.SetGovKeeper(&app.govKeeper)
 	app.scKeeper.SetIbcKeeper(&app.ibcKeeper)
-	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchAxcUpgrade, func(ctx sdk.Context) {
+	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchAscUpgrade, func(ctx sdk.Context) {
 		axcStorePrefix := []byte{0x99}
-		app.scKeeper.SetSideChainIdAndStorePrefix(ctx, ServerContext.AxcChainId, axcStorePrefix)
+		app.scKeeper.SetSideChainIdAndStorePrefix(ctx, ServerContext.AscChainId, axcStorePrefix)
 		app.scKeeper.SetParams(ctx, sidechain.Params{
-			AxcSideChainId: ServerContext.AxcChainId,
+			AscSideChainId: ServerContext.AscChainId,
 		})
 	})
 }
@@ -500,10 +500,10 @@ func (app *Aximchain) initOracle() {
 
 func (app *Aximchain) initBridge() {
 	app.bridgeKeeper.SetPbsbServer(app.psServer)
-	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchAxcUpgrade, func(ctx sdk.Context) {
-		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.AxcIbcChainId), bTypes.BindChannelID, sdk.ChannelAllow)
-		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.AxcIbcChainId), bTypes.TransferOutChannelID, sdk.ChannelAllow)
-		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.AxcIbcChainId), bTypes.TransferInChannelID, sdk.ChannelAllow)
+	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchAscUpgrade, func(ctx sdk.Context) {
+		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.AscIbcChainId), bTypes.BindChannelID, sdk.ChannelAllow)
+		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.AscIbcChainId), bTypes.TransferOutChannelID, sdk.ChannelAllow)
+		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.AscIbcChainId), bTypes.TransferInChannelID, sdk.ChannelAllow)
 	})
 }
 
@@ -512,9 +512,9 @@ func (app *Aximchain) initParamHub() {
 	app.ParamHub.SetupForSideChain(&app.scKeeper, &app.ibcKeeper)
 
 	paramHub.RegisterUpgradeBeginBlocker(app.ParamHub)
-	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchAxcUpgrade, func(ctx sdk.Context) {
-		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.AxcIbcChainId), param.ChannelId, sdk.ChannelAllow)
-		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.AxcChainId)
+	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchAscUpgrade, func(ctx sdk.Context) {
+		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.AscIbcChainId), param.ChannelId, sdk.ChannelAllow)
+		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.AscChainId)
 		newCtx := ctx.WithSideChainKeyPrefix(storePrefix)
 		app.ParamHub.SetLastSCParamChangeProposalId(newCtx, paramTypes.LastProposalID{ProposalID: 0})
 	})
@@ -528,10 +528,10 @@ func (app *Aximchain) initParamHub() {
 func (app *Aximchain) initStaking() {
 	app.stakeKeeper.SetupForSideChain(&app.scKeeper, &app.ibcKeeper)
 	app.stakeKeeper.SetPbsbServer(app.psServer)
-	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchAxcUpgrade, func(ctx sdk.Context) {
+	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchAscUpgrade, func(ctx sdk.Context) {
 		stake.MigratePowerRankKey(ctx, app.stakeKeeper)
-		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.AxcIbcChainId), keeper.ChannelId, sdk.ChannelAllow)
-		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.AxcChainId)
+		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.AscIbcChainId), keeper.ChannelId, sdk.ChannelAllow)
+		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.AscChainId)
 		newCtx := ctx.WithSideChainKeyPrefix(storePrefix)
 		app.stakeKeeper.SetParams(newCtx, stake.Params{
 			UnbondingTime:       60 * 60 * 24 * 7 * time.Second, // 7 days
@@ -545,7 +545,7 @@ func (app *Aximchain) initStaking() {
 		})
 	})
 	upgrade.Mgr.RegisterBeginBlocker(sdk.BEP128, func(ctx sdk.Context) {
-		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.AxcChainId)
+		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.AscChainId)
 		// init new param RewardDistributionBatchSize
 		newCtx := ctx.WithSideChainKeyPrefix(storePrefix)
 		params := app.stakeKeeper.GetParams(newCtx)
@@ -553,7 +553,7 @@ func (app *Aximchain) initStaking() {
 		app.stakeKeeper.SetParams(newCtx, params)
 	})
 	upgrade.Mgr.RegisterBeginBlocker(sdk.BEP153, func(ctx sdk.Context) {
-		chainId := sdk.ChainID(ServerContext.AxcIbcChainId)
+		chainId := sdk.ChainID(ServerContext.AscIbcChainId)
 		app.scKeeper.SetChannelSendPermission(ctx, chainId, sTypes.CrossStakeChannelID, sdk.ChannelAllow)
 		stakeContractAddr := "0000000000000000000000000000000000002001"
 		stakeContractBytes, _ := hex.DecodeString(stakeContractAddr)
@@ -577,14 +577,14 @@ func (app *Aximchain) initStaking() {
 		params.MaxValidators = 11
 		params.BaseProposerRewardRatio = sdk.NewDec(1e6)  // 1%
 		params.BonusProposerRewardRatio = sdk.NewDec(4e6) // 4%
-		params.FeeFromAxcToBcRatio = sdk.NewDec(1e7)      // 10%
+		params.FeeFromAscToFcRatio = sdk.NewDec(1e7)      // 10%
 		app.stakeKeeper.SetParams(ctx, params)
 	})
 	upgrade.Mgr.RegisterBeginBlocker(sdk.BEP159Phase2, func(ctx sdk.Context) {
 		stake.MigrateWhiteLabelOracleRelayer(ctx, app.stakeKeeper)
 	})
 	app.stakeKeeper.SubscribeParamChange(app.ParamHub)
-	app.stakeKeeper.SubscribeBCParamChange(app.ParamHub)
+	app.stakeKeeper.SubscribeFCParamChange(app.ParamHub)
 	app.stakeKeeper = app.stakeKeeper.WithHooks(app.slashKeeper.Hooks())
 
 	if sdk.IsUpgrade(sdk.BEP153) {
@@ -598,8 +598,8 @@ func (app *Aximchain) initStaking() {
 
 func (app *Aximchain) initGov() {
 	app.govKeeper.SetupForSideChain(&app.scKeeper)
-	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchAxcUpgrade, func(ctx sdk.Context) {
-		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.AxcChainId)
+	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchAscUpgrade, func(ctx sdk.Context) {
+		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.AscChainId)
 		newCtx := ctx.WithSideChainKeyPrefix(storePrefix)
 		err := app.govKeeper.SetInitialProposalID(newCtx, 1)
 		if err != nil {
@@ -621,9 +621,9 @@ func (app *Aximchain) initSlashing() {
 	app.slashKeeper.SetPbsbServer(app.psServer)
 	app.slashKeeper.SetSideChain(&app.scKeeper)
 	app.slashKeeper.SubscribeParamChange(app.ParamHub)
-	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchAxcUpgrade, func(ctx sdk.Context) {
-		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.AxcIbcChainId), slashing.ChannelId, sdk.ChannelAllow)
-		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.AxcChainId)
+	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchAscUpgrade, func(ctx sdk.Context) {
+		app.scKeeper.SetChannelSendPermission(ctx, sdk.ChainID(ServerContext.AscIbcChainId), slashing.ChannelId, sdk.ChannelAllow)
+		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.AscChainId)
 		newCtx := ctx.WithSideChainKeyPrefix(storePrefix)
 		app.slashKeeper.SetParams(newCtx, slashing.Params{
 			MaxEvidenceAge:           60 * 60 * 24 * 3 * time.Second, // 3 days
@@ -637,7 +637,7 @@ func (app *Aximchain) initSlashing() {
 		})
 	})
 	upgrade.Mgr.RegisterBeginBlocker(sdk.BEP159, func(ctx sdk.Context) {
-		// write slash params to beacon chain when upgrade to BEP159
+		// write slash params to flash chain when upgrade to BEP159
 		app.slashKeeper.SetParams(ctx, slashing.Params{
 			MaxEvidenceAge:           60 * 60 * 24 * 3 * time.Second, // 3 days
 			DoubleSignUnbondDuration: math.MaxInt64,                  // forever
@@ -655,13 +655,13 @@ func (app *Aximchain) initIbc() {
 	// set up IBC chainID for ABC
 	app.scKeeper.SetSrcChainID(sdk.ChainID(ServerContext.IbcChainId))
 	// set up IBC chainID for AXC
-	err := app.scKeeper.RegisterDestChain(ServerContext.AxcChainId, sdk.ChainID(ServerContext.AxcIbcChainId))
+	err := app.scKeeper.RegisterDestChain(ServerContext.AscChainId, sdk.ChainID(ServerContext.AscIbcChainId))
 	if err != nil {
-		panic(fmt.Sprintf("register IBC chainID error: chainID=%s, err=%s", ServerContext.AxcChainId, err.Error()))
+		panic(fmt.Sprintf("register IBC chainID error: chainID=%s, err=%s", ServerContext.AscChainId, err.Error()))
 	}
 	app.ibcKeeper.SubscribeParamChange(app.ParamHub)
-	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchAxcUpgrade, func(ctx sdk.Context) {
-		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.AxcChainId)
+	upgrade.Mgr.RegisterBeginBlocker(sdk.LaunchAscUpgrade, func(ctx sdk.Context) {
+		storePrefix := app.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.AscChainId)
 		newCtx := ctx.WithSideChainKeyPrefix(storePrefix)
 		app.ibcKeeper.SetParams(newCtx, ibc.Params{
 			RelayerFee: ibc.DefaultRelayerFeeParam,
@@ -682,7 +682,7 @@ func (app *Aximchain) initGovHooks() {
 	app.govKeeper.AddHooks(gov.ProposalTypeSCParamsChange, scParamChangeHooks)
 	app.govKeeper.AddHooks(gov.ProposalTypeDelistTradingPair, delistHooks)
 	app.govKeeper.AddHooks(gov.ProposalTypeManageChanPermission, chanPermissionHooks)
-	bcParamChangeHooks := paramHub.NewBCParamsChangeHook(app.Codec)
+	bcParamChangeHooks := paramHub.NewFCParamsChangeHook(app.Codec)
 	app.govKeeper.AddHooks(gov.ProposalTypeParameterChange, bcParamChangeHooks)
 }
 

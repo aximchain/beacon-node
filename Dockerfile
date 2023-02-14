@@ -4,7 +4,7 @@ FROM golang:1.17-alpine AS build-env
 ENV PACKAGES make git libc-dev bash gcc linux-headers eudev-dev curl ca-certificates
 
 # Set working directory for the build
-WORKDIR /go/src/github.com/aximchain/beacon-node
+WORKDIR /go/src/github.com/aximchain/flash-node
 
 # Add source files
 COPY . .

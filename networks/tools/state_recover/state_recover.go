@@ -6,8 +6,8 @@ import (
 	"path"
 	"strconv"
 
-	"github.com/cosmos/cosmos-sdk/store"
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/store"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 	"github.com/tendermint/go-amino"
 	"github.com/tendermint/iavl"
 	cfg "github.com/tendermint/tendermint/config"
@@ -20,7 +20,7 @@ import (
 	"github.com/tendermint/tendermint/state"
 	tmstore "github.com/tendermint/tendermint/store"
 
-	"github.com/bnb-chain/node/common"
+	"github.com/aximchain/flash-node/common"
 )
 
 var cdc = amino.NewCodec()

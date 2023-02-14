@@ -1,9 +1,9 @@
 package dex
 
 import (
-	"github.com/bnb-chain/node/plugins/dex/order"
-	"github.com/bnb-chain/node/plugins/dex/store"
-	"github.com/bnb-chain/node/plugins/dex/types"
+	"github.com/aximchain/flash-node/plugins/dex/order"
+	"github.com/aximchain/flash-node/plugins/dex/store"
+	"github.com/aximchain/flash-node/plugins/dex/types"
 )
 
 // type MsgList = list.Msg

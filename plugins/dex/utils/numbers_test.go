@@ -7,7 +7,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/bnb-chain/node/plugins/dex/utils"
+	"github.com/aximchain/flash-node/plugins/dex/utils"
 )
 
 func TestIsExceedMaxNotional(t *testing.T) {

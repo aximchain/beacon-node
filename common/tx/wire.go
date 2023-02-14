@@ -1,9 +1,9 @@
 package tx
 
 import (
-	"github.com/cosmos/cosmos-sdk/x/auth"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
 
-	"github.com/bnb-chain/node/wire"
+	"github.com/aximchain/flash-node/wire"
 )
 
 func RegisterWire(cdc *wire.Codec) {

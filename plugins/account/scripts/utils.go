@@ -1,10 +1,10 @@
 package scripts
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/auth"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
 
-	cmntypes "github.com/bnb-chain/node/common/types"
+	cmntypes "github.com/aximchain/flash-node/common/types"
 )
 
 func isFlagEnabled(ctx sdk.Context, am auth.AccountKeeper, addr sdk.AccAddress, targetFlag uint64) bool {

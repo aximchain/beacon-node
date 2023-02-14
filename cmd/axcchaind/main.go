@@ -12,11 +12,11 @@ import (
 	"github.com/tendermint/tendermint/libs/log"
 	tmtypes "github.com/tendermint/tendermint/types"
 
-	"github.com/cosmos/cosmos-sdk/server"
+	"github.com/aximchain/axc-cosmos-sdk/server"
 
-	"github.com/bnb-chain/node/app"
-	axcInit "github.com/bnb-chain/node/cmd/axcchaind/init"
-	"github.com/bnb-chain/node/version"
+	"github.com/aximchain/flash-node/app"
+	axcInit "github.com/aximchain/flash-node/cmd/axcchaind/init"
+	"github.com/aximchain/flash-node/version"
 )
 
 func newApp(logger log.Logger, db dbm.DB, storeTracer io.Writer) abci.Application {

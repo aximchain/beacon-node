@@ -5,14 +5,14 @@ import (
 	"strings"
 	"time"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/gov"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/gov"
 
-	"github.com/bnb-chain/node/app/pub"
-	bnclog "github.com/bnb-chain/node/common/log"
-	app "github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/plugins/dex/utils"
-	"github.com/bnb-chain/node/plugins/tokens"
+	"github.com/aximchain/flash-node/app/pub"
+	bnclog "github.com/aximchain/flash-node/common/log"
+	app "github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/plugins/dex/utils"
+	"github.com/aximchain/flash-node/plugins/tokens"
 )
 
 const DexAbciQueryPrefix = "dex"

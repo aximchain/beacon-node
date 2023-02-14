@@ -10,13 +10,13 @@ import (
 
 	rpcclient "github.com/tendermint/tendermint/rpc/client"
 
-	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/client/context"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	txbuilder "github.com/cosmos/cosmos-sdk/x/auth/client/txbuilder"
+	"github.com/aximchain/axc-cosmos-sdk/client"
+	"github.com/aximchain/axc-cosmos-sdk/client/context"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	txbuilder "github.com/aximchain/axc-cosmos-sdk/x/auth/client/txbuilder"
 
-	cmn "github.com/bnb-chain/node/common"
-	"github.com/bnb-chain/node/common/testutils"
+	cmn "github.com/aximchain/flash-node/common"
+	"github.com/aximchain/flash-node/common/testutils"
 )
 
 func newCLIContext() context.CLIContext {

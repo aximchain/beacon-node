@@ -1,8 +1,8 @@
 package bridge
 
 import (
-	app "github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/plugins/bridge/types"
+	app "github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/plugins/bridge/types"
 )
 
 func InitPlugin(chainApp app.ChainApp, keeper Keeper) {

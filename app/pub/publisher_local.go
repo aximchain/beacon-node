@@ -7,7 +7,7 @@ import (
 
 	"github.com/natefinch/lumberjack"
 
-	"github.com/bnb-chain/node/app/config"
+	"github.com/aximchain/flash-node/app/config"
 
 	tmLogger "github.com/tendermint/tendermint/libs/log"
 )

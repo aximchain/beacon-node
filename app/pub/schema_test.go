@@ -8,12 +8,12 @@ import (
 
 	"github.com/linkedin/goavro"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/bnb-chain/node/app/config"
-	"github.com/bnb-chain/node/common/log"
-	orderPkg "github.com/bnb-chain/node/plugins/dex/order"
+	"github.com/aximchain/flash-node/app/config"
+	"github.com/aximchain/flash-node/common/log"
+	orderPkg "github.com/aximchain/flash-node/plugins/dex/order"
 )
 
 // This test ensures schema or AvroOrJsonMsg change are consistent and prevent marshal error in runtime

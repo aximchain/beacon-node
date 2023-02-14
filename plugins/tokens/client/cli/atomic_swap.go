@@ -6,13 +6,13 @@ import (
 	"fmt"
 	"time"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
-	"github.com/bnb-chain/node/common"
-	"github.com/bnb-chain/node/common/client"
-	"github.com/bnb-chain/node/plugins/tokens/swap"
+	"github.com/aximchain/flash-node/common"
+	"github.com/aximchain/flash-node/common/client"
+	"github.com/aximchain/flash-node/plugins/tokens/swap"
 )
 
 const (

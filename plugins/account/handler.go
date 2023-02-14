@@ -3,10 +3,10 @@ package account
 import (
 	"fmt"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/auth"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
 
-	common "github.com/bnb-chain/node/common/types"
+	common "github.com/aximchain/flash-node/common/types"
 )
 
 // NewHandler creates a set account flags handler

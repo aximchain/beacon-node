@@ -9,20 +9,20 @@ import (
 	"testing"
 	"time"
 
-	"github.com/cosmos/cosmos-sdk/axc/rlp"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkFees "github.com/cosmos/cosmos-sdk/types/fees"
-	"github.com/cosmos/cosmos-sdk/x/auth"
-	"github.com/cosmos/cosmos-sdk/x/gov"
-	"github.com/cosmos/cosmos-sdk/x/ibc"
-	"github.com/cosmos/cosmos-sdk/x/mock"
-	otypes "github.com/cosmos/cosmos-sdk/x/oracle/types"
-	pHub "github.com/cosmos/cosmos-sdk/x/paramHub"
-	paramHub "github.com/cosmos/cosmos-sdk/x/paramHub/keeper"
-	ptypes "github.com/cosmos/cosmos-sdk/x/paramHub/types"
-	sTypes "github.com/cosmos/cosmos-sdk/x/sidechain/types"
-	"github.com/cosmos/cosmos-sdk/x/slashing"
-	"github.com/cosmos/cosmos-sdk/x/stake"
+	"github.com/aximchain/axc-cosmos-sdk/asc/rlp"
+	sdk "github.com/aximchain/axc-cosmos-sdk/types"
+	sdkFees "github.com/aximchain/axc-cosmos-sdk/types/fees"
+	"github.com/aximchain/axc-cosmos-sdk/x/auth"
+	"github.com/aximchain/axc-cosmos-sdk/x/gov"
+	"github.com/aximchain/axc-cosmos-sdk/x/ibc"
+	"github.com/aximchain/axc-cosmos-sdk/x/mock"
+	otypes "github.com/aximchain/axc-cosmos-sdk/x/oracle/types"
+	pHub "github.com/aximchain/axc-cosmos-sdk/x/paramHub"
+	paramHub "github.com/aximchain/axc-cosmos-sdk/x/paramHub/keeper"
+	ptypes "github.com/aximchain/axc-cosmos-sdk/x/paramHub/types"
+	sTypes "github.com/aximchain/axc-cosmos-sdk/x/sidechain/types"
+	"github.com/aximchain/axc-cosmos-sdk/x/slashing"
+	"github.com/aximchain/axc-cosmos-sdk/x/stake"
 	"github.com/stretchr/testify/assert"
 	"github.com/tendermint/go-amino"
 	abcicli "github.com/tendermint/tendermint/abci/client"
@@ -36,11 +36,11 @@ import (
 	dbm "github.com/tendermint/tendermint/libs/db"
 	"github.com/tendermint/tendermint/libs/log"
 
-	ctypes "github.com/bnb-chain/node/common/types"
-	"github.com/bnb-chain/node/common/upgrade"
-	"github.com/bnb-chain/node/plugins/dex"
-	"github.com/bnb-chain/node/plugins/tokens"
-	"github.com/bnb-chain/node/wire"
+	ctypes "github.com/aximchain/flash-node/common/types"
+	"github.com/aximchain/flash-node/common/upgrade"
+	"github.com/aximchain/flash-node/plugins/dex"
+	"github.com/aximchain/flash-node/plugins/tokens"
+	"github.com/aximchain/flash-node/wire"
 )
 
 // util objects
@@ -55,7 +55,7 @@ var (
 )
 
 func init() {
-	ServerContext.UpgradeConfig.LaunchAxcUpgradeHeight = 1
+	ServerContext.UpgradeConfig.LaunchAscUpgradeHeight = 1
 	testApp = NewAximchain(logger, memDB, os.Stdout)
 	testClient = NewTestClient(testApp)
 }
@@ -76,12 +76,12 @@ func TestCSCParamUpdatesSuccess(t *testing.T) {
 	}
 	cscParam.Check()
 	cscParamsBz, err := Codec.MarshalJSON(cscParam)
-	proposeMsg := gov.NewMsgSideChainSubmitProposal("testSideProposal", string(cscParamsBz), gov.ProposalTypeCSCParamsChange, sideValAddr, sdk.Coins{sdk.Coin{"AXC", 2000e8}}, time.Second, "axc")
+	proposeMsg := gov.NewMsgSideChainSubmitProposal("testSideProposal", string(cscParamsBz), gov.ProposalTypeCSCParamsChange, sideValAddr, sdk.Coins{sdk.Coin{"AXC", 2000e8}}, time.Second, "asc")
 	res, err := testClient.DeliverTxSync(&proposeMsg, testApp.Codec)
 	fmt.Println(res)
 	assert.NoError(t, err, "failed to submit side chain parameters change")
 
-	voteMsg := gov.NewMsgSideChainVote(sideValAddr, 1, gov.OptionYes, "axc")
+	voteMsg := gov.NewMsgSideChainVote(sideValAddr, 1, gov.OptionYes, "asc")
 	_, err = testClient.DeliverTxSync(&voteMsg, testApp.Codec)
 	assert.NoError(t, err, "failed to vote side chain parameters change")
 	testClient.cl.EndBlockSync(abci.RequestEndBlock{Height: ctx.BlockHeader().Height})
@@ -91,7 +91,7 @@ func TestCSCParamUpdatesSuccess(t *testing.T) {
 	testClient.cl.BeginBlockSync(abci.RequestBeginBlock{Header: ctx.BlockHeader()})
 	testClient.cl.EndBlockSync(abci.RequestEndBlock{Height: ctx.BlockHeader().Height})
 
-	packageBz, err := testApp.ibcKeeper.GetIBCPackage(ctx, "axc", paramHub.ChannelName, uint64(0))
+	packageBz, err := testApp.ibcKeeper.GetIBCPackage(ctx, "asc", paramHub.ChannelName, uint64(0))
 	assert.NoError(t, err)
 	expectedBz, _ := rlp.EncodeToBytes(cscParam)
 	assert.NoError(t, err)
@@ -130,11 +130,11 @@ func TestCSCParamUpdatesSequenceCorrect(t *testing.T) {
 	testClient.cl.BeginBlockSync(abci.RequestBeginBlock{Header: ctx.BlockHeader()})
 	for idx, cscParam := range cscParams {
 		cscParamsBz, err := Codec.MarshalJSON(cscParam)
-		proposeMsg := gov.NewMsgSideChainSubmitProposal("testSideProposal", string(cscParamsBz), gov.ProposalTypeCSCParamsChange, sideValAddr, sdk.Coins{sdk.Coin{"AXC", 2000e8}}, time.Second, "axc")
+		proposeMsg := gov.NewMsgSideChainSubmitProposal("testSideProposal", string(cscParamsBz), gov.ProposalTypeCSCParamsChange, sideValAddr, sdk.Coins{sdk.Coin{"AXC", 2000e8}}, time.Second, "asc")
 		_, err = testClient.DeliverTxSync(&proposeMsg, testApp.Codec)
 		assert.NoError(t, err, "failed to submit side chain parameters change")
 
-		voteMsg := gov.NewMsgSideChainVote(sideValAddr, int64(idx+1), gov.OptionYes, "axc")
+		voteMsg := gov.NewMsgSideChainVote(sideValAddr, int64(idx+1), gov.OptionYes, "asc")
 		_, err = testClient.DeliverTxSync(&voteMsg, testApp.Codec)
 		assert.NoError(t, err, "failed to vote side chain parameters change")
 	}
@@ -146,7 +146,7 @@ func TestCSCParamUpdatesSequenceCorrect(t *testing.T) {
 	testClient.cl.EndBlockSync(abci.RequestEndBlock{Height: ctx.BlockHeader().Height})
 
 	for idx, cscParam := range cscParams {
-		packageBz, err := testApp.ibcKeeper.GetIBCPackage(ctx, "axc", paramHub.ChannelName, uint64(idx))
+		packageBz, err := testApp.ibcKeeper.GetIBCPackage(ctx, "asc", paramHub.ChannelName, uint64(idx))
 		expectedBz, _ := rlp.EncodeToBytes(cscParam)
 		assert.NoError(t, err)
 		assert.True(t, bytes.Compare(expectedBz, packageBz[sTypes.PackageHeaderLength:]) == 0, "package bytes not equal")
@@ -158,7 +158,7 @@ func TestCSCParamUpdatesSequenceCorrect(t *testing.T) {
 	testClient.cl.BeginBlockSync(abci.RequestBeginBlock{Header: ctx.BlockHeader()})
 	for _, cscParam := range cscParams {
 		cscParamsBz, err := Codec.MarshalJSON(cscParam)
-		proposeMsg := gov.NewMsgSideChainSubmitProposal("testSideProposal", string(cscParamsBz), gov.ProposalTypeCSCParamsChange, sideValAddr, sdk.Coins{sdk.Coin{"AXC", 2000e8}}, time.Second, "axc")
+		proposeMsg := gov.NewMsgSideChainSubmitProposal("testSideProposal", string(cscParamsBz), gov.ProposalTypeCSCParamsChange, sideValAddr, sdk.Coins{sdk.Coin{"AXC", 2000e8}}, time.Second, "asc")
 		_, err = testClient.DeliverTxSync(&proposeMsg, testApp.Codec)
 		assert.NoError(t, err, "failed to submit side chain parameters change")
 	}
@@ -169,7 +169,7 @@ func TestCSCParamUpdatesSequenceCorrect(t *testing.T) {
 	testClient.cl.BeginBlockSync(abci.RequestBeginBlock{Header: ctx.BlockHeader()})
 	testClient.cl.EndBlockSync(abci.RequestEndBlock{Height: ctx.BlockHeader().Height})
 
-	packageBz, err := testApp.ibcKeeper.GetIBCPackage(ctx, "axc", paramHub.ChannelName, uint64(3))
+	packageBz, err := testApp.ibcKeeper.GetIBCPackage(ctx, "asc", paramHub.ChannelName, uint64(3))
 	assert.NoError(t, err)
 	assert.True(t, len(packageBz) == 0, "write package unexpected")
 
@@ -180,11 +180,11 @@ func TestCSCParamUpdatesSequenceCorrect(t *testing.T) {
 	testClient.cl.BeginBlockSync(abci.RequestBeginBlock{Header: ctx.BlockHeader()})
 	for idx, cscParam := range cscParams {
 		cscParamsBz, err := Codec.MarshalJSON(cscParam)
-		proposeMsg := gov.NewMsgSideChainSubmitProposal("testSideProposal", string(cscParamsBz), gov.ProposalTypeCSCParamsChange, sideValAddr, sdk.Coins{sdk.Coin{"AXC", 2000e8}}, time.Second, "axc")
+		proposeMsg := gov.NewMsgSideChainSubmitProposal("testSideProposal", string(cscParamsBz), gov.ProposalTypeCSCParamsChange, sideValAddr, sdk.Coins{sdk.Coin{"AXC", 2000e8}}, time.Second, "asc")
 		_, err = testClient.DeliverTxSync(&proposeMsg, testApp.Codec)
 		assert.NoError(t, err, "failed to submit side chain parameters change")
 
-		voteMsg := gov.NewMsgSideChainVote(sideValAddr, int64(idx+7), gov.OptionYes, "axc")
+		voteMsg := gov.NewMsgSideChainVote(sideValAddr, int64(idx+7), gov.OptionYes, "asc")
 		_, err = testClient.DeliverTxSync(&voteMsg, testApp.Codec)
 		assert.NoError(t, err, "failed to vote side chain parameters change")
 	}
@@ -196,7 +196,7 @@ func TestCSCParamUpdatesSequenceCorrect(t *testing.T) {
 	testClient.cl.EndBlockSync(abci.RequestEndBlock{Height: ctx.BlockHeader().Height})
 
 	for idx, cscParam := range cscParams {
-		packageBz, err := testApp.ibcKeeper.GetIBCPackage(ctx, "axc", paramHub.ChannelName, uint64(idx+3))
+		packageBz, err := testApp.ibcKeeper.GetIBCPackage(ctx, "asc", paramHub.ChannelName, uint64(idx+3))
 		expectedBz, _ := rlp.EncodeToBytes(cscParam)
 		assert.NoError(t, err)
 		assert.True(t, bytes.Compare(expectedBz, packageBz[sTypes.PackageHeaderLength:]) == 0, "package bytes not equal")
@@ -242,7 +242,7 @@ func TestSubmitCSCParamUpdatesFail(t *testing.T) {
 
 	for _, cscParam := range cscParams {
 		cscParamsBz, err := Codec.MarshalJSON(cscParam)
-		proposeMsg := gov.NewMsgSideChainSubmitProposal("testSideProposal", string(cscParamsBz), gov.ProposalTypeCSCParamsChange, sideValAddr, sdk.Coins{sdk.Coin{"AXC", 2000e8}}, time.Second, "axc")
+		proposeMsg := gov.NewMsgSideChainSubmitProposal("testSideProposal", string(cscParamsBz), gov.ProposalTypeCSCParamsChange, sideValAddr, sdk.Coins{sdk.Coin{"AXC", 2000e8}}, time.Second, "asc")
 		resp, err := testClient.DeliverTxSync(&proposeMsg, testApp.Codec)
 		assert.NoError(t, err, "failed to submit side chain parameters change")
 		assert.True(t, strings.Contains(resp.Log, "Invalid proposal"))
@@ -267,12 +267,12 @@ func TestSCParamUpdatesSuccess(t *testing.T) {
 			generatSCParamChange(nil, 0).SCParams[3],
 		}}
 	scParamsBz, err := Codec.MarshalJSON(scParams)
-	proposeMsg := gov.NewMsgSideChainSubmitProposal("testSideProposal", string(scParamsBz), gov.ProposalTypeSCParamsChange, sideValAddr, sdk.Coins{sdk.Coin{"AXC", 2000e8}}, time.Second, "axc")
+	proposeMsg := gov.NewMsgSideChainSubmitProposal("testSideProposal", string(scParamsBz), gov.ProposalTypeSCParamsChange, sideValAddr, sdk.Coins{sdk.Coin{"AXC", 2000e8}}, time.Second, "asc")
 	res, err := testClient.DeliverTxSync(&proposeMsg, testApp.Codec)
 	fmt.Println(res)
 	assert.NoError(t, err, "failed to submit side chain parameters change")
 
-	voteMsg := gov.NewMsgSideChainVote(sideValAddr, 1, gov.OptionYes, "axc")
+	voteMsg := gov.NewMsgSideChainVote(sideValAddr, 1, gov.OptionYes, "asc")
 	_, err = testClient.DeliverTxSync(&voteMsg, testApp.Codec)
 	assert.NoError(t, err, "failed to vote side chain parameters change")
 	testClient.cl.EndBlockSync(abci.RequestEndBlock{Height: ctx.BlockHeader().Height})
@@ -291,7 +291,7 @@ func TestSCParamUpdatesSuccess(t *testing.T) {
 
 	p := testApp.oracleKeeper.GetConsensusNeeded(ctx)
 	assert.True(t, p.Equal(sdk.NewDecWithPrec(9, 1)))
-	storePrefix := testApp.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.AxcChainId)
+	storePrefix := testApp.scKeeper.GetSideChainStorePrefix(ctx, ServerContext.AscChainId)
 	sideChainCtx := ctx.WithSideChainKeyPrefix(storePrefix)
 	s := testApp.stakeKeeper.GetParams(sideChainCtx)
 	assert.True(t, s.Equal(*(scParams.SCParams[0].(*stake.Params))))
@@ -313,11 +313,11 @@ func TestSCParamMultiUpdatesSuccess(t *testing.T) {
 	}
 	for idx, scParams := range scParamses {
 		scParamsBz, err := Codec.MarshalJSON(scParams)
-		proposeMsg := gov.NewMsgSideChainSubmitProposal("testSideProposal", string(scParamsBz), gov.ProposalTypeSCParamsChange, sideValAddr, sdk.Coins{sdk.Coin{"AXC", 2000e8}}, time.Second, "axc")
+		proposeMsg := gov.NewMsgSideChainSubmitProposal("testSideProposal", string(scParamsBz), gov.ProposalTypeSCParamsChange, sideValAddr, sdk.Coins{sdk.Coin{"AXC", 2000e8}}, time.Second, "asc")
 		_, err = testClient.DeliverTxSync(&proposeMsg, testApp.Codec)
 		assert.NoError(t, err, "failed to submit side chain parameters change")
 
-		voteMsg := gov.NewMsgSideChainVote(sideValAddr, int64(idx+1), gov.OptionYes, "axc")
+		voteMsg := gov.NewMsgSideChainVote(sideValAddr, int64(idx+1), gov.OptionYes, "asc")
 		_, err = testClient.DeliverTxSync(&voteMsg, testApp.Codec)
 		assert.NoError(t, err, "failed to vote side chain parameters change")
 	}
@@ -358,7 +358,7 @@ func TestSCParamUpdatesFail(t *testing.T) {
 	}
 	for _, scParams := range scParamses {
 		scParamsBz, err := Codec.MarshalJSON(scParams)
-		proposeMsg := gov.NewMsgSideChainSubmitProposal("testSideProposal", string(scParamsBz), gov.ProposalTypeSCParamsChange, sideValAddr, sdk.Coins{sdk.Coin{"AXC", 2000e8}}, time.Second, "axc")
+		proposeMsg := gov.NewMsgSideChainSubmitProposal("testSideProposal", string(scParamsBz), gov.ProposalTypeSCParamsChange, sideValAddr, sdk.Coins{sdk.Coin{"AXC", 2000e8}}, time.Second, "asc")
 		res, err := testClient.DeliverTxSync(&proposeMsg, testApp.Codec)
 		assert.NoError(t, err)
 		assert.True(t, strings.Contains(res.Log, "Invalid proposal"))
@@ -471,7 +471,7 @@ func setupTest() (crypto.Address, sdk.Context, []sdk.Account) {
 	msg := stake.NewMsgCreateSideChainValidator(sdk.ValAddress(sideValAddr), sdk.NewCoin("AXC", 5000000000000),
 		stake.NewDescription("m", "i", "w", "d"),
 		stake.NewCommissionMsg(sdk.NewDecWithPrec(1, 4), sdk.NewDecWithPrec(1, 4), sdk.NewDecWithPrec(1, 4)),
-		"axc", sideValAddr, sideValAddr)
+		"asc", sideValAddr, sideValAddr)
 
 	_, err = testClient.DeliverTxSync(&msg, testApp.Codec)
 	if err != nil {
