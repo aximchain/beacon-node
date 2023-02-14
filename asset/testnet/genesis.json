@@ -1,5 +1,5 @@
 {
-  "genesis_time": "2023-02-14T08:41:01.978387Z",
+  "genesis_time": "2023-02-14T09:27:03.111926Z",
   "chain_id": "Aximchain-Ganges",
   "consensus_params": {
     "block_size": {
@@ -22,15 +22,15 @@
         "name": "Aximchain Native Token",
         "symbol": "AXC",
         "total_supply": "20000000000000000",
-        "owner": "axc1swrsdr8s4szfc3n9qxceuqhpsw0hymh3c7w5mu",
+        "owner": "taxc1kzqq2rlc68cqkayn949pc4ukr7wa025wg06psj",
         "mintable": false
       }
     ],
     "accounts": [
       {
         "name": "owner",
-        "address": "axc1swrsdr8s4szfc3n9qxceuqhpsw0hymh3c7w5mu",
-        "consensus_addr": "AD2DBA96E7D40208F49A44E6EB6C8474F2AD5BE7"
+        "address": "taxc1kzqq2rlc68cqkayn949pc4ukr7wa025wg06psj",
+        "consensus_addr": "1D609784B7F2F3FE53B814E30F2DE0B8E0CDACE1"
       }
     ],
     "dex": {},
@@ -242,11 +242,11 @@
                     "max_rate": "0",
                     "max_change_rate": "0"
                   },
-                  "delegator_address": "axc1swrsdr8s4szfc3n9qxceuqhpsw0hymh3c7w5mu",
-                  "validator_address": "ava1swrsdr8s4szfc3n9qxceuqhpsw0hymh3gaghwk",
+                  "delegator_address": "taxc1kzqq2rlc68cqkayn949pc4ukr7wa025wg06psj",
+                  "validator_address": "ava1kzqq2rlc68cqkayn949pc4ukr7wa025wke4x9f",
                   "pubkey": {
                     "type": "tendermint/PubKeyEd25519",
-                    "value": "sn5KI1bPD7quEnwDx94WzDX2+H0FnuJFTIBlxST0yNU="
+                    "value": "m6pm7leIjhtzdp4VmFK7DH7HEoLqd2vp6ZIzWnvL9ok="
                   },
                   "delegation": {
                     "denom": "AXC",
@@ -261,14 +261,14 @@
             {
               "pub_key": {
                 "type": "tendermint/PubKeySecp256k1",
-                "value": "Aox/mLMtpV0WIP4fwphRmkj3+WN+lhiyDP+6ERO1mOZc"
+                "value": "AjTp6MsMQJyLjCk0Ag0IWb5t1TJrn7mwXPFS9PSsK1zH"
               },
-              "signature": "2PDjWouY01afykNodekKgDU2Oyv6LG9rZbp/O/J5GoUZSTrUAFj7DhmBy0LQV2ddO5FVxYhdV8xvgxfRmiHh3Q==",
+              "signature": "hmD4Hld6bVl3qslh6sqgIWJWUZRw/QXXenqFVG3703oUt1wIpE3j19/K/4ruLCFDFZWXlZqsqRasQ2XTOz8s0w==",
               "account_number": "0",
               "sequence": "0"
             }
           ],
-          "memo": "e4f90a86fa3e8f46f7a2c69bde9ce08632115ad3@127.0.0.1:26656",
+          "memo": "9213d0df6ed7f9e87bf0134ea84f73bb5ccd7aea@192.168.0.1:26656",
           "source": "0",
           "data": null
         }
