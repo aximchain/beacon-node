@@ -535,7 +535,7 @@ func (app *Aximchain) initStaking() {
 		newCtx := ctx.WithSideChainKeyPrefix(storePrefix)
 		app.stakeKeeper.SetParams(newCtx, stake.Params{
 			UnbondingTime:       60 * 60 * 24 * 7 * time.Second, // 7 days
-			MaxValidators:       21,
+			MaxValidators:       5,
 			BondDenom:           types.NativeTokenSymbol,
 			MinSelfDelegation:   20000e8,
 			MinDelegationChange: 1e8,

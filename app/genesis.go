@@ -32,7 +32,7 @@ var (
 	// set default unbonding duration to 7 days
 	DefaultUnbondingTime = 60 * 60 * 24 * 7 * time.Second
 	// default max validators to 21
-	DefaultMaxValidators uint16 = 21
+	DefaultMaxValidators uint16 = 5
 
 	// min gov deposit
 	DefaultGovMinDesposit = sdk.Coins{sdk.NewCoin(types.NativeTokenSymbol, 1000e8)}
